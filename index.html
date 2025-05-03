@@ -4,62 +4,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ESPN Style Layout</title>
+  <meta name="description" content="A trading card and collectibles store located in Mankato, MN." />
+  <meta name="keywords" content="trading cards sports cards panini topps upper deck mankato" />
+  <meta name="author" content="Kato Sports Cards" />
+  <title>KSC | Kato Sports Cards</title>
+  <link rel="canonical" href="https://www.example.com/" />
   <style>
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-    }
-    header {
-      background-color: #000;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem;
-    }
-    .menu-icon {
-      cursor: pointer;
-      margin-right: 1rem;
-      font-size: 1.5rem;
-      display: flex;
-      align-items: center;
-    }
-    header .logo {
-      color: #ff0000;
-      font-weight: bold;
-      font-size: 1.5rem;
-      margin-left: 1rem;
-    }
-    nav a {
-      margin: 0 0.5rem;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    nav a:hover {
-      color: #ff0000;
-    }
-    main {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      padding: 1rem;
-    }
+    * {box-sizing: border-box;}
+    body {margin: 0;font-family: Arial, sans-serif;background-color: black;}
+    header {background-color: #000;color: white;display: flex;justify-content: space-between;align-items: center;padding: 1rem;}
+    .menu-icon {cursor: pointer;margin-right: 1rem;font-size: 1.5rem;display: flex;align-items: center;}
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header .logo {
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-align: center;
+  width: 100%;
+}
+    nav a {margin: 0 0.5rem;color: white;text-decoration: none;font-weight: bold;}
+    nav a:hover {color: #ff0000;}
+    .nav-links-section {background-color: #ffffff;padding: 1rem;text-align: center;}
+    .nav-links-section a {margin: 0 1rem;color: #000;text-decoration: none;font-weight: bold;}
+    .nav-links-section a:hover {color: #ff0000;}
+    main {background-color: #f5f5f5;display: grid;grid-template-columns: 1fr;gap: 1rem;padding: 1rem;}
     @media (min-width: 768px) {
-      main {
-        grid-template-columns: 2fr 1fr;
-      }
+      main {grid-template-columns: 2fr 1fr;}
     }
-    .card {
-      background-color: white;
-      padding: 1rem;
-      border-radius: 6px;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    .card {background-color: white;padding: 1rem;border-radius: 6px;box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     }
     .additional-stories {
       display: grid;
@@ -114,40 +91,41 @@
     .overlay.show {
       display: block;
     }
-  </style>
+    footer {
+      background-color: #000;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+    footer a{color:white;text-decoration:none;}
+#h{display:none;}  
+</style>
 </head>
 <body>
   <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
   <div class="side-menu" id="sideMenu">
     <a href="#">Home</a>
-    <a href="#">NFL</a>
-    <a href="#">NBA</a>
-    <a href="#">MLB</a>
-    <a href="#">NHL</a>
-    <a href="#">Soccer</a>
-    <a href="#">More</a>
+    <a href="#">About</a>
   </div>
-  <header>
-    <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
-    <div class="logo">ESPN</div>
-    <nav>
-      <a href="#">NFL</a>
-      <a href="#">NBA</a>
-      <a href="#">MLB</a>
-      <a href="#">NHL</a>
-      <a href="#">Soccer</a>
-      <a href="#">More</a>
-    </nav>
-  </header>
+<header>
+  <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+  <div class="logo">KSC</div>
+</header>
+
+  <section class="nav-links-section">
+    <a href="#">COMC</a>
+    <a href="#">eBay</a>
+    <a href="#">BSC</a>
+  </section>
   <main>
     <section>
       <div class="card">
-        <img src="https://via.placeholder.com/600x300" alt="Main Story" class="story-img" />
-        <h2>Main Sports Headline</h2>
-        <p>Brief summary of the top story with engaging details.</p>
+        <h2>New Inventory</h2>
+        <p>New cards added on COMC</p>
       </div>
     </section>
-    <aside>
+    <aside id="h">
       <div class="card">
         <h3>Secondary Headline 1</h3>
         <p>Short description or score update.</p>
@@ -162,24 +140,26 @@
       </div>
     </aside>
   </main>
-  <section class="additional-stories" style="padding: 1rem">
+  <section id="h" class="additional-stories" style="padding: 1rem">
     <div class="card">
-      <img src="https://via.placeholder.com/300x150?text=Story+1" class="story-img" alt="Story 1" />
       <h4>Additional Story 1</h4>
     </div>
     <div class="card">
-      <img src="https://via.placeholder.com/300x150?text=Story+2" class="story-img" alt="Story 2" />
       <h4>Additional Story 2</h4>
     </div>
     <div class="card">
-      <img src="https://via.placeholder.com/300x150?text=Story+3" class="story-img" alt="Story 3" />
       <h4>Additional Story 3</h4>
     </div>
     <div class="card">
-      <img src="https://via.placeholder.com/300x150?text=Story+4" class="story-img" alt="Story 4" />
       <h4>Additional Story 4</h4>
     </div>
   </section>
+  <footer>
+    est. 2023 | KSC | All rights reserved.
+<br>
+<br>
+<a href="/links">Links</a>
+  </footer>
   <script>
     function toggleMenu() {
       const menu = document.getElementById('sideMenu');
