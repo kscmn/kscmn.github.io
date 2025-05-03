@@ -1,52 +1,192 @@
-<!-- 20250313 -->
+<!-- 20250502 -->
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>KSC</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/css/style.css">
-<style>
-
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ESPN Style Layout</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+    }
+    header {
+      background-color: #000;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+    }
+    .menu-icon {
+      cursor: pointer;
+      margin-right: 1rem;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+    }
+    header .logo {
+      color: #ff0000;
+      font-weight: bold;
+      font-size: 1.5rem;
+      margin-left: 1rem;
+    }
+    nav a {
+      margin: 0 0.5rem;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: #ff0000;
+    }
+    main {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      padding: 1rem;
+    }
+    @media (min-width: 768px) {
+      main {
+        grid-template-columns: 2fr 1fr;
+      }
+    }
+    .card {
+      background-color: white;
+      padding: 1rem;
+      border-radius: 6px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+    .additional-stories {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    @media (min-width: 1024px) {
+      .additional-stories {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    .story-img {
+      width: 100%;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+    }
+    /* Off-screen menu */
+    .side-menu {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: #111;
+      color: white;
+      padding: 1rem;
+      transition: left 0.3s ease;
+      z-index: 1000;
+    }
+    .side-menu.open {
+      left: 0;
+    }
+    .side-menu a {
+      display: block;
+      padding: 0.5rem 0;
+      color: white;
+      text-decoration: none;
+    }
+    .side-menu a:hover {
+      color: #ff0000;
+    }
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      z-index: 999;
+    }
+    .overlay.show {
+      display: block;
+    }
+  </style>
 </head>
-  
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-LZD9DR8ZX5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-LZD9DR8ZX5');
-</script>
-
-<body class="linkboxes">
-<p>KSC</p>
-<a href="https://www.buysportscards.com/search?inStock=true&p=0&sellerId=2c94e71b05&sellerName=Kato%20Sports%20Cards">BuySportsCards</a>
-<a href="https://www.comc.com/Users/katosportscards,sh,i100">COMC</a>
-<a href="https://www.ebay.com/usr/katosportscards">eBay</a>
-<a href="https://www.facebook.com/profile.php/?id=100093528277002&name=xhp_nt__fb__action__open_user&paipv=0&eav=AfY0xqW-H3wo0e9MuL6kZQUzM4Ohzpbdjbsf_I59OpRdQ_ygdzSi-JwgAJXi0M9wct4&_rdr">Facebook</a>
-<a href="https://www.instagram.com/katosportscards/">Instagram</a>
-<a href="https://linktr.ee/kscmn">Linktree</a>
-<a href="https://x.com/Katosportscards">Twitter</a>
-
-  
-
-
-<footer>
-<a href="/rcy">Rookie Card Years</a> |
-<a href="/s">Sports</a>
-<br>
-<a href="https://www.buysportscards.com/search?inStock=true&p=0&sellerId=2c94e71b05&sellerName=Kato%20Sports%20Cards">BuySportsCards</a> |
-<a href="https://www.comc.com/Users/katosportscards,sh,i100">COMC</a> |
-<a href="https://www.ebay.com/usr/katosportscards">eBay</a> |
-<a href="https://www.facebook.com/profile.php/?id=100093528277002&name=xhp_nt__fb__action__open_user&paipv=0&eav=AfY0xqW-H3wo0e9MuL6kZQUzM4Ohzpbdjbsf_I59OpRdQ_ygdzSi-JwgAJXi0M9wct4&_rdr">Facebook</a> |
-<a href="https://www.instagram.com/katosportscards/">Instagram</a> |
-<a href="https://linktr.ee/kscmn">Linktree</a> |
-<a href="https://x.com/Katosportscards">Twitter</a>
-<br>
-Kato Sports Cards | est. 2023
-</footer>
-
+<body>
+  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+  <div class="side-menu" id="sideMenu">
+    <a href="#">Home</a>
+    <a href="#">NFL</a>
+    <a href="#">NBA</a>
+    <a href="#">MLB</a>
+    <a href="#">NHL</a>
+    <a href="#">Soccer</a>
+    <a href="#">More</a>
+  </div>
+  <header>
+    <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+    <div class="logo">ESPN</div>
+    <nav>
+      <a href="#">NFL</a>
+      <a href="#">NBA</a>
+      <a href="#">MLB</a>
+      <a href="#">NHL</a>
+      <a href="#">Soccer</a>
+      <a href="#">More</a>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <div class="card">
+        <img src="https://via.placeholder.com/600x300" alt="Main Story" class="story-img" />
+        <h2>Main Sports Headline</h2>
+        <p>Brief summary of the top story with engaging details.</p>
+      </div>
+    </section>
+    <aside>
+      <div class="card">
+        <h3>Secondary Headline 1</h3>
+        <p>Short description or score update.</p>
+      </div>
+      <div class="card">
+        <h3>Secondary Headline 2</h3>
+        <p>Short description or score update.</p>
+      </div>
+      <div class="card">
+        <h3>Secondary Headline 3</h3>
+        <p>Short description or score update.</p>
+      </div>
+    </aside>
+  </main>
+  <section class="additional-stories" style="padding: 1rem">
+    <div class="card">
+      <img src="https://via.placeholder.com/300x150?text=Story+1" class="story-img" alt="Story 1" />
+      <h4>Additional Story 1</h4>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/300x150?text=Story+2" class="story-img" alt="Story 2" />
+      <h4>Additional Story 2</h4>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/300x150?text=Story+3" class="story-img" alt="Story 3" />
+      <h4>Additional Story 3</h4>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/300x150?text=Story+4" class="story-img" alt="Story 4" />
+      <h4>Additional Story 4</h4>
+    </div>
+  </section>
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('sideMenu');
+      const overlay = document.getElementById('overlay');
+      menu.classList.toggle('open');
+      overlay.classList.toggle('show');
+    }
+  </script>
 </body>
 </html>
