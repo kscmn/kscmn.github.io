@@ -1,0 +1,152 @@
+/* GLOBAL STYLES & RESETS */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #333; /* Dark text for readability */
+    background-color: #f8f8f8; /* Light background */
+}
+
+/* Container to center content and provide padding */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* TYPOGRAPHY */
+h1 {
+    font-size: 1.8em; /* Slightly smaller H1 in the header */
+    color: #004d99; /* A professional blue for branding */
+    margin: 0;
+}
+
+h2 {
+    font-size: 2.5em;
+    color: #cc0000; /* A classic sports card red */
+    text-align: center;
+    padding: 20px 0;
+}
+
+h3 {
+    font-size: 2em;
+    color: #004d99;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+/* HEADER & NAVIGATION */
+header {
+    background: #ffffff;
+    border-bottom: 1px solid #ddd;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    padding: 10px 15px;
+    display: block;
+    font-weight: bold;
+}
+
+/* HERO SECTION */
+.hero-section {
+    background: url('hero-cards-background.jpg') no-repeat center center/cover; /* Use a high-quality, relevant image */
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Ensures text is readable over the image */
+}
+
+.hero-section h2 {
+    color: white; /* Override the color set in the general H2 rule */
+}
+
+/* CTA BUTTONS */
+.cta-button {
+    display: inline-block;
+    background-color: #cc0000; /* Primary Red CTA */
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #a30000;
+}
+
+/* CONTENT SECTIONS */
+.content-section {
+    padding: 40px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.content-section img {
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+    border: 1px solid #ddd;
+}
+
+.services-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.services-section li {
+    background: #e6f0ff; /* Light blue background for service items */
+    margin-bottom: 10px;
+    padding: 15px;
+    border-left: 5px solid #004d99;
+}
+
+/* CONTACT SECTION */
+.map-placeholder {
+    width: 100%;
+    height: 400px;
+    background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    color: #555;
+    font-style: italic;
+}
+
+/* FOOTER */
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9em;
+}
+
+footer a {
+    color: #99ccff;
+    text-decoration: none;
+}
