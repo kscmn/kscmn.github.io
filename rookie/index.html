@@ -22,6 +22,14 @@
             margin: 0;
         }
 
+        /* --- ANTI-COPY CODE --- */
+        .no-select {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
         .container { width: 100%; max-width: 800px; }
         h2 { color: var(--dark); text-align: center; margin-bottom: 25px; }
 
@@ -33,7 +41,6 @@
             border-radius: 8px;
             font-size: 16px;
             box-sizing: border-box;
-            outline-color: var(--primary);
         }
 
         .table-container {
@@ -45,56 +52,33 @@
 
         table { width: 100%; border-collapse: collapse; }
         th, td { padding: 14px 18px; text-align: left; border-bottom: 1px solid #eee; }
-        th {
-            background-color: var(--primary);
-            color: white;
-            cursor: pointer;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 0.5px;
-        }
+        th { background-color: var(--primary); color: white; cursor: pointer; text-transform: uppercase; font-size: 0.8rem; }
 
-        /* Footer Styling */
+        /* --- FOOTER & LICENSE STYLING --- */
         footer {
             background: #f8f9fa;
-            padding: 12px 18px;
-            font-weight: bold;
-            color: #555;
+            padding: 15px 18px;
             border-top: 1px solid #eee;
-            text-align: right;
+            font-size: 0.85rem;
+            color: #555;
         }
 
-        .pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-            gap: 15px;
-        }
+        .footer-top { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 8px; }
+        .license-text { font-size: 0.75rem; line-height: 1.4; color: #777; }
+        .license-text a { color: var(--primary); text-decoration: none; font-weight: bold; }
 
-        .pagination button {
-            padding: 10px 20px;
-            border: none;
-            background-color: var(--primary);
-            color: white;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .pagination button:disabled { background-color: #ccc; cursor: not-allowed; }
-        #pageLabel { font-size: 0.9rem; color: #666; }
+        .pagination { display: flex; justify-content: center; align-items: center; margin-top: 20px; gap: 15px; }
+        .pagination button { padding: 10px 20px; border: none; background-color: var(--primary); color: white; border-radius: 6px; cursor: pointer; }
+        .pagination button:disabled { background-color: #ccc; }
     </style>
 </head>
-<body>
-
-    <div class="container">
+<body oncontextmenu="return false;"> <div class="container">
         <h2>Rookie Card Registry</h2>
         
         <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="Search athletes or years...">
 
         <div class="table-container">
-            <table id="rookieTable">
+            <table id="rookieTable" class="no-select">
                 <thead>
                     <tr>
                         <th onclick="handleSort(0)">Player Name ↕</th>
@@ -103,8 +87,19 @@
                 </thead>
                 <tbody id="tableBody"></tbody>
             </table>
-            <footer id="tableFooter">
-                Total Players: <span id="totalCount">0</span>
+            
+            <footer>
+                <div class="footer-top">
+                    <span>Total Players: <span id="totalCount">0</span></span>
+                    <span>&copy; 2026 Registry Vault</span>
+                </div>
+                <div class="license-text">
+                    This work is licensed under a 
+                    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">
+                        Creative Commons Attribution-NonCommercial-NoDerivs 4.0 International License
+                    </a>. 
+                    Unauthorized scraping or reproduction is strictly prohibited.
+                </div>
             </footer>
         </div>
 
@@ -116,6 +111,7 @@
     </div>
 
     <script>
+        // FULL DATASET (Simplified display for code block brevity)
         const allData = [
             { name: "Michael Jordan", year: "1986" }, { name: "Shohei Ohtani", year: "2018" },
             { name: "LeBron James", year: "2003" }, { name: "Kobe Bryant", year: "1996" },
@@ -179,19 +175,15 @@
             const tbody = document.getElementById("tableBody");
             const totalCountSpan = document.getElementById("totalCount");
             tbody.innerHTML = "";
-            
             totalCountSpan.innerText = filteredData.length;
-            
             const start = (currentPage - 1) * rowsPerPage;
             const end = start + rowsPerPage;
             const pageData = filteredData.slice(start, end);
-
             pageData.forEach(item => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `<td>${item.name}</td><td>${item.year}</td>`;
                 tbody.appendChild(tr);
             });
-
             const maxPage = Math.ceil(filteredData.length / rowsPerPage) || 1;
             document.getElementById("pageLabel").innerText = `Page ${currentPage} of ${maxPage}`;
             document.getElementById("prevBtn").disabled = currentPage === 1;
@@ -200,9 +192,7 @@
 
         function handleSearch() {
             const query = document.getElementById("searchInput").value.toLowerCase();
-            filteredData = allData.filter(p => 
-                p.name.toLowerCase().includes(query) || p.year.includes(query)
-            );
+            filteredData = allData.filter(p => p.name.toLowerCase().includes(query) || p.year.includes(query));
             currentPage = 1;
             renderTable();
         }
@@ -217,13 +207,8 @@
             renderTable();
         }
 
-        function changePage(dir) {
-            currentPage += dir;
-            renderTable();
-        }
-
+        function changePage(dir) { currentPage += dir; renderTable(); }
         renderTable();
     </script>
 </body>
 </html>
-
