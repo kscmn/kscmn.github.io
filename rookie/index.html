@@ -10,6 +10,7 @@
             --dark: #1c1e21;
             --light: #f0f2f5;
             --white: #ffffff;
+            --text-muted: #6c757d;
         }
 
         body {
@@ -22,7 +23,7 @@
             margin: 0;
         }
 
-        /* --- ANTI-COPY CODE --- */
+        /* ANTI-COPY MEASURES */
         .no-select {
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -41,6 +42,7 @@
             border-radius: 8px;
             font-size: 16px;
             box-sizing: border-box;
+            outline-color: var(--primary);
         }
 
         .table-container {
@@ -48,31 +50,73 @@
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             overflow: hidden;
+            margin-bottom: 20px;
         }
 
         table { width: 100%; border-collapse: collapse; }
         th, td { padding: 14px 18px; text-align: left; border-bottom: 1px solid #eee; }
-        th { background-color: var(--primary); color: white; cursor: pointer; text-transform: uppercase; font-size: 0.8rem; }
+        th { background-color: var(--primary); color: white; cursor: pointer; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; }
 
-        /* --- FOOTER & LICENSE STYLING --- */
-        footer {
-            background: #f8f9fa;
-            padding: 15px 18px;
-            border-top: 1px solid #eee;
-            font-size: 0.85rem;
-            color: #555;
+        /* PAGINATION SECTION */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 40px;
         }
 
-        .footer-top { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 8px; }
-        .license-text { font-size: 0.75rem; line-height: 1.4; color: #777; }
-        .license-text a { color: var(--primary); text-decoration: none; font-weight: bold; }
+        .pagination button {
+            padding: 10px 20px;
+            border: none;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
 
-        .pagination { display: flex; justify-content: center; align-items: center; margin-top: 20px; gap: 15px; }
-        .pagination button { padding: 10px 20px; border: none; background-color: var(--primary); color: white; border-radius: 6px; cursor: pointer; }
-        .pagination button:disabled { background-color: #ccc; }
+        .pagination button:hover:not(:disabled) { background-color: #0056b3; }
+        .pagination button:disabled { background-color: #ccc; cursor: not-allowed; }
+        #pageLabel { font-size: 0.9rem; color: var(--text-muted); font-weight: 500; }
+
+        /* NEW FOOTER DESIGN */
+        footer {
+            width: 100%;
+            text-align: center;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            margin-top: 10px;
+        }
+
+        .footer-stats {
+            font-weight: bold;
+            color: var(--dark);
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        .footer-copyright {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+
+        .license-box {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 0.75rem;
+            line-height: 1.5;
+            color: #888;
+        }
+
+        .license-box a { color: var(--primary); text-decoration: none; font-weight: bold; }
     </style>
 </head>
-<body oncontextmenu="return false;"> <div class="container">
+<body oncontextmenu="return false;">
+
+    <div class="container">
         <h2>Rookie Card Registry</h2>
         
         <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="Search athletes or years...">
@@ -87,20 +131,6 @@
                 </thead>
                 <tbody id="tableBody"></tbody>
             </table>
-            
-            <footer>
-                <div class="footer-top">
-                    <span>Total Players: <span id="totalCount">0</span></span>
-                    <span>&copy; 2026 Registry Vault</span>
-                </div>
-                <div class="license-text">
-                    This work is licensed under a 
-                    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">
-                        Creative Commons Attribution-NonCommercial-NoDerivs 4.0 International License
-                    </a>. 
-                    Unauthorized scraping or reproduction is strictly prohibited.
-                </div>
-            </footer>
         </div>
 
         <div class="pagination">
@@ -108,10 +138,25 @@
             <span id="pageLabel"></span>
             <button id="nextBtn" onclick="changePage(1)">Next</button>
         </div>
+
+        <footer>
+            <div class="footer-stats">
+                Total Players in Registry: <span id="totalCount">0</span>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2026 Registry Vault. All Rights Reserved.
+            </div>
+            <div class="license-box">
+                This work is licensed under a 
+                <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">
+                    Creative Commons Attribution-NonCommercial-NoDerivs 4.0 International License
+                </a>. 
+                Users are prohibited from copying, distributing, or using this curated data for commercial purposes.
+            </div>
+        </footer>
     </div>
 
     <script>
-        // FULL DATASET (Simplified display for code block brevity)
         const allData = [
             { name: "Michael Jordan", year: "1986" }, { name: "Shohei Ohtani", year: "2018" },
             { name: "LeBron James", year: "2003" }, { name: "Kobe Bryant", year: "1996" },
