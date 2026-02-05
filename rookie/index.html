@@ -53,7 +53,6 @@
 
         .container { width: 100%; max-width: 800px; }
 
-        /* BREADCRUMBS */
         .breadcrumbs {
             width: 100%;
             margin-bottom: 20px;
@@ -65,7 +64,6 @@
             text-decoration: none;
             font-weight: 500;
         }
-        .breadcrumbs a:hover { text-decoration: underline; }
 
         h2 { color: var(--dark); text-align: center; margin-bottom: 25px; font-size: clamp(1.5rem, 5vw, 2rem); }
 
@@ -77,7 +75,6 @@
             border-radius: 8px;
             font-size: 16px;
             outline-color: var(--primary);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
         .table-container {
@@ -101,7 +98,6 @@
 
         tr:hover td { background-color: #f8f9fa; }
 
-        /* PAGINATION */
         .pagination {
             display: flex;
             justify-content: center;
@@ -117,22 +113,18 @@
             border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
-            transition: background 0.2s;
         }
-        .pagination button:hover:not(:disabled) { background-color: #0056b3; }
         .pagination button:disabled { background-color: #ccc; cursor: not-allowed; }
         #pageLabel { font-size: 0.9rem; color: var(--text-muted); font-weight: 500; }
 
-        /* FOOTER */
         footer {
             width: 100%;
             text-align: center;
             border-top: 1px solid #ddd;
             padding-top: 20px;
-            margin-top: 10px;
         }
-        .footer-stats { font-weight: bold; color: var(--dark); margin-bottom: 5px; font-size: 1rem; }
-        .footer-copyright { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 10px; }
+        .footer-stats { font-weight: bold; color: var(--dark); margin-bottom: 5px; }
+        .footer-copyright { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 5px; }
         .location-tag { color: var(--primary); font-size: 0.8rem; margin-bottom: 10px; font-weight: 500; }
         .license-box { font-size: 0.7rem; color: #aaa; line-height: 1.5; max-width: 600px; margin: 0 auto; }
         .license-box a { color: var(--primary); text-decoration: none; }
@@ -141,7 +133,7 @@
 <body oncontextmenu="return false;">
 
     <div class="container">
-        <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <nav class="breadcrumbs">
             <a href="https://kscmn.com">Home</a> &nbsp;/&nbsp; Rookie Registry
         </nav>
 
@@ -149,7 +141,7 @@
             <h2>Athlete Rookie Year Registry</h2>
         </header>
         
-        <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="Search player or year (e.g. 2024)..." aria-label="Search Registry">
+        <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="Search player or year...">
 
         <div class="table-container">
             <table id="rookieTable" class="no-select">
@@ -178,17 +170,109 @@
             </div>
             <div class="location-tag">Mankato, Minnesota</div>
             <div class="license-box">
-                This database is protected under a 
-                <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
-                    Creative Commons Attribution-NonCommercial-NoDerivs 4.0 License
-                </a>.
+                <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0 License</a>
             </div>
         </footer>
     </div>
 
     <script>
-        // Data omitted for brevity, keep your existing 'allData' array and logic here
-        // ... (Insert the JS from previous versions here)
+        const allData = [
+            { name: "Mickey Mantle", year: "1951" }, { name: "Tom Brady", year: "2000" },
+            { name: "Patrick Mahomes", year: "2017" }, { name: "Stephen Curry", year: "2009" },
+            { name: "Caitlin Clark", year: "2024" }, { name: "Drake Maye", year: "2024" },
+            { name: "Aaron Judge", year: "2017" }, { name: "Luka Doncic", year: "2018" },
+            { name: "Caleb Williams", year: "2024" }, { name: "Ken Griffey Jr.", year: "1989" },
+            { name: "Paul Skenes", year: "2024" }, { name: "Bo Nix", year: "2024" },
+            { name: "JJ McCarthy", year: "2024" }, { name: "Josh Allen", year: "2018" },
+            { name: "Shai Gilgeous-Alexander", year: "2018" }, { name: "Lionel Messi", year: "2004" },
+            { name: "Cooper Flagg", year: "2025" }, { name: "Lamine Yamal", year: "2023" },
+            { name: "Anthony Edwards", year: "2020" }, { name: "Willie Mays", year: "1951" },
+            { name: "Nolan Ryan", year: "1968" }, { name: "Joe Burrow", year: "2020" },
+            { name: "Hank Aaron", year: "1954" }, { name: "Jalen Hurts", year: "2020" },
+            { name: "Bobby Witt Jr.", year: "2022" }, { name: "Michael Penix Jr.", year: "2024" },
+            { name: "Elly de La Cruz", year: "2024" }, { name: "Yoshinobu Yamamoto", year: "2024" },
+            { name: "Mike Trout", year: "2011" }, { name: "CJ Stroud", year: "2023" },
+            { name: "Babe Ruth", year: "1914" }, { name: "Justin Herbert", year: "2020" },
+            { name: "Roberto Clemente", year: "1955" }, { name: "Lamar Jackson", year: "2018" },
+            { name: "Nick Kurtz", year: "2024" }, { name: "Derek Jeter", year: "1993" },
+            { name: "Jackie Robinson", year: "1948" }, { name: "Nikola Jokic", year: "2015" },
+            { name: "Wayne Gretzky", year: "1979" }, { name: "Larry Bird", year: "1980" },
+            { name: "Amen Thompson", year: "2023" }, { name: "Shaquille O'Neal", year: "1992" },
+            { name: "Giannis Antetokounmpo", year: "2013" }, { name: "Brock Bowers", year: "2024" },
+            { name: "Bo Jackson", year: "1986" }, { name: "Pete Crow-Armstrong", year: "2024" },
+            { name: "Jordan Love", year: "2020" }, { name: "Pete Rose", year: "1963" },
+            { name: "Magic Johnson", year: "1980" }, { name: "Peyton Manning", year: "1998" },
+            { name: "Brock Purdy", year: "2022" }, { name: "Saquon Barkley", year: "2018" },
+            { name: "Sandy Koufax", year: "1955" }, { name: "Malik Nabers", year: "2024" },
+            { name: "Cade Cunningham", year: "2021" }, { name: "Barry Sanders", year: "1989" },
+            { name: "Jayson Tatum", year: "2017" }, { name: "Jackson Chourio", year: "2024" },
+            { name: "Juan Soto", year: "2018" }, { name: "Justin Jefferson", year: "2020" },
+            { name: "Paolo Banchero", year: "2022" }, { name: "Ted Williams", year: "1939" },
+            { name: "Cristiano Ronaldo", year: "2002" }, { name: "Jac Caglianone", year: "2024" },
+            { name: "Ronald Acuna Jr.", year: "2018" }, { name: "Roman Anthony", year: "2024" },
+            { name: "Ja Morant", year: "2019" }, { name: "Barry Bonds", year: "1986" },
+            { name: "Joe Montana", year: "1981" }, { name: "Kevin Durant", year: "2007" },
+            { name: "Ichiro Suzuki", year: "2001" }, { name: "Rome Odunze", year: "2024" },
+            { name: "Matas Buzelis", year: "2024" }, { name: "Ja'Marr Chase", year: "2021" },
+            { name: "Julius Erving", year: "1972" }, { name: "Jaxson Dart", year: "2025" },
+            { name: "Roki Sasaki", year: "2020" }, { name: "Stephon Castle", year: "2024" },
+            { name: "Jahmyr Gibbs", year: "2023" }, { name: "Cal Raleigh", year: "2022" },
+            { name: "Jackson Holliday", year: "2024" }, { name: "James Wood", year: "2024" },
+            { name: "Albert Pujols", year: "2001" }, { name: "Jackson Merrill", year: "2024" },
+            { name: "Julio Rodriguez", year: "2022" }, { name: "Bryce Harper", year: "2012" },
+            { name: "Rickey Henderson", year: "1980" }, { name: "Junior Caminero", year: "2024" },
+            { name: "Marvin Harrison Jr.", year: "2024" }, { name: "Connor McDavid", year: "2015" },
+            { name: "Travis Kelce", year: "2013" }, { name: "Connor Bedard", year: "2023" },
+            { name: "Tiger Woods", year: "1996" }, { name: "Paige Bueckers", year: "2024" },
+            { name: "Allen Iverson", year: "1996" }, { name: "Michael Jordan", year: "1986" },
+            { name: "LeBron James", year: "2003" }, { name: "Kobe Bryant", year: "1996" },
+            { name: "Shohei Ohtani", year: "2018" }, { name: "Victor Wembanyama", year: "2023" },
+            { name: "Jayden Daniels", year: "2024" }
+        ];
+
+        let filteredData = [...allData];
+        let currentPage = 1;
+        const rowsPerPage = 10;
+        let sortOrder = 'asc';
+
+        function renderTable() {
+            const tbody = document.getElementById("tableBody");
+            const totalCountSpan = document.getElementById("totalCount");
+            tbody.innerHTML = "";
+            totalCountSpan.innerText = filteredData.length;
+            const start = (currentPage - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const pageData = filteredData.slice(start, end);
+            pageData.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>${item.name}</td><td>${item.year}</td>`;
+                tbody.appendChild(tr);
+            });
+            const maxPage = Math.ceil(filteredData.length / rowsPerPage) || 1;
+            document.getElementById("pageLabel").innerText = `Page ${currentPage} of ${maxPage}`;
+            document.getElementById("prevBtn").disabled = currentPage === 1;
+            document.getElementById("nextBtn").disabled = currentPage === maxPage;
+        }
+
+        function handleSearch() {
+            const query = document.getElementById("searchInput").value.toLowerCase();
+            filteredData = allData.filter(p => p.name.toLowerCase().includes(query) || p.year.includes(query));
+            currentPage = 1;
+            renderTable();
+        }
+
+        function handleSort(index) {
+            sortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+            filteredData.sort((a, b) => {
+                let v1 = index === 0 ? a.name : a.year;
+                let v2 = index === 0 ? b.name : b.year;
+                return sortOrder === 'asc' ? v1.localeCompare(v2, undefined, {numeric: true}) : v2.localeCompare(v1, undefined, {numeric: true});
+            });
+            renderTable();
+        }
+
+        function changePage(dir) { currentPage += dir; renderTable(); }
+        renderTable();
     </script>
 </body>
 </html>
