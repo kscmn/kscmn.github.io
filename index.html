@@ -3,43 +3,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kato Sports Cards | Buy, Sell, Trade Collectible Baseball, Basketball, Football Cards in Mankato, MN</title>  
-    <meta name="description" content="Mankato's premier sports card shop! We specialize in buying, selling, and trading vintage and modern baseball, basketball, football, and hockey cards. Located in Mankato, MN."> 
-    <link rel="stylesheet" href="style.css">
-<style>
-a{border:1px solid gray;color:white;display:block;font-size:22px;margin:10px 50px;padding:10px;text-decoration:none;}
-a:hover{background:white;color:black;}
-body{background:black;color:white;font-family:sans-serif;margin:11px;text-align:center;}
-h1{color:white;}
+    
+    <title>Kato Sports Cards | Online Sports Card Shop in Mankato, Minnesota</title>
+    <meta name="description" content="Kato Sports Cards is a premier online sports card shop based in Mankato, Minnesota. Explore our Rookie Card Registry and shop our collections on eBay, Mercari, and COMC.">
+    <meta name="keywords" content="Kato Sports Cards, Online Sports Card Shop, Mankato MN, Minnesota Sports Cards, Rookie Card Registry, Trading Cards Mankato, Buy Sports Cards Online">
+    <meta name="author" content="Kato Sports Cards">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SportsStore",
+      "name": "Kato Sports Cards",
+      "url": "https://kscmn.com",
+      "logo": "https://kscmn.com/logo.png",
+      "description": "An online sports card shop specializing in rookie cards and collectibles, located in Mankato, Minnesota.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Mankato",
+        "addressRegion": "MN",
+        "addressCountry": "US"
+      },
+      "areaServed": "United States",
+      "hasMap": "https://www.google.com/maps?q=Mankato,MN",
+      "sameAs": [
+        "https://www.facebook.com/100093528277002/",
+        "https://www.instagram.com/katosportscards/",
+        "https://twitter.com/katosportscards"
+      ]
+    }
+    </script>
 
-@media (min-width:900px){
-body{margin:11px 300px;}
-}
-</style>
-    </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-EN71G9Y3CB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <style>
+        :root {
+            --primary: #007bff;
+            --dark: #1c1e21;
+            --light: #f0f2f5;
+            --white: #ffffff;
+            --text-muted: #6c757d;
+        }
 
-  gtag('config', 'G-EN71G9Y3CB');
-</script>
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden; 
+            width: 100%;
+        }
+
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 15px;
+            background: linear-gradient(135deg, var(--white) 0%, #e9ecef 100%);
+        }
+
+        header h1 {
+            font-size: clamp(2.2rem, 8vw, 3.5rem);
+            margin: 0;
+            letter-spacing: -1px;
+            color: var(--dark);
+        }
+
+        header h1 span { color: var(--primary); }
+
+        .tagline {
+            font-size: clamp(0.9rem, 4vw, 1.1rem);
+            color: var(--text-muted);
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .feature-box {
+            width: 100%;
+            max-width: 700px;
+            margin: 30px auto;
+            background: var(--white);
+            padding: 30px 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .cta-button {
+            display: inline-block;
+            width: 100%;
+            max-width: 350px;
+            padding: 18px 20px;
+            background-color: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+            margin-bottom: 40px;
+        }
+
+        .cta-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .link-group-title {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            display: block;
+        }
+
+        nav.site-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+
+        .secondary-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 5px;
+            background: #f8f9fa;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border-radius: 6px;
+            border: 1px solid #dee2e6;
+            transition: all 0.2s;
+        }
+
+        @media (min-width: 600px) {
+            nav.site-links {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .secondary-link:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        footer {
+            padding: 30px 20px;
+            background-color: var(--white);
+            border-top: 1px solid #ddd;
+            text-align: center;
+            width: 100%;
+        }
+
+        .footer-copyright { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 5px; }
+        .location-text { font-size: 0.8rem; color: var(--primary); margin-bottom: 15px; font-weight: 500; }
+        .license-box { font-size: 0.7rem; color: #aaa; max-width: 100%; line-height: 1.5; }
+        .license-box a { color: var(--primary); text-decoration: none; }
+    </style>
+</head>
 <body>
-<h1>Kato Sports Cards</h1>
-<a href="https://www.mercari.com/u/katosportscards/?tracking_ref_id=m60568783886">Mercari</a>
-<a href="https://www.facebook.com/people/Kato-Sports-Cards/100093528277002/">Facebook</a>
-<a href="https://www.instagram.com/katosportscards/">Instagram</a>
-<a href="https://www.threads.com/@katosportscards">Threads</a>
-<a href="https://www.buysportscards.com/search?inStock=true&p=0&sellerId=2c94e71b05&sellerName=Kato%20Sports%20Cards&sort=raw-price-lo-hi">BuySportsCards</a>
-<a href="https://www.ebay.com/usr/katosportscards">Ebay</a>
-<a href="https://www.comc.com/Users/katosportscards,sh,i100">COMC</a>
-<a href="https://x.com/Katosportscards">Twitter</a>
-<a href="https://www.youtube.com/@katosportscards">YouTube</a>
-<a href="https://kscmn.blogspot.com/?m=1">Blog</a>
+
+    <main class="hero">
+        <header class="logo-area">
+            <h1>Kato<span> Sports Cards</span></h1>
+            <p class="tagline">The Collector's Vault</p>
+        </header>
+
+        <section class="feature-box">
+            <a href="http://kscmn.com/rookie" class="cta-button">Enter Rookie Registry</a>
+            
+            <h2 class="link-group-title">Shop Our Collections Online</h2>
+            <nav class="site-links" aria-label="Marketplace Links">
+                <a href="https://www.mercari.com/u/katosportscards/?tracking_ref_id=m60568783886" class="secondary-link">Mercari</a>
+                <a href="https://www.buysportscards.com/search?inStock=true&p=0&q=&sellerId=2c94e71b05&sellerName=Kato%20Sports%20Cards&sort=raw-price-hi-lo" class="secondary-link">BuySportscards</a>
+                <a href="https://www.ebay.com/usr/katosportscards" class="secondary-link">eBay</a>
+                <a href="https://www.comc.com/Users/katosportscards,sh,i100" class="secondary-link">COMC</a>
+            </nav>
+
+            <h2 class="link-group-title">Follow the Hobby</h2>
+            <nav class="site-links" aria-label="Social Media Links">
+                <a href="https://www.facebook.com/100093528277002/" class="secondary-link">Facebook</a>
+                <a href="https://www.instagram.com/katosportscards/" class="secondary-link">Instagram</a>
+                <a href="https://www.threads.net/@katosportscards" class="secondary-link">Threads</a>
+                <a href="https://twitter.com/katosportscards" class="secondary-link">Twitter / X</a>
+                <a href="https://www.youtube.com/@KatoSportsCards" class="secondary-link">YouTube</a>
+                <a href="https://kscmn.blogspot.com/?m=1" class="secondary-link">Blog</a>
+            </nav>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-copyright">
+            &copy; 2026 Kato Sports Cards. All Rights Reserved.
+        </div>
+        <div class="location-text">
+            Based in Mankato, Minnesota
+        </div>
+        <div class="license-box">
+            Protected under a 
+            <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+                CC BY-NC-ND 4.0 License
+            </a>.
+        </div>
+    </footer>
+
 </body>
 </html>
-
-
-
