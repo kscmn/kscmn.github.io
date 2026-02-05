@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Rookie Card Registry</title>
+    <style>
+        :root {
+            --primary: #007bff;
+            --dark: #1c1e21;
+            --light: #f0f2f5;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            margin: 0;
+        }
+
+        .container { width: 100%; max-width: 800px; }
+        h2 { color: var(--dark); text-align: center; margin-bottom: 25px; }
+
+        #searchInput {
+            width: 100%;
+            padding: 14px 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            outline-color: var(--primary);
+        }
+
+        .table-container {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 14px 18px; text-align: left; border-bottom: 1px solid #eee; }
+        th {
+            background-color: var(--primary);
+            color: white;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Footer Styling */
+        footer {
+            background: #f8f9fa;
+            padding: 12px 18px;
+            font-weight: bold;
+            color: #555;
+            border-top: 1px solid #eee;
+            text-align: right;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            gap: 15px;
+        }
+
+        .pagination button {
+            padding: 10px 20px;
+            border: none;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .pagination button:disabled { background-color: #ccc; cursor: not-allowed; }
+        #pageLabel { font-size: 0.9rem; color: #666; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Rookie Card Registry</h2>
+        
+        <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="Search athletes or years...">
+
+        <div class="table-container">
+            <table id="rookieTable">
+                <thead>
+                    <tr>
+                        <th onclick="handleSort(0)">Player Name ↕</th>
+                        <th onclick="handleSort(1)">Rookie Year ↕</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+            <footer id="tableFooter">
+                Total Players: <span id="totalCount">0</span>
+            </footer>
+        </div>
+
+        <div class="pagination">
+            <button id="prevBtn" onclick="changePage(-1)">Previous</button>
+            <span id="pageLabel"></span>
+            <button id="nextBtn" onclick="changePage(1)">Next</button>
+        </div>
+    </div>
+
+    <script>
+        const allData = [
+            { name: "Michael Jordan", year: "1986" }, { name: "Shohei Ohtani", year: "2018" },
+            { name: "LeBron James", year: "2003" }, { name: "Kobe Bryant", year: "1996" },
+            { name: "Victor Wembanyama", year: "2023" }, { name: "Jayden Daniels", year: "2024" },
+            { name: "Mickey Mantle", year: "1951" }, { name: "Tom Brady", year: "2000" },
+            { name: "Patrick Mahomes", year: "2017" }, { name: "Stephen Curry", year: "2009" },
+            { name: "Caitlin Clark", year: "2024" }, { name: "Drake Maye", year: "2024" },
+            { name: "Aaron Judge", year: "2017" }, { name: "Luka Doncic", year: "2018" },
+            { name: "Caleb Williams", year: "2024" }, { name: "Ken Griffey Jr.", year: "1989" },
+            { name: "Paul Skenes", year: "2024" }, { name: "Bo Nix", year: "2024" },
+            { name: "JJ McCarthy", year: "2024" }, { name: "Josh Allen", year: "2018" },
+            { name: "Shai Gilgeous-Alexander", year: "2018" }, { name: "Lionel Messi", year: "2004" },
+            { name: "Cooper Flagg", year: "2025" }, { name: "Lamine Yamal", year: "2023" },
+            { name: "Anthony Edwards", year: "2020" }, { name: "Willie Mays", year: "1951" },
+            { name: "Nolan Ryan", year: "1968" }, { name: "Joe Burrow", year: "2020" },
+            { name: "Hank Aaron", year: "1954" }, { name: "Jalen Hurts", year: "2020" },
+            { name: "Bobby Witt Jr.", year: "2022" }, { name: "Michael Penix Jr.", year: "2024" },
+            { name: "Elly de La Cruz", year: "2024" }, { name: "Yoshinobu Yamamoto", year: "2024" },
+            { name: "Mike Trout", year: "2011" }, { name: "CJ Stroud", year: "2023" },
+            { name: "Babe Ruth", year: "1914" }, { name: "Justin Herbert", year: "2020" },
+            { name: "Roberto Clemente", year: "1955" }, { name: "Lamar Jackson", year: "2018" },
+            { name: "Nick Kurtz", year: "2024" }, { name: "Derek Jeter", year: "1993" },
+            { name: "Jackie Robinson", year: "1948" }, { name: "Nikola Jokic", year: "2015" },
+            { name: "Wayne Gretzky", year: "1979" }, { name: "Larry Bird", year: "1980" },
+            { name: "Amen Thompson", year: "2023" }, { name: "Shaquille O'Neal", year: "1992" },
+            { name: "Giannis Antetokounmpo", year: "2013" }, { name: "Brock Bowers", year: "2024" },
+            { name: "Bo Jackson", year: "1986" }, { name: "Pete Crow-Armstrong", year: "2024" },
+            { name: "Jordan Love", year: "2020" }, { name: "Pete Rose", year: "1963" },
+            { name: "Magic Johnson", year: "1980" }, { name: "Peyton Manning", year: "1998" },
+            { name: "Brock Purdy", year: "2022" }, { name: "Saquon Barkley", year: "2018" },
+            { name: "Sandy Koufax", year: "1955" }, { name: "Malik Nabers", year: "2024" },
+            { name: "Cade Cunningham", year: "2021" }, { name: "Barry Sanders", year: "1989" },
+            { name: "Jayson Tatum", year: "2017" }, { name: "Jackson Chourio", year: "2024" },
+            { name: "Juan Soto", year: "2018" }, { name: "Justin Jefferson", year: "2020" },
+            { name: "Paolo Banchero", year: "2022" }, { name: "Ted Williams", year: "1939" },
+            { name: "Cristiano Ronaldo", year: "2002" }, { name: "Jac Caglianone", year: "2024" },
+            { name: "Ronald Acuna Jr.", year: "2018" }, { name: "Roman Anthony", year: "2024" },
+            { name: "Ja Morant", year: "2019" }, { name: "Barry Bonds", year: "1986" },
+            { name: "Joe Montana", year: "1981" }, { name: "Kevin Durant", year: "2007" },
+            { name: "Ichiro Suzuki", year: "2001" }, { name: "Rome Odunze", year: "2024" },
+            { name: "Matas Buzelis", year: "2024" }, { name: "Ja'Marr Chase", year: "2021" },
+            { name: "Julius Erving", year: "1972" }, { name: "Jaxson Dart", year: "2025" },
+            { name: "Roki Sasaki", year: "2020" }, { name: "Stephon Castle", year: "2024" },
+            { name: "Jahmyr Gibbs", year: "2023" }, { name: "Cal Raleigh", year: "2022" },
+            { name: "Jackson Holliday", year: "2024" }, { name: "James Wood", year: "2024" },
+            { name: "Albert Pujols", year: "2001" }, { name: "Jackson Merrill", year: "2024" },
+            { name: "Julio Rodriguez", year: "2022" }, { name: "Bryce Harper", year: "2012" },
+            { name: "Rickey Henderson", year: "1980" }, { name: "Junior Caminero", year: "2024" },
+            { name: "Marvin Harrison Jr.", year: "2024" }, { name: "Connor McDavid", year: "2015" },
+            { name: "Travis Kelce", year: "2013" }, { name: "Connor Bedard", year: "2023" },
+            { name: "Tiger Woods", year: "1996" }, { name: "Paige Bueckers", year: "2024" },
+            { name: "Allen Iverson", year: "1996" }
+        ];
+
+        let filteredData = [...allData];
+        let currentPage = 1;
+        const rowsPerPage = 10;
+        let sortOrder = 'asc';
+
+        function renderTable() {
+            const tbody = document.getElementById("tableBody");
+            const totalCountSpan = document.getElementById("totalCount");
+            tbody.innerHTML = "";
+            
+            totalCountSpan.innerText = filteredData.length;
+            
+            const start = (currentPage - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const pageData = filteredData.slice(start, end);
+
+            pageData.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>${item.name}</td><td>${item.year}</td>`;
+                tbody.appendChild(tr);
+            });
+
+            const maxPage = Math.ceil(filteredData.length / rowsPerPage) || 1;
+            document.getElementById("pageLabel").innerText = `Page ${currentPage} of ${maxPage}`;
+            document.getElementById("prevBtn").disabled = currentPage === 1;
+            document.getElementById("nextBtn").disabled = currentPage === maxPage;
+        }
+
+        function handleSearch() {
+            const query = document.getElementById("searchInput").value.toLowerCase();
+            filteredData = allData.filter(p => 
+                p.name.toLowerCase().includes(query) || p.year.includes(query)
+            );
+            currentPage = 1;
+            renderTable();
+        }
+
+        function handleSort(index) {
+            sortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+            filteredData.sort((a, b) => {
+                let v1 = index === 0 ? a.name : a.year;
+                let v2 = index === 0 ? b.name : b.year;
+                return sortOrder === 'asc' ? v1.localeCompare(v2, undefined, {numeric: true}) : v2.localeCompare(v1, undefined, {numeric: true});
+            });
+            renderTable();
+        }
+
+        function changePage(dir) {
+            currentPage += dir;
+            renderTable();
+        }
+
+        renderTable();
+    </script>
+</body>
+</html>
+
