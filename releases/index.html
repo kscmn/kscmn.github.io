@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Sports Card Release Dates 2026 | Kato Sports Cards Mankato MN</title>
+    <meta name="description" content="Stay ahead of the hobby with the 2026 Sports Card Release Calendar. Track upcoming drops from Topps, Panini, and Upper Deck. Based in Mankato, Minnesota.">
+    <meta name="keywords" content="Sports Card Release Dates 2026, Upcoming Topps Baseball, Panini Football Releases, Upper Deck Hockey Calendar, Kato Sports Cards Mankato">
+    
+    <style>
+        :root {
+            --primary: #007bff;
+            --dark: #1c1e21;
+            --light: #f0f2f5;
+            --white: #ffffff;
+            --text-muted: #6c757d;
+            --border: #dee2e6;
+            --accent: #e7f1ff;
+        }
+
+        * { box-sizing: border-box; }
+
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            margin: 0; 
+            color: var(--dark); 
+            background-color: var(--light);
+            line-height: 1.5;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+
+        /* BREADCRUMBS */
+        .breadcrumbs {
+            margin: 10px 0 25px 0;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .breadcrumbs a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        h2 { 
+            color: var(--dark); 
+            text-align: center; 
+            margin-bottom: 30px; 
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            letter-spacing: -0.5px;
+        }
+
+        /* RELEASE LIST STYLING */
+        .release-section {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .release-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .release-table th {
+            background-color: var(--primary);
+            color: white;
+            text-align: left;
+            padding: 15px 20px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .release-table td {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            font-size: 0.95rem;
+        }
+
+        .date-cell {
+            font-weight: 700;
+            color: var(--primary);
+            white-space: nowrap;
+            width: 120px;
+        }
+
+        .product-cell {
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .release-table tr:last-child td { border-bottom: none; }
+        .release-table tr:hover td { background-color: var(--accent); }
+
+        /* SEARCH BAR */
+        #releaseSearch {
+            width: 100%;
+            padding: 15px 20px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            outline-color: var(--primary);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--white);
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+        .footer-copyright { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 5px; }
+        .location-tag { color: var(--primary); font-size: 0.8rem; font-weight: 600; }
+
+        @media (max-width: 600px) {
+            .date-cell { width: 100px; font-size: 0.85rem; }
+            .product-cell { font-size: 0.85rem; }
+            .container { padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <nav class="breadcrumbs">
+        <a href="https://kscmn.com">Home</a> &nbsp;/&nbsp; Release Dates
+    </nav>
+
+    <header>
+        <h2>Release Dates</h2>
+    </header>
+
+    <input type="text" id="releaseSearch" onkeyup="filterReleases()" placeholder="Search by sport or product name (e.g. 'Baseball' or 'Prizm')...">
+
+    <div class="release-section">
+        <table class="release-table" id="releaseTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Product Name</th>
+                </tr>
+            </thead>
+            <tbody id="releaseBody">
+                </tbody>
+        </table>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-copyright">&copy; 2026 Kato Sports Cards. All Rights Reserved.</div>
+    <div class="location-tag">Mankato, Minnesota</div>
+</footer>
+
+<script>
+    const releases = [
+        { date: "02/11/26", name: "2025 Bowman Draft Baseball Sapphire" },
+        { date: "02/11/26", name: "2026 Leaf President's Day" },
+        { date: "02/11/26", name: "2026 Topps Series 1 Baseball" },
+        { date: "02/11/26", name: "2025/26 Upper Deck SP Game Used Hockey" },
+        { date: "02/12/26", name: "2025 Panini Prizm Football No Huddle" },
+        { date: "02/12/26", name: "2025 Topps Pristine Baseball" },
+        { date: "02/13/26", name: "2025 Leaf In The Game Used Sports" },
+        { date: "02/18/26", name: "2025 Panini Impeccable LIV Golf" },
+        { date: "02/18/26", name: "2025 Panini National Treasures Football" },
+        { date: "02/18/26", name: "2025 Panini Prospect Edition Baseball" },
+        { date: "02/18/26", name: "2025 Topps Stadium Club Baseball" },
+        { date: "02/18/26", name: "2026 Upper Deck Allure Golf" },
+        { date: "02/18/26", name: "2025/26 Upper Deck Fleer Ultra Hockey" },
+        { date: "02/18/26", name: "2025 Upper Deck Golf" },
+        { date: "02/18/26", name: "2025/26 Upper Deck Flair Hockey" },
+        { date: "02/19/26", name: "2025 Panini Select Football Hobby" },
+        { date: "02/19/26", name: "2025 Topps MLS Chrome Soccer" },
+        { date: "02/19/26", name: "2025/26 Topps Three Basketball" },
+        { date: "02/20/26", name: "2026 Leaf Paydirt Football" },
+        { date: "02/20/26", name: "2026 Leaf Paydirt Football Jumbo" },
+        { date: "02/20/26", name: "2025 Panini Authentically Mahomes" },
+        { date: "02/20/26", name: "2025 Topps Gilded Collection Baseball" },
+        { date: "02/27/26", name: "2025 Leaf Optichrome Baseball Hobby & Jumbo" },
+        { date: "02/27/26", name: "2025 Panini Flawless Football" },
+        { date: "02/27/26", name: "2025 Topps WWE Universe" },
+        { date: "03/04/26", name: "2025 Panini Authentically Mahomes Icon Collection Football Blaster" },
+        { date: "03/04/26", name: "2025 Panini One & One WNBA Basketball" },
+        { date: "03/04/26", name: "2025/26 Upper Deck Series 2 Hockey" },
+        { date: "03/05/26", name: "2025/26 Topps Finest Basketball" },
+        { date: "03/06/26", name: "2026 Leaf St. Patrick's Day" },
+        { date: "03/11/26", name: "2025 Panini Prizm Black Football" },
+        { date: "03/11/26", name: "2025/26 Upper Deck SPx Hockey" },
+        { date: "03/11/26", name: "2025 Upper Deck World of Sports Volume 2" },
+        { date: "03/12/26", name: "2025/26 Panini Donruss Road To FIFA World Cup 26 Soccer" },
+        { date: "03/13/26", name: "2025 Panini Prizm WNBA Basketball" },
+        { date: "03/18/26", name: "2025/26 Panini Contenders EuroLeague Basketball" },
+        { date: "03/20/26", name: "2026 Leaf Pop Century" },
+        { date: "03/27/26", name: "2025 Leaf Glory of the Game Basketball" },
+        { date: "03/27/26", name: "2025/26 Panini Prizm FIFA Soccer" },
+        { date: "03/27/26", name: "2025 Panini Silhouette Football" },
+        { date: "03/31/26", name: "2026 Onyx Vintage Collection Baseball" },
+        { date: "04/01/26", name: "2025 Panini Select WNBA Basketball" },
+        { date: "04/01/26", name: "2025/26 Upper Deck Skybox Metal Universe Hockey" },
+        { date: "04/03/26", name: "2025/26 Panini Noir Road To FIFA World Cup 26 Soccer" },
+        { date: "04/15/26", name: "2026 Upper Deck AEW Allure Wrestling" },
+        { date: "04/15/26", name: "2025/26 Upper Deck O-Pee-Chee Platinum Hockey" },
+        { date: "05/27/26", name: "2025/26 Upper Deck AHL Hockey" },
+        { date: "06/17/26", name: "2026 Upper Deck All Elite Wrestling (AEW)" },
+        { date: "06/17/26", name: "2025/26 Upper Deck Parkhurst Hockey" },
+        { date: "06/17/26", name: "2025/26 Upper Deck SP Authentic Hockey" },
+        { date: "06/23/26", name: "2025/26 Upper Deck Ultimate Collection Hockey" },
+        { date: "07/29/26", name: "2025/26 Upper Deck Ice Hockey" },
+        { date: "09/16/26", name: "2025/26 Upper Deck Clear Cut Hockey" }
+    ];
+
+    function renderReleases(data) {
+        const body = document.getElementById('releaseBody');
+        body.innerHTML = '';
+        data.forEach(item => {
+            const row = `<tr>
+                <td class="date-cell">${item.date}</td>
+                <td class="product-cell">${item.name}</td>
+            </tr>`;
+            body.innerHTML += row;
+        });
+    }
+
+    function filterReleases() {
+        const query = document.getElementById('releaseSearch').value.toLowerCase();
+        const filtered = releases.filter(r => r.name.toLowerCase().includes(query) || r.date.includes(query));
+        renderReleases(filtered);
+    }
+
+    // Initial Load
+    renderReleases(releases);
+</script>
+
+</body>
+</html>
