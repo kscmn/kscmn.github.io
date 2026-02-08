@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>About Us | Kato Sports Cards Mankato MN</title>
+    <meta name="description" content="Learn more about Kato Sports Cards. Established in 2023 in Mankato, Minnesota, specializing in sports card collectibles and online marketplaces.">
+    
+    <style>
+        :root {
+            --primary: #007bff;
+            --dark: #1c1e21;
+            --light: #f0f2f5;
+            --white: #ffffff;
+            --text-muted: #6c757d;
+            --border: #dee2e6;
+        }
+
+        * { box-sizing: border-box; }
+
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            margin: 0; 
+            color: var(--dark); 
+            background-color: var(--light);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; flex: 1; }
+
+        /* BREADCRUMBS */
+        .breadcrumbs {
+            margin: 10px 0 25px 0;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .breadcrumbs a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* CONTENT BOX */
+        .about-box {
+            background: var(--white);
+            padding: 50px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h2 { 
+            color: var(--dark); 
+            margin-top: 0; 
+            font-size: 2rem;
+            margin-bottom: 25px;
+        }
+
+        .about-text {
+            font-size: 1.15rem;
+            color: #444;
+            margin-bottom: 35px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 16px 32px;
+            background-color: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+        }
+
+        .contact-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--white);
+            border-top: 1px solid var(--border);
+        }
+        .footer-copyright { color: var(--text-muted); font-size: 0.85rem; }
+
+        @media (max-width: 600px) {
+            .about-box { padding: 30px 20px; }
+            h2 { font-size: 1.75rem; }
+            .about-text { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <nav class="breadcrumbs">
+        <a href="https://kscmn.com">Home</a> &nbsp;/&nbsp; About Us
+    </nav>
+
+    <main class="about-box">
+        <h2>About Us</h2>
+        <div class="about-text">
+            <p>Kato Sports Cards was established in 2023. We're located in Mankato, Minnesota and sell on various marketplaces online. Thank you for visiting. Please let us know how we can help.</p>
+            <p><strong>SKOL and Ole!</strong></p>
+        </div>
+        
+        <a href="mailto:katosportscards@outlook.com" class="contact-btn">Contact Us</a>
+    </main>
+</div>
+
+<footer>
+    <div class="footer-copyright">&copy; 2026 Kato Sports Cards. All Rights Reserved.</div>
+</footer>
+
+</body>
+</html>
+
