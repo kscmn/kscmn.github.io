@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZD9DR8ZX5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-LZD9DR8ZX5');
+    </script>
+
+    <title>eBay Sold Research | Kato Sports Cards</title>
+    <meta name="description" content="Search eBay sold listings to find current market values for sports cards.">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <nav class="breadcrumbs">
+        <a href="https://kscmn.com">Home</a> &nbsp;/&nbsp; Market Research
+    </nav>
+
+    <main class="ksc-card">
+        <h2>Market Value Search</h2>
+        <p style="color: var(--text-muted); margin-bottom: 25px;">Enter card details to view recent eBay sold prices.</p>
+        
+        <form id="soldSearchForm">
+            <input type="text" id="query" class="search-input" placeholder="e.g. 2025 Topps Series 1 Paul Skenes" required>
+            <button type="submit" class="ksc-button">Search Sold Listings</button>
+        </form>
+    </main>
+</div>
+
+<footer>
+    <div class="footer-copyright">© 2026 Kato Sports Cards. All Rights Reserved.</div>
+    <div class="location-text">Mankato, Minnesota</div>
+</footer>
+
+<script>
+    document.getElementById('soldSearchForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const searchTerms = document.getElementById('query').value;
+        const ebayUrl = `https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(searchTerms)}&LH_Sold=1&LH_Complete=1&_sop=13`;
+        window.open(ebayUrl, '_blank');
+    });
+</script>
+
+</body>
+</html>
+
