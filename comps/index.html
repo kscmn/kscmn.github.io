@@ -1,4 +1,4 @@
-se<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,29 +6,24 @@ se<!DOCTYPE html>
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZD9DR8ZX5"></script>
     <script>
-      async function getComps(searchTerm) {
-    const workerUrl = `https://ebay-comps-api.your-subdomain.workers.dev/?q=${encodeURIComponent(searchTerm)}`;
-    
-    const response = await fetch(workerUrl);
-    const html = await response.text();
-    
-    // Use a DOMParser to find prices in the returned HTML
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-    const prices = doc.querySelectorAll('.s-item__price');
-    
-    // Example: Show the first 5 sold prices
-    prices.forEach((p, index) => {
-        if(index < 5) console.log("Sold Price:", p.innerText);
-    });
-}
-
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-LZD9DR8ZX5');
     </script>
 
-    <title>Sports Card Comps | Kato Sports Cards Research</title>
-    <meta name="description" content="Quickly find sports card comps using eBay sold listings. Research market values for Baseball, Basketball, and Football cards.">
+    <title>Sports Card Comps | Kato Sports Cards</title>
     
     <link rel="stylesheet" href="https://kscmn.com/style.css">
+
+    <style>
+        /* Specific styles for the Comps results display */
+        #resultsArea { margin-top: 30px; display: none; }
+        .avg-container { padding: 20px; background: var(--accent-light, #e7f1ff); border-radius: 8px; margin-bottom: 20px; }
+        .price-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; font-size: 0.9rem; }
+        .loader { color: var(--primary); font-weight: bold; padding: 20px; }
+        .error-msg { color: #dc3545; background: #fff5f5; padding: 15px; border-radius: 8px; }
+    </style>
 </head>
 <body>
 
@@ -38,80 +33,31 @@ se<!DOCTYPE html>
     </nav>
 
     <main class="ksc-card">
-        <h2>Card Comps</h2>
-        <p style="color: var(--text-muted); margin-bottom: 25px;">
-            Search recent eBay sold listings to find the current market value of your cards.
-        </p>
+        <h1>Card Comps</h1>
+        <p style="color: var(--text-muted); margin-bottom: 25px;">Find recent eBay sold prices instantly.</p>
         
-        <form id="compsSearchForm">
-            <input type="text" id="query" class="search-input" placeholder="e.g. 2023 Bowman Draft Paul Skenes" required>
+        <form id="compsForm">
+            <input type="text" id="cardQuery" class="search-input" placeholder="e.g. 2024 Topps Series 1 Elly De La Cruz" required>
             <button type="submit" class="ksc-button">Get Sold Comps</button>
         </form>
-        
-        <div style="margin-top: 20px; font-size: 0.8rem; color: #aaa;">
-            Tip: Be specific (Year, Set, Player, Grade) for better results.
+
+        <div id="status" class="loader" style="display:none;">Searching eBay Market Data...</div>
+
+        <div id="resultsArea">
+            <div class="avg-container">
+                <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted);">Average Sold Price</div>
+                <div id="avgPrice" style="color: var(--primary); font-size: 2.5rem; font-weight: 800;">$0.00</div>
+                <div id="saleCount" style="font-size: 0.85rem; color: var(--text-muted);">Based on last 0 sales</div>
+            </div>
+
+            <div id="soldList"></div>
+            
+            <div style="margin-top: 20px;">
+                <a id="ebayLink" href="#" target="_blank" class="secondary-link" style="width: 100%;">View All Results on eBay</a>
+            </div>
         </div>
     </main>
 </div>
-<main class="ksc-card">
-    <h2>Market Comps</h2>
-    <form id="compsForm">
-        <input type="text" id="cardQuery" class="search-input" placeholder="e.g. 2023 Prizm Stroud PSA 10" required>
-        <button type="submit" class="ksc-button">Get Live Comps</button>
-    </form>
-
-    <div id="resultsArea" style="margin-top: 30px; display: none;">
-        <h3 id="avgPrice" style="color: var(--primary); font-size: 2rem;">--</h3>
-        <p style="font-size: 0.8rem; color: var(--text-muted);">Average of last 10 sales</p>
-        <hr border="0" height="1px" background="#eee">
-        <div id="soldList" style="text-align: left; max-width: 400px; margin: 0 auto;"></div>
-    </div>
-</main>
-
-<script>
-document.getElementById('compsForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const query = document.getElementById('cardQuery').value;
-    const resultsArea = document.getElementById('resultsArea');
-    const soldList = document.getElementById('soldList');
-    
-    // Replace with your actual Worker URL
-    const workerUrl = `https://your-worker-name.your-subdomain.workers.dev/?q=${encodeURIComponent(query)}`;
-
-    resultsArea.style.display = 'block';
-    soldList.innerHTML = "Fetching current market data...";
-
-    try {
-        const resp = await fetch(workerUrl);
-        const html = await resp.text();
-        const doc = new DOMParser().parseFromString(html, 'text/html');
-        const priceElements = doc.querySelectorAll('.s-item__price');
-        
-        let total = 0;
-        let count = 0;
-        soldList.innerHTML = "";
-
-        priceElements.forEach((el, i) => {
-            if (i > 0 && count < 10) { // Skip eBay's "suggested" first item
-                const priceText = el.innerText.replace(/[^0-9.]/g, '');
-                const price = parseFloat(priceText);
-                
-                if (!isNaN(price)) {
-                    total += price;
-                    count++;
-                    soldList.innerHTML += `<div style="padding: 5px 0; border-bottom: 1px solid #f0f0f0;">Sale ${count}: **$${price.toFixed(2)}**</div>`;
-                }
-            }
-        });
-
-        const avg = total / count;
-        document.getElementById('avgPrice').innerText = `$${avg.toFixed(2)}`;
-        
-    } catch (err) {
-        soldList.innerHTML = "Error fetching data. Check your Worker URL or CORS settings.";
-    }
-});
-</script>
 
 <footer>
     <div class="footer-copyright">© 2026 Kato Sports Cards. All Rights Reserved.</div>
@@ -119,14 +65,33 @@ document.getElementById('compsForm').addEventListener('submit', async (e) => {
 </footer>
 
 <script>
-    document.getElementById('compsSearchForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const searchTerms = document.getElementById('query').value;
-        // LH_Sold=1: Sold items, LH_Complete=1: Completed items, _sop=13: Recent first
-        const ebayUrl = `https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(searchTerms)}&LH_Sold=1&LH_Complete=1&_sop=13`;
-        window.open(ebayUrl, '_blank');
-    });
-</script>
+document.getElementById('compsForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const query = document.getElementById('cardQuery').value;
+    const status = document.getElementById('status');
+    const resultsArea = document.getElementById('resultsArea');
+    const soldList = document.getElementById('soldList');
+    const avgDisplay = document.getElementById('avgPrice');
+    const countDisplay = document.getElementById('saleCount');
+    const ebayLink = document.getElementById('ebayLink');
 
-</body>
-</html>
+    // 1. Setup UI for loading
+    status.style.display = 'block';
+    resultsArea.style.display = 'none';
+    soldList.innerHTML = "";
+
+    // 2. Replace with your actual Cloudflare Worker URL
+    const workerUrl = `https://your-worker-name.your-subdomain.workers.dev/?q=${encodeURIComponent(query)}`;
+    
+    // Set the "View on eBay" link immediately
+    ebayLink.href = `https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(query)}&LH_Sold=1&LH_Complete=1&_sop=13`;
+
+    try {
+        const response = await fetch(workerUrl);
+        if (!response.ok) throw new Error("Worker Error");
+        
+        const html = await response.text();
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        
+        // eBay uses '.s-item__
