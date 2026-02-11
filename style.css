@@ -1,152 +1,127 @@
-/* GLOBAL STYLES & RESETS */
+/* KSC THEME - Official Design System v1.0
+   Kato Sports Cards | Mankato, MN
+   Design: The Collector's Vault (Clean Slate)
+*/
+
+:root {
+    --primary: #007bff;      /* Signature Kato Blue */
+    --dark: #1c1e21;         /* Deep Onyx */
+    --light: #f0f2f5;        /* Soft Slate BG */
+    --white: #ffffff;
+    --text-muted: #6c757d;
+    --border: #dee2e6;
+    --shadow: 0 4px 15px rgba(0,0,0,0.08);
+    --accent-light: #e7f1ff;
+}
+
+/* Global Reset & Base */
+* { box-sizing: border-box; }
+
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--light);
+    color: var(--dark);
     margin: 0;
     padding: 0;
-    color: #333; /* Dark text for readability */
-    background-color: #f8f8f8; /* Light background */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    line-height: 1.6;
 }
 
-/* Container to center content and provide padding */
 .container {
-    width: 90%;
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 auto;
-    padding: 20px 0;
+    padding: 20px;
+    width: 100%;
 }
 
-/* TYPOGRAPHY */
-h1 {
-    font-size: 1.8em; /* Slightly smaller H1 in the header */
-    color: #004d99; /* A professional blue for branding */
-    margin: 0;
-}
-
-h2 {
-    font-size: 2.5em;
-    color: #cc0000; /* A classic sports card red */
-    text-align: center;
-    padding: 20px 0;
-}
-
-h3 {
-    font-size: 2em;
-    color: #004d99;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 10px;
+/* Typography */
+h1, h2, h3 {
+    letter-spacing: -1px;
     margin-top: 0;
 }
 
-/* HEADER & NAVIGATION */
-header {
-    background: #ffffff;
-    border-bottom: 1px solid #ddd;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+/* KSC Breadcrumbs */
+.breadcrumbs {
+    margin: 10px 0 25px 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
 }
-
-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-}
-
-nav ul li a {
+.breadcrumbs a {
+    color: var(--primary);
     text-decoration: none;
-    color: #333;
-    padding: 10px 15px;
-    display: block;
-    font-weight: bold;
+    font-weight: 600;
+}
+.breadcrumbs a:hover {
+    text-decoration: underline;
 }
 
-/* HERO SECTION */
-.hero-section {
-    background: url('hero-cards-background.jpg') no-repeat center center/cover; /* Use a high-quality, relevant image */
-    color: white;
-    text-align: center;
-    padding: 100px 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Ensures text is readable over the image */
+/* KSC Content Cards */
+.ksc-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-bottom: 25px;
 }
 
-.hero-section h2 {
-    color: white; /* Override the color set in the general H2 rule */
-}
-
-/* CTA BUTTONS */
-.cta-button {
+/* KSC Primary Buttons */
+.ksc-button {
     display: inline-block;
-    background-color: #cc0000; /* Primary Red CTA */
-    color: white;
-    padding: 15px 30px;
+    padding: 16px 24px;
+    background-color: var(--primary);
+    color: var(--white);
     text-decoration: none;
-    border-radius: 5px;
+    font-size: 1.1rem;
     font-weight: bold;
-    margin-top: 20px;
-    transition: background-color 0.3s;
-}
-
-.cta-button:hover {
-    background-color: #a30000;
-}
-
-/* CONTENT SECTIONS */
-.content-section {
-    padding: 40px 0;
-    border-bottom: 1px solid #eee;
-}
-
-.content-section img {
-    max-width: 100%;
-    height: auto;
-    margin: 20px 0;
-    border: 1px solid #ddd;
-}
-
-.services-section ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-.services-section li {
-    background: #e6f0ff; /* Light blue background for service items */
-    margin-bottom: 10px;
-    padding: 15px;
-    border-left: 5px solid #004d99;
-}
-
-/* CONTACT SECTION */
-.map-placeholder {
-    width: 100%;
-    height: 400px;
-    background-color: #ccc;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    color: #555;
-    font-style: italic;
-}
-
-/* FOOTER */
-footer {
-    background: #333;
-    color: white;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
     text-align: center;
-    padding: 20px 0;
-    font-size: 0.9em;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.25);
 }
 
-footer a {
-    color: #99ccff;
-    text-decoration: none;
+.ksc-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.35);
 }
+
+/* KSC Secondary/Grid Links */
+.secondary-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 5px;
+    background: #f8f9fa;
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+}
+
+.secondary-link:hover {
+    background: var(--primary);
+    color: var(--white);
+    border-color: var(--primary);
+}
+
+/* Footer Section */
+footer {
+    padding: 40px 20px;
+    background-color: var(--white);
+    border-top: 1px solid var(--border);
+    text-align: center;
+    margin-top: auto;
+}
+
+.footer-copyright { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 5px; }
+.location-text { font-size: 0.85rem; color: var(--primary); margin-bottom: 15px; font-weight: 600; }
+.license-box { font-size: 0.75rem; color: #aaa; line-height: 1.5; }
+.license-box a { color: var(--primary); text-decoration: none; font-weight: 500; }
+.footer-divider { margin: 0 8px; color
