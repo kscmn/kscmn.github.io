@@ -6,10 +6,23 @@
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZD9DR8ZX5"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-LZD9DR8ZX5');
+      async function getComps(searchTerm) {
+    const workerUrl = `https://ebay-comps-api.your-subdomain.workers.dev/?q=${encodeURIComponent(searchTerm)}`;
+    
+    const response = await fetch(workerUrl);
+    const html = await response.text();
+    
+    // Use a DOMParser to find prices in the returned HTML
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    const prices = doc.querySelectorAll('.s-item__price');
+    
+    // Example: Show the first 5 sold prices
+    prices.forEach((p, index) => {
+        if(index < 5) console.log("Sold Price:", p.innerText);
+    });
+}
+
     </script>
 
     <title>Sports Card Comps | Kato Sports Cards Research</title>
