@@ -82,7 +82,7 @@ document.getElementById('compsForm').addEventListener('submit', async (e) => {
     soldList.innerHTML = "";
 
     // 2. Replace with your actual Cloudflare Worker URL
-    const workerUrl = `https://your-worker-name.your-subdomain.workers.dev/?q=${encodeURIComponent(query)}`;
+    const workerUrl = `https://ebay-comps-api.katosportscards.workers.dev/?q=${encodeURIComponent(query)}`;
     
     // Set the "View on eBay" link immediately
     ebayLink.href = `https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(query)}&LH_Sold=1&LH_Complete=1&_sop=13`;
