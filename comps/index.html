@@ -94,4 +94,51 @@ document.getElementById('compsForm').addEventListener('submit', async (e) => {
         const html = await response.text();
         const doc = new DOMParser().parseFromString(html, 'text/html');
         
-        // eBay uses '.s-item__
+        // eBay uses '.s-item__price' for the price display
+        const priceElements = doc.querySelectorAll('.s-item__price');
+        
+        let prices = [];
+        priceElements.forEach((el, i) => {
+            // Index 0 is often a "suggested" or "results matching" header in eBay's HTML
+            if (i > 0) { 
+                const rawPrice = el.innerText.replace(/[^0-9.]/g, '');
+                const cleanPrice = parseFloat(rawPrice);
+                if (!isNaN(cleanPrice)) {
+                    prices.push(cleanPrice);
+                }
+            }
+        });
+
+        if (prices.length > 0) {
+            // Calculate Average (Top 10 sales)
+            const topSales = prices.slice(0, 10);
+            const sum = topSales.reduce((a, b) => a + b, 0);
+            const avg = sum / topSales.length;
+
+            // Update UI
+            avgDisplay.innerText = `$${avg.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            countDisplay.innerText = `Based on last ${topSales.length} sales`;
+            
+            topSales.forEach((p, i) => {
+                soldList.innerHTML += `
+                    <div class="price-item">
+                        <span>Recent Sale ${i + 1}</span>
+                        <strong>$${p.toFixed(2)}</strong>
+                    </div>`;
+            });
+
+            status.style.display = 'none';
+            resultsArea.style.display = 'block';
+        } else {
+            status.innerHTML = "<div class='error-msg'>No sold listings found. Try a broader search.</div>";
+        }
+
+    } catch (err) {
+        status.innerHTML = "<div class='error-msg'>Connection Error. Ensure your Worker URL is correct and CORS is enabled.</div>";
+        console.error(err);
+    }
+});
+</script>
+
+</body>
+</html>
