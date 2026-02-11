@@ -12,26 +12,32 @@
       gtag('config', 'G-LZD9DR8ZX5');
     </script>
 
-    <title>eBay Sold Research | Kato Sports Cards</title>
-    <meta name="description" content="Search eBay sold listings to find current market values for sports cards.">
+    <title>Sports Card Comps | Kato Sports Cards Research</title>
+    <meta name="description" content="Quickly find sports card comps using eBay sold listings. Research market values for Baseball, Basketball, and Football cards.">
     
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://kscmn.com/style.css">
 </head>
 <body>
 
 <div class="container">
     <nav class="breadcrumbs">
-        <a href="https://kscmn.com">Home</a> &nbsp;/&nbsp; Market Research
+        <a href="https://kscmn.com">Home</a> &nbsp;/&nbsp; Comps
     </nav>
 
     <main class="ksc-card">
-        <h2>Market Value Search</h2>
-        <p style="color: var(--text-muted); margin-bottom: 25px;">Enter card details to view recent eBay sold prices.</p>
+        <h2>Card Comps</h2>
+        <p style="color: var(--text-muted); margin-bottom: 25px;">
+            Search recent eBay sold listings to find the current market value of your cards.
+        </p>
         
-        <form id="soldSearchForm">
-            <input type="text" id="query" class="search-input" placeholder="e.g. 2025 Topps Series 1 Paul Skenes" required>
-            <button type="submit" class="ksc-button">Search Sold Listings</button>
+        <form id="compsSearchForm">
+            <input type="text" id="query" class="search-input" placeholder="e.g. 2023 Bowman Draft Paul Skenes" required>
+            <button type="submit" class="ksc-button">Get Sold Comps</button>
         </form>
+        
+        <div style="margin-top: 20px; font-size: 0.8rem; color: #aaa;">
+            Tip: Be specific (Year, Set, Player, Grade) for better results.
+        </div>
     </main>
 </div>
 
@@ -41,9 +47,10 @@
 </footer>
 
 <script>
-    document.getElementById('soldSearchForm').addEventListener('submit', function(e) {
+    document.getElementById('compsSearchForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const searchTerms = document.getElementById('query').value;
+        // LH_Sold=1: Sold items, LH_Complete=1: Completed items, _sop=13: Recent first
         const ebayUrl = `https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(searchTerms)}&LH_Sold=1&LH_Complete=1&_sop=13`;
         window.open(ebayUrl, '_blank');
     });
@@ -51,4 +58,3 @@
 
 </body>
 </html>
-
