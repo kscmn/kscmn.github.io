@@ -67,78 +67,47 @@
 <script>
 document.getElementById('compsForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    
     const query = document.getElementById('cardQuery').value;
     const status = document.getElementById('status');
     const resultsArea = document.getElementById('resultsArea');
     const soldList = document.getElementById('soldList');
     const avgDisplay = document.getElementById('avgPrice');
-    const countDisplay = document.getElementById('saleCount');
-    const ebayLink = document.getElementById('ebayLink');
 
-    // 1. Setup UI for loading
     status.style.display = 'block';
+    status.innerText = "Fetching Market Data...";
     resultsArea.style.display = 'none';
-    soldList.innerHTML = "";
-
-    // 2. Replace with your actual Cloudflare Worker URL
-    const workerUrl = `https://ebay-comps-api.katosportscards.workers.dev/?q=${encodeURIComponent(query)}`;
-    
-    // Set the "View on eBay" link immediately
-    ebayLink.href = `https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(query)}&LH_Sold=1&LH_Complete=1&_sop=13`;
 
     try {
+        const workerUrl = `https://ebay-comps-api.katosportscards.workers.dev/?q=${encodeURIComponent(query)}`;
         const response = await fetch(workerUrl);
-        if (!response.ok) throw new Error("Worker Error");
-        
-        const html = await response.text();
-        const doc = new DOMParser().parseFromString(html, 'text/html');
-        
-        // eBay uses '.s-item__price' for the price display
-        const priceElements = doc.querySelectorAll('.s-item__price');
-        
-        let prices = [];
-        priceElements.forEach((el, i) => {
-            // Index 0 is often a "suggested" or "results matching" header in eBay's HTML
-            if (i > 0) { 
-                const rawPrice = el.innerText.replace(/[^0-9.]/g, '');
-                const cleanPrice = parseFloat(rawPrice);
-                if (!isNaN(cleanPrice)) {
-                    prices.push(cleanPrice);
-                }
-            }
-        });
+        const data = await response.json();
 
-        if (prices.length > 0) {
-            // Calculate Average (Top 10 sales)
-            const topSales = prices.slice(0, 10);
-            const sum = topSales.reduce((a, b) => a + b, 0);
-            const avg = sum / topSales.length;
-
-            // Update UI
-            avgDisplay.innerText = `$${avg.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-            countDisplay.innerText = `Based on last ${topSales.length} sales`;
+        if (data.prices && data.prices.length > 0) {
+            // Calculate Average
+            const sum = data.prices.reduce((a, b) => a + b, 0);
+            const avg = sum / data.prices.length;
             
-            topSales.forEach((p, i) => {
-                soldList.innerHTML += `
-                    <div class="price-item">
-                        <span>Recent Sale ${i + 1}</span>
-                        <strong>$${p.toFixed(2)}</strong>
-                    </div>`;
-            });
+            avgDisplay.innerText = `$${avg.toFixed(2)}`;
+            document.getElementById('saleCount').innerText = `Based on last ${data.prices.length} sales`;
+            
+            // Build the list of sales
+            soldList.innerHTML = data.prices.map((p, i) => `
+                <div class="price-item">
+                    <span>Recent Sale ${i + 1}</span>
+                    <strong>$${p.toFixed(2)}</strong>
+                </div>
+            `).join('');
 
             status.style.display = 'none';
             resultsArea.style.display = 'block';
         } else {
-            status.innerHTML = "<div class='error-msg'>No sold listings found. Try a broader search.</div>";
+            status.innerText = "No sales found. Try a broader search.";
         }
-
     } catch (err) {
-        status.innerHTML = "<div class='error-msg'>Connection Error. Ensure your Worker URL is correct and CORS is enabled.</div>";
+        status.innerText = "Connection Error. Check your Worker status.";
         console.error(err);
     }
-});
-</script>
+});</script>
 
 </body>
 </html>
