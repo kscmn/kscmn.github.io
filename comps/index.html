@@ -76,7 +76,8 @@ document.getElementById('compsForm').addEventListener('submit', async (e) => {
     status.style.display = 'block';
     status.innerText = "Fetching Market Data...";
     resultsArea.style.display = 'none';
-try {
+
+   try {
     const workerUrl = `https://ebay-comps-api.katosportscards.workers.dev/?q=${encodeURIComponent(query)}`;
     const response = await fetch(workerUrl);
     const data = await response.json();
@@ -106,6 +107,8 @@ try {
 } catch (err) {
     status.innerText = "Error: " + err.message;
 }
+});
+
 </script>
 
 </body>
