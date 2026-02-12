@@ -13,17 +13,7 @@
     </script>
 
     <title>Sports Card Comps | Kato Sports Cards</title>
-    
     <link rel="stylesheet" href="https://kscmn.com/style.css">
-
-    <style>
-        /* Specific styles for the Comps results display */
-        #resultsArea { margin-top: 30px; display: none; }
-        .avg-container { padding: 20px; background: var(--accent-light, #e7f1ff); border-radius: 8px; margin-bottom: 20px; }
-        .price-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; font-size: 0.9rem; }
-        .loader { color: var(--primary); font-weight: bold; padding: 20px; }
-        .error-msg { color: #dc3545; background: #fff5f5; padding: 15px; border-radius: 8px; }
-    </style>
 </head>
 <body>
 
@@ -32,29 +22,19 @@
         <a href="https://kscmn.com">Home</a> &nbsp;/&nbsp; Comps
     </nav>
 
-    <main class="ksc-card">
+    <main class="ksc-card" style="text-align: center;">
         <h1>Card Comps</h1>
-        <p style="color: var(--text-muted); margin-bottom: 25px;">Find recent eBay sold prices instantly.</p>
+        <p style="color: var(--text-muted); margin-bottom: 25px;">
+            Search the eBay market for recent **Sold** prices.
+        </p>
         
-        <form id="compsForm">
-            <input type="text" id="cardQuery" class="search-input" placeholder="e.g. 2024 Topps Series 1 Elly De La Cruz" required>
-            <button type="submit" class="ksc-button">Get Sold Comps</button>
+        <form id="directCompsForm">
+            <input type="text" id="cardSearch" class="search-input" placeholder="e.g. 2024 Bowman Elly De La Cruz PSA 10" required>
+            <button type="submit" class="ksc-button" style="width: 100%;">Search eBay Sold Listings</button>
         </form>
 
-        <div id="status" class="loader" style="display:none;">Searching eBay Market Data...</div>
-
-        <div id="resultsArea">
-            <div class="avg-container">
-                <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted);">Average Sold Price</div>
-                <div id="avgPrice" style="color: var(--primary); font-size: 2.5rem; font-weight: 800;">$0.00</div>
-                <div id="saleCount" style="font-size: 0.85rem; color: var(--text-muted);">Based on last 0 sales</div>
-            </div>
-
-            <div id="soldList"></div>
-            
-            <div style="margin-top: 20px;">
-                <a id="ebayLink" href="#" target="_blank" class="secondary-link" style="width: 100%;">View All Results on eBay</a>
-            </div>
+        <div style="margin-top: 25px; padding: 15px; background: #f8f9fa; border-radius: 8px; font-size: 0.85rem; color: var(--text-muted);">
+            <strong>Tip:</strong> This will open a new tab with filters set to 100% <strong>Sold & Completed</strong> items, sorted by <strong>Recent First</strong>.
         </div>
     </main>
 </div>
@@ -65,51 +45,18 @@
 </footer>
 
 <script>
-document.getElementById('compsForm').addEventListener('submit', async (e) => {
+document.getElementById('directCompsForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    const query = document.getElementById('cardQuery').value;
-    const status = document.getElementById('status');
-    const resultsArea = document.getElementById('resultsArea');
-    const soldList = document.getElementById('soldList');
-    const avgDisplay = document.getElementById('avgPrice');
-
-    status.style.display = 'block';
-    status.innerText = "Fetching Market Data...";
-    resultsArea.style.display = 'none';
-
-   try {
-    const workerUrl = `https://ebay-comps-api.katosportscards.workers.dev/?q=${encodeURIComponent(query)}`;
-   const response = await fetch(workerUrl);
-const data = await response.json();
-console.log(data); // Add this to see what is happening in your browser console (F12)
-
-    if (data.items && data.items.length > 0) {
-        // Calculate Average
-        const avg = data.items.reduce((sum, item) => sum + item.price, 0) / data.items.length;
-        avgDisplay.innerText = `$${avg.toFixed(2)}`;
-        document.getElementById('saleCount').innerText = `Based on last ${data.items.length} sales`;
-
-        // Build Visual List
-        soldList.innerHTML = data.items.map(item => `
-            <div style="display: flex; gap: 15px; align-items: center; padding: 15px 0; border-bottom: 1px solid #eee;">
-                <img src="${item.image}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd;">
-                <div style="flex: 1;">
-                    <div style="font-size: 0.85rem; font-weight: 600; line-height: 1.2; margin-bottom: 4px;">${item.title}</div>
-                    <div style="color: var(--primary); font-weight: 800;">$${item.price.toFixed(2)}</div>
-                </div>
-            </div>
-        `).join('');
-
-        status.style.display = 'none';
-        resultsArea.style.display = 'block';
-    } else {
-        status.innerText = "No items found. Try a different search.";
-    }
-} catch (err) {
-    status.innerText = "Error: " + err.message;
-}
+    const query = document.getElementById('cardSearch').value;
+    
+    // eBay Search URL with:
+    // LH_Sold=1 (Sold items only)
+    // LH_Complete=1 (Completed items only)
+    // _sop=13 (Sort: Ended Recently)
+    const ebayUrl = `https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(query)}&LH_Sold=1&LH_Complete=1&_sop=13`;
+    
+    window.open(ebayUrl, '_blank');
 });
-
 </script>
 
 </body>
