@@ -76,38 +76,37 @@ document.getElementById('compsForm').addEventListener('submit', async (e) => {
     status.style.display = 'block';
     status.innerText = "Fetching Market Data...";
     resultsArea.style.display = 'none';
+try {
+    const workerUrl = `https://ebay-comps-api.katosportscards.workers.dev/?q=${encodeURIComponent(query)}`;
+    const response = await fetch(workerUrl);
+    const data = await response.json();
 
-    try {
-        const workerUrl = `https://ebay-comps-api.katosportscards.workers.dev/?q=${encodeURIComponent(query)}`;
-        const response = await fetch(workerUrl);
-        const data = await response.json();
+    if (data.items && data.items.length > 0) {
+        // Calculate Average
+        const avg = data.items.reduce((sum, item) => sum + item.price, 0) / data.items.length;
+        avgDisplay.innerText = `$${avg.toFixed(2)}`;
+        document.getElementById('saleCount').innerText = `Based on last ${data.items.length} sales`;
 
-        if (data.prices && data.prices.length > 0) {
-            // Calculate Average
-            const sum = data.prices.reduce((a, b) => a + b, 0);
-            const avg = sum / data.prices.length;
-            
-            avgDisplay.innerText = `$${avg.toFixed(2)}`;
-            document.getElementById('saleCount').innerText = `Based on last ${data.prices.length} sales`;
-            
-            // Build the list of sales
-            soldList.innerHTML = data.prices.map((p, i) => `
-                <div class="price-item">
-                    <span>Recent Sale ${i + 1}</span>
-                    <strong>$${p.toFixed(2)}</strong>
+        // Build Visual List
+        soldList.innerHTML = data.items.map(item => `
+            <div style="display: flex; gap: 15px; align-items: center; padding: 15px 0; border-bottom: 1px solid #eee;">
+                <img src="${item.image}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd;">
+                <div style="flex: 1;">
+                    <div style="font-size: 0.85rem; font-weight: 600; line-height: 1.2; margin-bottom: 4px;">${item.title}</div>
+                    <div style="color: var(--primary); font-weight: 800;">$${item.price.toFixed(2)}</div>
                 </div>
-            `).join('');
+            </div>
+        `).join('');
 
-            status.style.display = 'none';
-            resultsArea.style.display = 'block';
-        } else {
-            status.innerText = "No sales found. Try a broader search.";
-        }
-    } catch (err) {
-        status.innerText = "Connection Error. Check your Worker status.";
-        console.error(err);
+        status.style.display = 'none';
+        resultsArea.style.display = 'block';
+    } else {
+        status.innerText = "No items found. Try a different search.";
     }
-});</script>
+} catch (err) {
+    status.innerText = "Error: " + err.message;
+}
+</script>
 
 </body>
 </html>
