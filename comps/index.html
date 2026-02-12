@@ -79,8 +79,9 @@ document.getElementById('compsForm').addEventListener('submit', async (e) => {
 
    try {
     const workerUrl = `https://ebay-comps-api.katosportscards.workers.dev/?q=${encodeURIComponent(query)}`;
-    const response = await fetch(workerUrl);
-    const data = await response.json();
+   const response = await fetch(workerUrl);
+const data = await response.json();
+console.log(data); // Add this to see what is happening in your browser console (F12)
 
     if (data.items && data.items.length > 0) {
         // Calculate Average
