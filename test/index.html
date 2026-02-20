@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | Kato Sports Cards</title>
+    <link rel="stylesheet" href="https://kscmn.com/style.css">
+    
+    <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+</head>
+<body>
+
+<div class="container">
+    <nav class="breadcrumbs">
+        <a href="https://kscmn.com">Home</a> &nbsp;/&nbsp; Shop
+    </nav>
+
+    <main class="ksc-card" style="text-align: center;">
+        <h1>Direct Shop</h1>
+        <p style="color: var(--text-muted);">Buy directly from our Mankato vault.</p>
+
+        <div style="border: 1px solid #ddd; border-radius: 12px; padding: 20px; max-width: 400px; margin: 20px auto;">
+            <img src="https://kscmn.com/placeholder.png" style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+            <h3 style="margin: 0;">2024 Bowman Elly De La Cruz</h3>
+            <p style="color: var(--primary); font-weight: bold; font-size: 1.5rem;">$25.00</p>
+            
+            <div id="paypal-button-container"></div>
+        </div>
+    </main>
+</div>
+
+<script>
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: { value: '25.00' } // Item price
+                }]
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                // Here you can add logic to email yourself or update the page
+            });
+        }
+    }).render('#paypal-button-container');
+</script>
+
+<footer>
+    <div class="footer-copyright">© 2026 Kato Sports Cards.</div>
+</footer>
+
+</body>
+</html>
