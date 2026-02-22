@@ -1,63 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZD9DR8ZX5"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-LZD9DR8ZX5');
-    </script>
-
-    <title>Comps | Kato Sports Cards</title>
-    <link rel="stylesheet" href="https://kscmn.com/style.css">
-</head>
-<body>
-
-<div class="container">
-    <nav class="breadcrumbs">
-        <a href="https://kscmn.com">Home</a> &nbsp;/&nbsp; Comps
-    </nav>
-
-    <main class="ksc-card" style="text-align: center;">
-        <h1>Card Comps</h1>
-        <p style="color: var(--text-muted); margin-bottom: 25px;">
-            Search the eBay market for recent **Sold** prices.
-        </p>
-        
-        <form id="directCompsForm">
-            <input type="text" id="cardSearch" class="search-input" placeholder="e.g. 2024 Bowman Elly De La Cruz PSA 10" required>
-            <button type="submit" class="ksc-button" style="width: 100%;">Search eBay Sold Listings</button>
-        </form>
-
-        <div style="margin-top: 25px; padding: 15px; background: #f8f9fa; border-radius: 8px; font-size: 0.85rem; color: var(--text-muted);">
-            <strong>Tip:</strong> This will open a new tab with filters set to 100% <strong>Sold & Completed</strong> items, sorted by <strong>Recent First</strong>.
-        </div>
-    </main>
-</div>
-
 <footer>
-    <div class="footer-copyright">© 2026 Kato Sports Cards. All Rights Reserved.</div>
-    <div class="location-text">Mankato, Minnesota</div>
+    <div class="footer-content">
+        <p>&copy; 2026 Your Company. All Rights Reserved.</p>
+        <p>Location: Your City, Your Country</p>
+        <div class="license">
+            <a href="/about-us">About Us</a> | 
+            <a href="/privacy-policy">Privacy Policy</a>
+        </div>
+    </div>
 </footer>
-
-<script>
-document.getElementById('directCompsForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const query = document.getElementById('cardSearch').value;
-    
-    // eBay Search URL with:
-    // LH_Sold=1 (Sold items only)
-    // LH_Complete=1 (Completed items only)
-    // _sop=13 (Sort: Ended Recently)
-    const ebayUrl = `https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(query)}&LH_Sold=1&LH_Complete=1&_sop=13`;
-    
-    window.open(ebayUrl, '_blank');
-});
-</script>
-
-</body>
-</html>
