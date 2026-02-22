@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZD9DR8ZX5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-LZD9DR8ZX5');
-</script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-LZD9DR8ZX5');
+    </script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,10 +15,8 @@
     <title>Sports Card Release Dates 2026 | Kato Sports Cards Mankato MN</title>
     <meta name="description" content="Stay ahead of the hobby with the 2026 Sports Card Release Calendar. Track upcoming drops from Topps, Panini, and Upper Deck. Based in Mankato, Minnesota.">
     <meta name="keywords" content="Sports Card Release Dates 2026, Upcoming Topps Baseball, Panini Football Releases, Upper Deck Hockey Calendar, Kato Sports Cards Mankato">
+    
     <link rel="stylesheet" href="https://kscmn.com/style.css">
-    <style>
-     
-    </style>
 </head>
 <body>
 
@@ -27,29 +25,32 @@
         <a href="https://kscmn.com">Home</a> &nbsp;/&nbsp; Release Dates
     </nav>
 
-    <header>
-        <h2>Release Dates</h2>
-    </header>
+    <main class="ksc-card">
+        <header style="text-align: center; margin-bottom: 30px;">
+            <h1>Release<span> Dates</span></h1>
+            <p class="tagline">2026 Hobby Calendar</p>
+        </header>
 
-    <input type="text" id="releaseSearch" onkeyup="filterReleases()" placeholder="Search by sport or product name (e.g. 'Baseball' or 'Prizm')...">
+        <input type="text" id="releaseSearch" class="search-input" onkeyup="filterReleases()" placeholder="Search sport or product (e.g. 'Prizm')...">
 
-    <div class="release-section">
-        <table class="release-table" id="releaseTable">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Product Name</th>
-                </tr>
-            </thead>
-            <tbody id="releaseBody">
-                </tbody>
-        </table>
-    </div>
+        <div class="table-container">
+            <table id="releaseTable">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Product Name</th>
+                    </tr>
+                </thead>
+                <tbody id="releaseBody">
+                    </tbody>
+            </table>
+        </div>
+    </main>
 </div>
 
 <footer>
     <div class="footer-copyright">&copy; 2026 Kato Sports Cards. All Rights Reserved.</div>
-    <div class="location-tag">Mankato, Minnesota</div>
+    <div class="location-text">Mankato, Minnesota</div>
 </footer>
 
 <script>
@@ -114,8 +115,8 @@
         body.innerHTML = '';
         data.forEach(item => {
             const row = `<tr>
-                <td class="date-cell">${item.date}</td>
-                <td class="product-cell">${item.name}</td>
+                <td style="font-weight: 600; color: var(--primary);">${item.date}</td>
+                <td>${item.name}</td>
             </tr>`;
             body.innerHTML += row;
         });
