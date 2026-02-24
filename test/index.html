@@ -1,55 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZD9DR8ZX5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-LZD9DR8ZX5');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop | Kato Sports Cards</title>
+    <title>Kato Sports Cards | Mankato, MN</title>
     <link rel="stylesheet" href="https://kscmn.com/style.css">
     
-    <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+    <style>
+        /* Essential for SPA: Hide sections by default */
+        .page-section { display: none; }
+        .page-section.active { display: block; }
+        
+        /* Smooth transitions */
+        .page-section {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
 
 <div class="container">
-    <nav class="breadcrumbs">
-        <a href="https://kscmn.com">Home</a> &nbsp;/&nbsp; Shop
+    <nav class="breadcrumbs" id="spa-nav" style="display:none;">
+        <a href="#" onclick="showPage('home')">Home</a> <span id="nav-separator">/</span> <span id="current-page-label"></span>
     </nav>
 
-    <main class="ksc-card" style="text-align: center;">
-        <h1>Direct Shop</h1>
-        <p style="color: var(--text-muted);">Buy directly from our Mankato vault.</p>
+    <main id="home" class="page-section active">
+        <header class="logo-area">
+            <h1>Kato<span> Sports Cards</span></h1>
+            <p class="tagline">Mankato's Hobby Hub</p>
+        </header>
 
-        <div style="border: 1px solid #ddd; border-radius: 12px; padding: 20px; max-width: 400px; margin: 20px auto;">
-            <img src="https://kscmn.com/placeholder.png" style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
-            <h3 style="margin: 0;">2024 Bowman Elly De La Cruz</h3>
-            <p style="color: var(--primary); font-weight: bold; font-size: 1.5rem;">$25.00</p>
+        <section class="feature-box">
+            <div class="cta-group">
+                <a href="#" onclick="showPage('comps')" class="cta-button">Card Comps</a>
+                <a href="#" onclick="showPage('rookie')" class="cta-button">Rookie Card Years</a>
+                <a href="#" onclick="showPage('releases')" class="cta-button">Release Dates</a>
+            </div>
             
-            <div id="paypal-button-container"></div>
+            <h2 class="link-group-title">Shop Our Collections</h2>
+            <nav class="site-links">
+                <a href="https://www.mercari.com/u/katosportscards/" class="secondary-link">Mercari</a>
+                <a href="https://www.ebay.com/usr/katosportscards" class="secondary-link">eBay</a>
+                <a href="https://www.comc.com/Users/katosportscards" class="secondary-link">COMC</a>
+            </nav>
+        </section>
+    </main>
+
+    <main id="comps" class="page-section">
+        <div class="ksc-card">
+            <header style="text-align: center; margin-bottom: 25px;">
+                <h1>Card<span> Comps</span></h1>
+            </header>
+            <form onsubmit="searchEbay(event)">
+                <input type="text" id="ebayQuery" class="search-input" placeholder="e.g. 2024 Topps Elly De La Cruz PSA 10" required>
+                <button type="submit" class="ksc-button" style="width: 100%;">Search eBay Sold Listings</button>
+            </form>
+        </div>
+    </main>
+
+    <main id="rookie" class="page-section">
+        <div class="ksc-card">
+            <header style="text-align: center; margin-bottom: 20px;">
+                <h1>Rookie<span> Registry</span></h1>
+            </header>
+            <input type="text" class="search-input" onkeyup="filterRookies(this.value)" placeholder="Search player or year...">
+            <div class="table-container">
+                <table id="rookieTable">
+                    <thead>
+                        <tr><th onclick="sortRookies(0)">Player ↕</th><th onclick="sortRookies(1)">Year ↕</th></tr>
+                    </thead>
+                    <tbody id="rookieBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <main id="releases" class="page-section">
+        <div class="ksc-card">
+            <header style="text-align: center; margin-bottom: 20px;">
+                <h1>Release<span> Dates</span></h1>
+            </header>
+            <div class="table-container">
+                <table>
+                    <thead><tr><th>Date</th><th>Product</th></tr></thead>
+                    <tbody id="releaseBody"></tbody>
+                </table>
+            </div>
         </div>
     </main>
 </div>
 
-<script>
-    paypal.Buttons({
-        createOrder: function(data, actions) {
-            return actions.order.create({
-                purchase_units: [{
-                    amount: { value: '25.00' } // Item price
-                }]
-            });
-        },
-        onApprove: function(data, actions) {
-            return actions.order.capture().then(function(details) {
-                alert('Transaction completed by ' + details.payer.name.given_name + '!');
-                // Here you can add logic to email yourself or update the page
-            });
-        }
-    }).render('#paypal-button-container');
-</script>
-
 <footer>
-    <div class="footer-copyright">© 2026 Kato Sports Cards.</div>
+    <div class="footer-copyright">© 2026 Kato Sports Cards. All Rights Reserved.</div>
+    <div class="location-text">Mankato, Minnesota</div>
 </footer>
+
+<script>
+    // --- DATA ---
+    const rookieData = [
+        { name: "Victor Wembanyama", year: "2023" },
+        { name: "Caitlin Clark", year: "2024" },
+        { name: "Shohei Ohtani", year: "2018" },
+        { name: "Patrick Mahomes", year: "2017" }
+        // ... Add full list here
+    ];
+
+    const releaseData = [
+        { date: "02/11/26", name: "2026 Topps Series 1 Baseball" },
+        { date: "02/18/26", name: "2025 Panini National Treasures Football" }
+        // ... Add full list here
+    ];
+
+    // --- NAVIGATION LOGIC ---
+    function showPage(pageId) {
+        document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+        
+        const nav = document.getElementById('spa-nav');
+        const label = document.getElementById('current-page-label');
+        
+        if (pageId === 'home') {
+            nav.style.display = 'none';
+        } else {
+            nav.style.display = 'block';
+            label.innerText = pageId.charAt(0).toUpperCase() + pageId.slice(1);
+        }
+        window.scrollTo(0,0);
+    }
+
+    // --- FUNCTIONALITY ---
+    function searchEbay(e) {
+        e.preventDefault();
+        const q = document.getElementById('ebayQuery').value;
+        window.open(`https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(q)}&LH_Sold=1&LH_Complete=1&_sop=13`, '_blank');
+    }
+
+    function renderRookies(data) {
+        const body = document.getElementById('rookieBody');
+        body.innerHTML = data.map(item => `<tr><td>${item.name}</td><td>${item.year}</td></tr>`).join('');
+    }
+
+    function filterRookies(val) {
+        const filtered = rookieData.filter(r => r.name.toLowerCase().includes(val.toLowerCase()) || r.year.includes(val));
+        renderRookies(filtered);
+    }
+
+    function renderReleases() {
+        document.getElementById('releaseBody').innerHTML = releaseData.map(item => 
+            `<tr><td style="color:var(--primary); font-weight:600;">${item.date}</td><td>${item.name}</td></tr>`
+        ).join('');
+    }
+
+    // Initialize
+    renderRookies(rookieData);
+    renderReleases();
+</script>
 
 </body>
 </html>
