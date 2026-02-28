@@ -1,0 +1,350 @@
+/* ============================================
+   Kato Sports Cards — Material Design 3
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;500;700&display=swap');
+
+/* ── MD3 Color Tokens ── */
+:root {
+  --md-primary: #1565C0;
+  --md-on-primary: #FFFFFF;
+  --md-primary-container: #D6E4FF;
+  --md-on-primary-container: #001849;
+
+  --md-secondary: #F57F17;
+  --md-on-secondary: #FFFFFF;
+  --md-secondary-container: #FFF3E0;
+  --md-on-secondary-container: #4A1A00;
+
+  --md-surface: #FAFAFA;
+  --md-surface-variant: #E8EDF5;
+  --md-on-surface: #1A1C1E;
+  --md-on-surface-variant: #43474E;
+
+  --md-outline: #73777F;
+  --md-outline-variant: #C3C7CF;
+
+  --md-error: #B3261E;
+  --md-shadow: rgba(0,0,0,0.15);
+
+  --md-elevation-1: 0 1px 2px rgba(0,0,0,.12), 0 1px 3px 1px rgba(0,0,0,.07);
+  --md-elevation-2: 0 1px 2px rgba(0,0,0,.12), 0 2px 6px 2px rgba(0,0,0,.07);
+  --md-elevation-3: 0 4px 8px 3px rgba(0,0,0,.10), 0 1px 3px rgba(0,0,0,.12);
+
+  --md-shape-sm: 8px;
+  --md-shape-md: 16px;
+  --md-shape-lg: 28px;
+  --md-shape-full: 9999px;
+
+  --md-motion-standard: cubic-bezier(0.2, 0, 0, 1);
+  --md-motion-decel: cubic-bezier(0, 0, 0, 1);
+  --md-duration-short: 200ms;
+  --md-duration-medium: 300ms;
+  --md-duration-long: 500ms;
+}
+
+/* ── Reset & Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--md-surface);
+  color: var(--md-on-surface);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── Hero / Main ── */
+.hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 16px 48px;
+
+  /* Subtle MD3 tonal surface with a diagonal brand stripe */
+  background:
+    linear-gradient(135deg,
+      var(--md-primary) 0%,
+      #1976D2 38%,
+      #0D47A1 100%);
+}
+
+/* ── App Bar / Logo Area ── */
+.logo-area {
+  width: 100%;
+  max-width: 640px;
+  padding: 32px 0 28px;
+  text-align: center;
+  animation: fadeDown var(--md-duration-long) var(--md-motion-decel) both;
+}
+
+.logo-area h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 10vw, 5.5rem);
+  letter-spacing: 0.06em;
+  color: var(--md-on-primary);
+  line-height: 1;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.28);
+}
+
+.logo-area h1 span {
+  color: var(--md-secondary);
+  display: inline-block;
+}
+
+/* ── Feature Card (MD3 Surface container) ── */
+.feature-box {
+  background: var(--md-surface);
+  border-radius: var(--md-shape-lg);
+  box-shadow: var(--md-elevation-3);
+  width: 100%;
+  max-width: 560px;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  animation: scaleUp var(--md-duration-long) var(--md-motion-decel) 120ms both;
+}
+
+/* ── Section Titles ── */
+.link-group-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--md-on-surface-variant);
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--md-outline-variant);
+}
+
+/* ── CTA Group — FAB-style primary buttons ── */
+.cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.cta-button {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  color: var(--md-on-primary);
+  background-color: var(--md-primary);
+  border-radius: var(--md-shape-full);
+  padding: 14px 28px;
+  box-shadow: var(--md-elevation-2);
+  transition:
+    box-shadow var(--md-duration-short) var(--md-motion-standard),
+    background-color var(--md-duration-short) var(--md-motion-standard),
+    transform var(--md-duration-short) var(--md-motion-standard);
+  position: relative;
+  overflow: hidden;
+  flex: 1 1 130px;
+  text-align: center;
+  min-width: 120px;
+}
+
+.cta-button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity var(--md-duration-short) var(--md-motion-standard);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.cta-button:hover {
+  box-shadow: var(--md-elevation-3);
+  transform: translateY(-1px);
+}
+
+.cta-button:hover::after { opacity: 0.08; }
+.cta-button:active::after { opacity: 0.12; }
+.cta-button:active { transform: translateY(0); box-shadow: var(--md-elevation-1); }
+
+.cta-button:focus-visible {
+  outline: 3px solid var(--md-secondary);
+  outline-offset: 3px;
+}
+
+/* ── Nav Links — MD3 Chip / Tonal style ── */
+.site-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.secondary-link {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--md-primary);
+  background-color: var(--md-primary-container);
+  border-radius: var(--md-shape-full);
+  padding: 8px 18px;
+  transition:
+    background-color var(--md-duration-short) var(--md-motion-standard),
+    box-shadow var(--md-duration-short) var(--md-motion-standard),
+    transform var(--md-duration-short) var(--md-motion-standard);
+  position: relative;
+  overflow: hidden;
+}
+
+.secondary-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--md-primary);
+  opacity: 0;
+  transition: opacity var(--md-duration-short) var(--md-motion-standard);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.secondary-link:hover {
+  box-shadow: var(--md-elevation-1);
+  transform: translateY(-1px);
+}
+
+.secondary-link:hover::after { opacity: 0.08; }
+.secondary-link:active::after { opacity: 0.15; }
+.secondary-link:active { transform: translateY(0); }
+
+.secondary-link:focus-visible {
+  outline: 3px solid var(--md-primary);
+  outline-offset: 3px;
+}
+
+/* ── Footer ── */
+footer {
+  background-color: var(--md-surface-variant);
+  border-top: 1px solid var(--md-outline-variant);
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+
+.footer-copyright {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--md-on-surface);
+}
+
+.location-text {
+  font-size: 0.75rem;
+  color: var(--md-on-surface-variant);
+  letter-spacing: 0.02em;
+}
+
+.license-box {
+  font-size: 0.75rem;
+  color: var(--md-on-surface-variant);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.license-box a {
+  color: var(--md-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: text-decoration var(--md-duration-short);
+}
+
+.license-box a:hover {
+  text-decoration: underline;
+}
+
+.footer-divider {
+  color: var(--md-outline);
+  padding: 0 4px;
+}
+
+/* ── Keyframes ── */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleUp {
+  from { opacity: 0; transform: scale(0.96) translateY(16px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .feature-box {
+    padding: 24px 18px;
+    border-radius: var(--md-shape-md);
+  }
+
+  .cta-group {
+    flex-direction: column;
+  }
+
+  .cta-button {
+    flex: unset;
+    width: 100%;
+  }
+}
+
+/* ── Dark Mode ── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --md-primary: #A8C8FF;
+    --md-on-primary: #00338A;
+    --md-primary-container: #0047BD;
+    --md-on-primary-container: #D6E4FF;
+
+    --md-secondary: #FFB74D;
+    --md-on-secondary: #4A1A00;
+    --md-secondary-container: #6A2C00;
+    --md-on-secondary-container: #FFF3E0;
+
+    --md-surface: #111318;
+    --md-surface-variant: #1E2128;
+    --md-on-surface: #E2E2E6;
+    --md-on-surface-variant: #A1A5AE;
+
+    --md-outline: #62666F;
+    --md-outline-variant: #2D3138;
+
+    --md-elevation-1: 0 1px 2px rgba(0,0,0,.30), 0 1px 3px 1px rgba(0,0,0,.20);
+    --md-elevation-2: 0 1px 2px rgba(0,0,0,.30), 0 2px 6px 2px rgba(0,0,0,.20);
+    --md-elevation-3: 0 4px 8px 3px rgba(0,0,0,.25), 0 1px 3px rgba(0,0,0,.30);
+  }
+
+  .hero {
+    background:
+      linear-gradient(135deg,
+        #0A237A 0%,
+        #0D338A 45%,
+        #071A60 100%);
+  }
+}
