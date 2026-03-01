@@ -171,3 +171,60 @@ footer {
 
 .footer-copyright { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 5px; }
 .location-text { font-size: 0.85rem; color: var(--primary); margin-bottom: 20px; font-weight: 600; }
+
+/* --- UPDATED LINK STYLES (CHIPS/BUTTONS) --- */
+
+/* Container for the chips to ensure they wrap and align well */
+.site-links, .cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+/* The Chip Style */
+.secondary-link, .cta-button {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--dark);
+    background-color: #f0f2f5; /* Light gray base */
+    border: 1px solid #dee2e6;
+    border-radius: 50px; /* Makes it a pill/chip shape */
+    transition: all 0.2s ease-in-out;
+    white-space: nowrap;
+}
+
+/* Hover & Active States */
+.secondary-link:hover, .cta-button:hover {
+    background-color: var(--primary);
+    color: var(--white);
+    border-color: var(--primary);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+}
+
+/* Differentiate the main CTA buttons if you want them to pop more */
+.cta-button {
+    background-color: var(--white);
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    padding: 10px 20px;
+    font-size: 0.95rem;
+}
+
+/* Titles above chip groups */
+.link-group-title {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    text-align: center;
+    width: 100%;
+}
+
