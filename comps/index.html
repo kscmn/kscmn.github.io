@@ -14,7 +14,174 @@
 
     <title>Sports Card Comps | Kato Sports Cards</title>
     
-    <link rel="stylesheet" href="https://kscmn.com/style.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --ebay-blue: #0053a0;         
+            --ebay-blue-hover: #004080;
+            --ebay-light-grey: #f7f7f7;   
+            --ebay-border: #e5e5e5;       
+            --ebay-text-main: #191919;    
+            --ebay-text-sub: #707070;     
+            --radius-standard: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--ebay-light-grey);
+            color: var(--ebay-text-main);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 3rem 1rem;
+        }
+
+        .logo-area {
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        .logo-area h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .logo-area h1 span {
+            color: var(--ebay-blue);
+        }
+
+        /* --- Main Content Card --- */
+        .feature-box {
+            background-color: #ffffff;
+            padding: 2.5rem 1.5rem;
+            border-radius: var(--radius-standard);
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid var(--ebay-border);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            text-align: center; /* Centers titles and inline elements */
+        }
+
+        /* --- Centered Primary Buttons --- */
+        .cta-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 3rem;
+            align-items: center; /* Centers buttons in column mode */
+        }
+
+        @media (min-width: 520px) {
+            .cta-group {
+                flex-direction: row;
+                justify-content: center; /* Centers buttons in row mode */
+            }
+        }
+
+        .cta-button {
+            background-color: var(--ebay-blue);
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            height: 48px;
+            width: 100%; /* Full width on mobile */
+            max-width: 200px; /* Constraints width on desktop */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center; /* Centers text inside button */
+            text-align: center;
+            padding: 0 20px;
+            border-radius: 24px;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        .cta-button:hover {
+            background-color: var(--ebay-blue-hover);
+        }
+
+        /* --- Link Group Styles --- */
+        .link-group-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            color: var(--ebay-text-main);
+            display: block;
+            text-align: center;
+        }
+
+        .site-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 16px;
+            margin-bottom: 2.5rem;
+            justify-content: center; /* Centers the links horizontally */
+        }
+
+        .secondary-link {
+            color: var(--ebay-blue);
+            text-decoration: none;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .secondary-link:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 3rem 1rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--ebay-text-sub);
+            border-top: 1px solid var(--ebay-border);
+            background-color: #ffffff;
+        }
+
+        .footer-copyright {
+            color: var(--ebay-text-main);
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .location-text {
+            margin-bottom: 1.2rem;
+        }
+
+        .license-box {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .license-box a {
+            color: var(--ebay-blue);
+            text-decoration: none;
+        }
+
+        .footer-divider {
+            color: var(--ebay-border);
+        }
+    </style>
 </head>
 <body>
 
