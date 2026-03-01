@@ -12,18 +12,179 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Collector Resources | Kato Sports Cards</title>
-    <link rel="stylesheet" href="https://kscmn.com/style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ebay-blue: #0053a0;         
+            --ebay-blue-hover: #004080;
+            --ebay-light-grey: #f7f7f7;   
+            --ebay-border: #e5e5e5;       
+            --ebay-text-main: #191919;    
+            --ebay-text-sub: #707070;     
+            --radius-standard: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--ebay-light-grey);
+            color: var(--ebay-text-main);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 3rem 1rem;
+        }
+
+        .logo-area {
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        .logo-area h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            color: var(--ebay-text-main);
+        }
+
+        .logo-area h1 span {
+            color: var(--ebay-blue);
+        }
+
+        /* --- Main Content Card --- */
+        .feature-box {
+            background-color: #ffffff;
+            padding: 2.5rem 2rem;
+            border-radius: var(--radius-standard);
+            width: 100%;
+            max-width: 800px;
+            border: 1px solid var(--ebay-border);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .breadcrumbs {
+            font-size: 0.85rem;
+            margin-bottom: 25px;
+            color: var(--ebay-text-sub);
+        }
+
+        .breadcrumbs a {
+            color: var(--ebay-blue);
+            text-decoration: none;
+        }
+
+        .card-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .tagline {
+            color: var(--ebay-text-sub);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        /* --- Link Section Styles --- */
+        .link-group-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 1.5rem 0 1rem 0;
+            color: var(--ebay-text-main);
+            display: flex;
+            align-items: center;
+        }
+
+        .link-group-title::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--ebay-border);
+            margin-left: 15px;
+        }
+
+        .site-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .secondary-link {
+            background: #fff;
+            border: 1px solid var(--ebay-border);
+            color: var(--ebay-blue);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .secondary-link:hover {
+            background-color: var(--ebay-blue);
+            color: #ffffff !important;
+            border-color: var(--ebay-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 3rem 1rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--ebay-text-sub);
+            border-top: 1px solid var(--ebay-border);
+            background-color: #ffffff;
+            margin-top: auto;
+        }
+
+        .footer-copyright {
+            color: var(--ebay-text-main);
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+    </style>
 </head>
 <body>
 
-<div class="container">
-    <nav class="breadcrumbs">
-        <a href="https://kscmn.com">Home</a> &nbsp;/&nbsp; Resources
-    </nav>
+<main class="hero">
+    <header class="logo-area">
+        <a href="https://kscmn.com" style="text-decoration: none;">
+            <h1>Kato<span> Sports Cards</span></h1>
+        </a>
+    </header>
 
-    <main class="ksc-card">
-        <header style="text-align: center; margin-bottom: 40px;">
-            <h1>Industry<span> Resources</span></h1>
+    <div class="feature-box">
+        <nav class="breadcrumbs">
+            <a href="https://kscmn.com">Home</a> &nbsp;/&nbsp; Resources
+        </nav>
+
+        <header class="card-header">
+            <h2>Industry Resources</h2>
             <p class="tagline">The Hobbyist's Toolkit</p>
         </header>
 
@@ -73,8 +234,8 @@
             <a href="https://cardlines.com/" class="secondary-link">Cardlines</a>
             <a href="https://www.sportscardinvestor.com/" class="secondary-link">SC Investor</a>
         </nav>
-    </main>
-</div>
+    </div>
+</main>
 
 <footer>
     <div class="footer-copyright">© 2026 Kato Sports Cards. All Rights Reserved.</div>
