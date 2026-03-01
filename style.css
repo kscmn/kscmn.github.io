@@ -1,230 +1,51 @@
-/* KSC THEME - Optimized for Mobile & Desktop
-   Kato Sports Cards | Mankato, MN
-*/
 
-:root {
-    --primary: #007bff;
-    --dark: #1c1e21;
-    --light: #f0f2f5;
-    --white: #ffffff;
-    --text-muted: #6c757d;
-    --radius: 12px;
-    --shadow: 0 10px 30px rgba(0,0,0,0.08);
-}
+    <main class="hero">
+        <header class="logo-area">
+            <h1>Kato<span> Sports Cards</span></h1>
+        </header>
 
-* { box-sizing: border-box; }
+        <section class="feature-box">
+            <div class="cta-group">
+                <a href="https://kscmn.com/comps" class="cta-button">Card Comps</a>
+                <a href="https://kscmn.com/rookie" class="cta-button">Rookie Card Years</a>
+                <a href="https://kscmn.com/releases" class="cta-button">Release Dates</a>
+            </div>
+            
+            <h2 class="link-group-title">Shop Our Collections Online</h2>
+            <nav class="site-links" aria-label="Marketplace Links">
+                <a href="https://www.mercari.com/u/katosportscards/?tracking_ref_id=m60568783886" class="secondary-link">Mercari</a>
+                <a href="https://www.buysportscards.com/search?inStock=true&p=0&q=&sellerId=2c94e71b05&sellerName=Kato%20Sports%20Cards&sort=raw-price-hi-lo" class="secondary-link">BuySportscards</a>
+                <a href="https://www.ebay.com/usr/katosportscards" class="secondary-link">eBay</a>
+                <a href="https://www.comc.com/Users/katosportscards,sh,i100" class="secondary-link">COMC</a>
+            </nav>
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background-color: var(--light);
-    color: var(--dark);
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    overflow-x: hidden; 
-    width: 100%;
-    -webkit-font-smoothing: antialiased;
-}
+            <h2 class="link-group-title">Follow the Hobby</h2>
+            <nav class="site-links" aria-label="Social Media Links">
+                <a href="https://www.facebook.com/100093528277002/" class="secondary-link">Facebook</a>
+                <a href="https://www.instagram.com/katosportscards/" class="secondary-link">Instagram</a>
+                <a href="https://www.threads.net/@katosportscards" class="secondary-link">Threads</a>
+                <a href="https://twitter.com/katosportscards" class="secondary-link">Twitter / X</a>
+                <a href="https://www.youtube.com/@KatoSportsCards" class="secondary-link">YouTube</a>
+                <a href="https://kscmn.blogspot.com/?m=1" class="secondary-link">Blog</a>
+            </nav>
+        </section>
+    </main>
 
-/* Container & Spacing Fixes */
-.container {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px 15px; 
-}
-
-/* Feature/Content Boxes */
-.feature-box, .ksc-card {
-    width: 100%;
-    max-width: 700px;
-    margin: 20px auto;
-    background: var(--white);
-    padding: 30px 20px;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-}
-
-header h1 {
-    font-size: clamp(2.2rem, 8vw, 3.5rem);
-    margin: 0;
-    letter-spacing: -1px;
-    line-height: 1.1;
-    text-align: center;
-}
-header h1 span { color: var(--primary); }
-
-.tagline {
-    font-size: clamp(0.85rem, 3.5vw, 1rem);
-    color: var(--text-muted);
-    margin-top: 10px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 600;
-    text-align: center;
-}
-
-/* Breadcrumbs */
-.breadcrumbs {
-    margin: 0 0 20px 0;
-    font-size: 0.9rem;
-    padding: 0 5px;
-}
-.breadcrumbs a {
-    color: var(--primary);
-    text-decoration: none;
-    font-weight: 600;
-}
-
-/* Search Input */
-.search-input {
-    width: 100%;
-    max-width: 100%;
-    padding: 16px;
-    font-size: 1rem;
-    border: 2px solid #dee2e6;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    -webkit-appearance: none;
-}
-
-/* --- UNIVERSAL TABLE STYLES (For Registry & Release Dates) --- */
-
-.table-container {
-    width: 100%;
-    overflow-x: auto;
-    background: var(--white);
-    border-radius: var(--radius);
-    border: 1px solid #dee2e6;
-    margin-bottom: 20px;
-}
-
-/* Target all tables inside .table-container */
-.table-container table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.95rem;
-    text-align: left;
-}
-
-.table-container th {
-    background-color: #f8f9fa;
-    color: var(--dark);
-    font-weight: 700;
-    padding: 15px;
-    border-bottom: 2px solid #dee2e6;
-    white-space: nowrap;
-}
-
-.table-container td {
-    padding: 12px 15px;
-    border-bottom: 1px solid #eee;
-    vertical-align: middle;
-}
-
-/* Zebra Striping */
-.table-container tbody tr:nth-child(even) {
-    background-color: #fafbfc;
-}
-
-/* Hover Effect */
-.table-container tbody tr:hover {
-    background-color: #f1f7ff;
-}
-
-/* Sorting Indicators (Optional classes) */
-.sortable { cursor: pointer; user-select: none; }
-.sortable:hover { background-color: #eef1f4 !important; }
-
-/* Pagination Controls */
-.pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.pagination button {
-    padding: 10px 18px;
-    background: var(--white);
-    border: 1px solid #dee2e6;
-    border-radius: 6px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.pagination button:disabled { opacity: 0.5; cursor: not-allowed; }
-.pagination button:not(:disabled):hover { border-color: var(--primary); color: var(--primary); }
-
-/* Footer */
-footer {
-    padding: 40px 20px;
-    background-color: var(--white);
-    border-top: 1px solid #eee;
-    text-align: center;
-    margin-top: auto;
-}
-
-.footer-copyright { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 5px; }
-.location-text { font-size: 0.85rem; color: var(--primary); margin-bottom: 20px; font-weight: 600; }
-
-/* --- UPDATED LINK STYLES (CHIPS/BUTTONS) --- */
-
-/* Container for the chips to ensure they wrap and align well */
-.site-links, .cta-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin: 20px 0;
-}
-
-/* The Chip Style */
-.secondary-link, .cta-button {
-    display: inline-block;
-    padding: 8px 16px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-decoration: none;
-    color: var(--dark);
-    background-color: #f0f2f5; /* Light gray base */
-    border: 1px solid #dee2e6;
-    border-radius: 50px; /* Makes it a pill/chip shape */
-    transition: all 0.2s ease-in-out;
-    white-space: nowrap;
-}
-
-/* Hover & Active States */
-.secondary-link:hover, .cta-button:hover {
-    background-color: var(--primary);
-    color: var(--white);
-    border-color: var(--primary);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
-}
-
-/* Differentiate the main CTA buttons if you want them to pop more */
-.cta-button {
-    background-color: var(--white);
-    border: 2px solid var(--primary);
-    color: var(--primary);
-    padding: 10px 20px;
-    font-size: 0.95rem;
-}
-
-/* Titles above chip groups */
-.link-group-title {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-top: 30px;
-    margin-bottom: 10px;
-    text-align: center;
-    width: 100%;
-}
-
+    <footer>
+        <div class="footer-copyright">
+            © 2026 Kato Sports Cards. All Rights Reserved.
+        </div>
+        <div class="location-text">
+            Based in Mankato, Minnesota
+        </div>
+        <div class="license-box">
+            <a href="https://kscmn.com/about">About Us</a>
+            <span class="footer-divider">|</span>
+            <a href="https://kscmn.com/privacy">Privacy Policy</a>
+            <span class="footer-divider">|</span>
+            Protected under a 
+            <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+                CC BY-NC-ND 4.0 License
+            </a>
+        </div>
+    </footer>
