@@ -1,51 +1,165 @@
+  :root {
+            --ebay-blue: #0053a0;         
+            --ebay-blue-hover: #004080;
+            --ebay-light-grey: #f7f7f7;   
+            --ebay-border: #e5e5e5;       
+            --ebay-text-main: #191919;    
+            --ebay-text-sub: #707070;     
+            --radius-standard: 8px;
+        }
 
-    <main class="hero">
-        <header class="logo-area">
-            <h1>Kato<span> Sports Cards</span></h1>
-        </header>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        <section class="feature-box">
-            <div class="cta-group">
-                <a href="https://kscmn.com/comps" class="cta-button">Card Comps</a>
-                <a href="https://kscmn.com/rookie" class="cta-button">Rookie Card Years</a>
-                <a href="https://kscmn.com/releases" class="cta-button">Release Dates</a>
-            </div>
-            
-            <h2 class="link-group-title">Shop Our Collections Online</h2>
-            <nav class="site-links" aria-label="Marketplace Links">
-                <a href="https://www.mercari.com/u/katosportscards/?tracking_ref_id=m60568783886" class="secondary-link">Mercari</a>
-                <a href="https://www.buysportscards.com/search?inStock=true&p=0&q=&sellerId=2c94e71b05&sellerName=Kato%20Sports%20Cards&sort=raw-price-hi-lo" class="secondary-link">BuySportscards</a>
-                <a href="https://www.ebay.com/usr/katosportscards" class="secondary-link">eBay</a>
-                <a href="https://www.comc.com/Users/katosportscards,sh,i100" class="secondary-link">COMC</a>
-            </nav>
+        body {
+            background-color: var(--ebay-light-grey);
+            color: var(--ebay-text-main);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
 
-            <h2 class="link-group-title">Follow the Hobby</h2>
-            <nav class="site-links" aria-label="Social Media Links">
-                <a href="https://www.facebook.com/100093528277002/" class="secondary-link">Facebook</a>
-                <a href="https://www.instagram.com/katosportscards/" class="secondary-link">Instagram</a>
-                <a href="https://www.threads.net/@katosportscards" class="secondary-link">Threads</a>
-                <a href="https://twitter.com/katosportscards" class="secondary-link">Twitter / X</a>
-                <a href="https://www.youtube.com/@KatoSportsCards" class="secondary-link">YouTube</a>
-                <a href="https://kscmn.blogspot.com/?m=1" class="secondary-link">Blog</a>
-            </nav>
-        </section>
-    </main>
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 3rem 1rem;
+        }
 
-    <footer>
-        <div class="footer-copyright">
-            © 2026 Kato Sports Cards. All Rights Reserved.
-        </div>
-        <div class="location-text">
-            Based in Mankato, Minnesota
-        </div>
-        <div class="license-box">
-            <a href="https://kscmn.com/about">About Us</a>
-            <span class="footer-divider">|</span>
-            <a href="https://kscmn.com/privacy">Privacy Policy</a>
-            <span class="footer-divider">|</span>
-            Protected under a 
-            <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
-                CC BY-NC-ND 4.0 License
-            </a>
-        </div>
-    </footer>
+        .logo-area {
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        .logo-area h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .logo-area h1 span {
+            color: var(--ebay-blue);
+        }
+
+        /* --- Main Content Card --- */
+        .feature-box {
+            background-color: #ffffff;
+            padding: 2.5rem 1.5rem;
+            border-radius: var(--radius-standard);
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid var(--ebay-border);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            text-align: center; /* Centers titles and inline elements */
+        }
+
+        /* --- Centered Primary Buttons --- */
+        .cta-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 3rem;
+            align-items: center; /* Centers buttons in column mode */
+        }
+
+        @media (min-width: 520px) {
+            .cta-group {
+                flex-direction: row;
+                justify-content: center; /* Centers buttons in row mode */
+            }
+        }
+
+        .cta-button {
+            background-color: var(--ebay-blue);
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            height: 48px;
+            width: 100%; /* Full width on mobile */
+            max-width: 200px; /* Constraints width on desktop */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center; /* Centers text inside button */
+            text-align: center;
+            padding: 0 20px;
+            border-radius: 24px;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        .cta-button:hover {
+            background-color: var(--ebay-blue-hover);
+        }
+
+        /* --- Link Group Styles --- */
+        .link-group-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            color: var(--ebay-text-main);
+            display: block;
+            text-align: center;
+        }
+
+        .site-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 16px;
+            margin-bottom: 2.5rem;
+            justify-content: center; /* Centers the links horizontally */
+        }
+
+        .secondary-link {
+            color: var(--ebay-blue);
+            text-decoration: none;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .secondary-link:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 3rem 1rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--ebay-text-sub);
+            border-top: 1px solid var(--ebay-border);
+            background-color: #ffffff;
+        }
+
+        .footer-copyright {
+            color: var(--ebay-text-main);
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .location-text {
+            margin-bottom: 1.2rem;
+        }
+
+        .license-box {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .license-box a {
+            color: var(--ebay-blue);
+            text-decoration: none;
+        }
+
+        .footer-divider {
+            color: var(--ebay-border);
+        }
