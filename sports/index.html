@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Sports Hub | Dashboard</title>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZD9DR8ZX5"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -11,128 +8,151 @@
       gtag('js', new Date());
       gtag('config', 'G-LZD9DR8ZX5');
     </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Sports Hub | Kato Sports Cards</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
+            --ebay-blue: #0053a0;         
+            --ebay-blue-hover: #004080;
+            --ebay-light-grey: #f7f7f7;   
+            --ebay-border: #e5e5e5;       
+            --ebay-text-main: #191919;    
+            --ebay-text-sub: #707070;     
             --sidebar-width: 240px;
-            --header-height: 60px;
-            --border-color: #eee;
+            --header-height: 70px;
             --active-green: #2c7a7b;
             --active-bg: #e6fffa;
         }
 
-        body {
+        * {
             margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #f9f9f9;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--ebay-light-grey);
+            color: var(--ebay-text-main);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             display: flex;
             flex-direction: column;
+            min-height: 100vh;
         }
 
         /* --- Header --- */
         header {
             position: fixed;
             top: 0;
-            left: 0;
-            right: 0;
+            width: 100%;
             height: var(--header-height);
-            background: #000;
-            color: #fff;
+            background: #fff;
+            border-bottom: 1px solid var(--ebay-border);
             display: flex;
             align-items: center;
             padding: 0 20px;
             z-index: 1001;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         header h1 {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
 
-        /* --- Sidebar / Nav --- */
+        header h1 span {
+            color: var(--ebay-blue);
+        }
+
+        /* --- Sidebar --- */
         aside {
             width: var(--sidebar-width);
             background: #fff;
             height: 100vh;
-            border-right: 1px solid var(--border-color);
+            border-right: 1px solid var(--ebay-border);
             position: fixed;
             top: var(--header-height);
             left: 0;
-            padding-top: 10px;
+            padding-top: 20px;
             z-index: 1000;
             overflow-y: auto;
         }
 
         aside nav ul {
             list-style: none;
-            padding: 0;
-            margin: 0;
         }
 
         aside nav li a {
             display: block;
-            padding: 12px 20px;
-            color: #555;
+            padding: 12px 24px;
+            color: var(--ebay-text-sub);
             text-decoration: none;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            border-left: 3px solid transparent;
+            transition: all 0.2s;
         }
 
         aside nav li a:hover {
-            background-color: #f8f8f8;
-            color: #000;
-            border-left: 3px solid #000;
+            background-color: var(--ebay-light-grey);
+            color: var(--ebay-blue);
+            padding-left: 28px;
         }
 
         /* --- Main Content --- */
         main {
             margin-left: var(--sidebar-width);
             margin-top: var(--header-height);
-            padding: 20px;
+            padding: 30px;
             width: calc(100% - var(--sidebar-width));
-            box-sizing: border-box;
+        }
+
+        .table-card {
+            background: #fff;
+            border: 1px solid var(--ebay-border);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
         }
 
         .table-container {
-            background: #fff;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
             overflow-x: auto;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 800px; 
+            min-width: 850px; 
         }
 
         th {
             text-align: left;
-            font-size: 0.65rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            color: #999;
-            letter-spacing: 1px;
-            padding: 12px;
-            background: #fafafa;
-            border-bottom: 2px solid #eee;
+            color: var(--ebay-text-sub);
+            letter-spacing: 0.5px;
+            padding: 15px;
+            background: var(--ebay-light-grey);
+            border-bottom: 1px solid var(--ebay-border);
         }
 
         td {
-            padding: 12px;
-            border-bottom: 1px solid var(--border-color);
-            font-size: 0.8rem;
+            padding: 15px;
+            border-bottom: 1px solid var(--ebay-border);
+            font-size: 0.9rem;
         }
 
-        /* --- Elements --- */
+        /* --- Dashboard Elements --- */
         .status-tag {
-            font-size: 0.55rem;
-            font-weight: 800;
+            font-size: 0.7rem;
+            font-weight: 700;
             text-transform: uppercase;
-            padding: 3px 6px;
+            padding: 4px 8px;
             border-radius: 4px;
             display: inline-block;
         }
@@ -140,47 +160,65 @@
         .pre { background: #fffaf0; color: #9c4221; border: 1px solid #feebc8; }
         .off { background: #f7fafc; color: #4a5568; border: 1px solid #e2e8f0; }
 
-        .league-label { font-weight: 700; color: #000; text-decoration: none; }
-        .action-link { color: #666; text-decoration: none; font-weight: 600; font-size: 0.7rem; }
-        .action-link:hover { color: #000; text-decoration: underline; }
+        .league-label { 
+            font-weight: 700; 
+            color: var(--ebay-text-main); 
+            text-decoration: none; 
+        }
+        
+        .league-label:hover {
+            color: var(--ebay-blue);
+            text-decoration: underline;
+        }
+
+        .action-link { 
+            color: var(--ebay-blue); 
+            text-decoration: none; 
+            font-weight: 500; 
+            font-size: 0.85rem; 
+        }
+
+        .action-link:hover { text-decoration: underline; }
         
         .btn-score {
-            background: #000;
+            background: var(--ebay-blue);
             color: #fff;
-            padding: 4px 8px;
-            font-size: 0.6rem;
-            font-weight: bold;
+            padding: 6px 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
             text-decoration: none;
-            text-transform: uppercase;
-            border-radius: 3px;
-            white-space: nowrap;
+            border-radius: 14px;
+            display: inline-block;
+            transition: background 0.2s;
         }
+
+        .btn-score:hover { background: var(--ebay-blue-hover); }
 
         .section-title {
-            background: #f1f1f1;
+            background: #fdfdfd;
             font-weight: 800;
-            font-size: 0.65rem;
-            color: #555;
-            padding: 8px 12px;
-            text-transform: uppercase;
+            font-size: 0.8rem;
+            color: var(--ebay-text-main);
+            padding: 12px 15px;
+            border-bottom: 2px solid var(--ebay-border);
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             aside {
-                width: 100%; height: auto; position: fixed; top: var(--header-height);
-                border-right: none; border-bottom: 1px solid var(--border-color); padding-top: 0;
+                width: 100%; height: auto; position: relative; top: var(--header-height);
+                border-right: none; border-bottom: 1px solid var(--ebay-border);
             }
             aside nav ul { display: flex; overflow-x: auto; white-space: nowrap; }
-            aside nav li a { padding: 15px; border-left: none; border-bottom: 3px solid transparent; }
-            aside nav li a:hover { border-bottom: 3px solid #000; border-left: none; }
-            main { margin-left: 0; margin-top: calc(var(--header-height) + 50px); width: 100%; padding: 10px; }
+            main { margin-left: 0; margin-top: var(--header-height); width: 100%; padding: 15px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Global Sports Dashboard</h1>
+        <a href="https://kscmn.com" style="text-decoration: none; color: inherit;">
+            <h1>Kato<span> Sports Hub</span></h1>
+        </a>
     </header>
 
     <aside>
@@ -196,178 +234,98 @@
     </aside>
 
     <main>
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Status</th>
-                        <th>League</th>
-                        <th>Live / Scores</th>
-                        <th>Stats</th>
-                        <th>Standings</th>
-                        <th>Rosters</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr id="pro"><td colspan="6" class="section-title">North American Professional</td></tr>
-                    <tr>
-                        <td><span class="status-tag active">Active</span></td>
-                        <td><a href="https://www.nba.com" class="league-label">NBA</a></td>
-                        <td><a href="https://www.nba.com/scores" class="btn-score">Scores</a></td>
-                        <td><a href="https://www.nba.com/stats" class="action-link">Stats</a></td>
-                        <td><a href="https://www.nba.com/standings" class="action-link">Standings</a></td>
-                        <td><a href="https://www.nba.com/teams" class="action-link">Teams/Rosters</a></td>
-                    </tr>
-                    <tr>
-                        <td><span class="status-tag active">Active</span></td>
-                        <td><a href="https://www.nhl.com" class="league-label">NHL</a></td>
-                        <td><a href="https://www.nhl.com/scores" class="btn-score">Scores</a></td>
-                        <td><a href="https://www.nhl.com/stats" class="action-link">Stats</a></td>
-                        <td><a href="https://www.nhl.com/standings" class="action-link">Standings</a></td>
-                        <td><a href="https://www.nhl.com/info/teams" class="action-link">Teams/Rosters</a></td>
-                    </tr>
-                    <tr>
-                        <td><span class="status-tag pre">Pre-Season</span></td>
-                        <td><a href="https://www.mlb.com" class="league-label">MLB</a></td>
-                        <td><a href="https://www.mlb.com/scores" class="btn-score">Scores</a></td>
-                        <td><a href="https://www.mlb.com/stats" class="action-link">Stats</a></td>
-                        <td><a href="https://www.mlb.com/standings" class="action-link">Standings</a></td>
-                        <td><a href="https://www.mlb.com/teams" class="action-link">Teams/Rosters</a></td>
-                    </tr>
-                    <tr>
-                        <td><span class="status-tag off">Off-Season</span></td>
-                        <td><a href="https://www.nfl.com" class="league-label">NFL</a></td>
-                        <td><a href="https://www.nfl.com/scores" class="btn-score">Scores</a></td>
-                        <td><a href="https://www.nfl.com/stats/player-stats/" class="action-link">Stats</a></td>
-                        <td><a href="https://www.nfl.com/standings" class="action-link">Standings</a></td>
-                        <td><a href="https://www.nfl.com/teams" class="action-link">Teams/Rosters</a></td>
-                    </tr>
+        <div class="table-card">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>League</th>
+                            <th>Live / Scores</th>
+                            <th>Stats</th>
+                            <th>Standings</th>
+                            <th>Rosters</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="pro"><td colspan="6" class="section-title">North American Professional</td></tr>
+                        <tr>
+                            <td><span class="status-tag active">Active</span></td>
+                            <td><a href="https://www.nba.com" class="league-label">NBA</a></td>
+                            <td><a href="https://www.nba.com/scores" class="btn-score">Scores</a></td>
+                            <td><a href="https://www.nba.com/stats" class="action-link">Stats</a></td>
+                            <td><a href="https://www.nba.com/standings" class="action-link">Standings</a></td>
+                            <td><a href="https://www.nba.com/teams" class="action-link">Teams</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="status-tag active">Active</span></td>
+                            <td><a href="https://www.nhl.com" class="league-label">NHL</a></td>
+                            <td><a href="https://www.nhl.com/scores" class="btn-score">Scores</a></td>
+                            <td><a href="https://www.nhl.com/stats" class="action-link">Stats</a></td>
+                            <td><a href="https://www.nhl.com/standings" class="action-link">Standings</a></td>
+                            <td><a href="https://www.nhl.com/info/teams" class="action-link">Teams</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="status-tag pre">Pre-Season</span></td>
+                            <td><a href="https://www.mlb.com" class="league-label">MLB</a></td>
+                            <td><a href="https://www.mlb.com/scores" class="btn-score">Scores</a></td>
+                            <td><a href="https://www.mlb.com/stats" class="action-link">Stats</a></td>
+                            <td><a href="https://www.mlb.com/standings" class="action-link">Standings</a></td>
+                            <td><a href="https://www.mlb.com/teams" class="action-link">Teams</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="status-tag off">Off-Season</span></td>
+                            <td><a href="https://www.nfl.com" class="league-label">NFL</a></td>
+                            <td><a href="https://www.nfl.com/scores" class="btn-score">Scores</a></td>
+                            <td><a href="https://www.nfl.com/stats" class="action-link">Stats</a></td>
+                            <td><a href="https://www.nfl.com/standings" class="action-link">Standings</a></td>
+                            <td><a href="https://www.nfl.com/teams" class="action-link">Teams</a></td>
+                        </tr>
 
-                    <tr id="college"><td colspan="6" class="section-title">NCAA Collegiate</td></tr>
-                    <tr>
-                        <td><span class="status-tag active">Active</span></td>
-                        <td><a href="https://www.ncaa.com/sports/basketball-men/d1" class="league-label">College Basketball</a></td>
-                        <td><a href="https://www.ncaa.com/scoreboard/basketball-men/d1" class="btn-score">Scores</a></td>
-                        <td><a href="https://www.ncaa.com/stats/basketball-men/d1" class="action-link">Stats</a></td>
-                        <td><a href="https://www.ncaa.com/standings/basketball-men/d1" class="action-link">Standings</a></td>
-                        <td><a href="https://www.ncaa.com/rankings/basketball-men/d1" class="action-link">Teams/Ranks</a></td>
-                    </tr>
-                    <tr>
-                        <td><span class="status-tag active">Active</span></td>
-                        <td><a href="https://www.ncaa.com/sports/baseball/d1" class="league-label">College Baseball</a></td>
-                        <td><a href="https://www.ncaa.com/scoreboard/baseball/d1" class="btn-score">Scores</a></td>
-                        <td><a href="https://www.ncaa.com/stats/baseball/d1" class="action-link">Stats</a></td>
-                        <td><a href="https://www.ncaa.com/standings/baseball/d1" class="action-link">Standings</a></td>
-                        <td><a href="https://www.ncaa.com/rankings/baseball/d1" class="action-link">Teams/Ranks</a></td>
-                    </tr>
-                    <tr>
-                        <td><span class="status-tag active">Active</span></td>
-                        <td><a href="https://www.ncaa.com/sports/icehockey-men/d1" class="league-label">College Hockey</a></td>
-                        <td><a href="https://www.ncaa.com/scoreboard/icehockey-men/d1" class="btn-score">Scores</a></td>
-                        <td><a href="https://www.ncaa.com/stats/icehockey-men/d1" class="action-link">Stats</a></td>
-                        <td><a href="https://www.ncaa.com/standings/icehockey-men/d1" class="action-link">Standings</a></td>
-                        <td><a href="https://www.ncaa.com/rankings/icehockey-men/d1" class="action-link">Teams/Ranks</a></td>
-                    </tr>
-                    <tr>
-                        <td><span class="status-tag off">Off-Season</span></td>
-                        <td><a href="https://www.ncaa.com/sports/football/fbs" class="league-label">College Football</a></td>
-                        <td><a href="https://www.ncaa.com/scoreboard/football/fbs" class="btn-score">Scores</a></td>
-                        <td><a href="https://www.ncaa.com/stats/football/fbs" class="action-link">Stats</a></td>
-                        <td><a href="https://www.ncaa.com/standings/football/fbs" class="action-link">Standings</a></td>
-                        <td><a href="https://www.ncaa.com/rankings/football/fbs" class="action-link">Teams/Ranks</a></td>
-                    </tr>
+                        <tr id="college"><td colspan="6" class="section-title">NCAA Collegiate</td></tr>
+                        <tr>
+                            <td><span class="status-tag active">Active</span></td>
+                            <td><a href="https://www.ncaa.com/sports/basketball-men/d1" class="league-label">College Basketball</a></td>
+                            <td><a href="https://www.ncaa.com/scoreboard/basketball-men/d1" class="btn-score">Scores</a></td>
+                            <td><a href="https://www.ncaa.com/stats/basketball-men/d1" class="action-link">Stats</a></td>
+                            <td><a href="https://www.ncaa.com/standings/basketball-men/d1" class="action-link">Standings</a></td>
+                            <td><a href="https://www.ncaa.com/rankings/basketball-men/d1" class="action-link">Ranks</a></td>
+                        </tr>
+                        <tr>
+                            <td><span class="status-tag active">Active</span></td>
+                            <td><a href="https://www.ncaa.com/sports/baseball/d1" class="league-label">College Baseball</a></td>
+                            <td><a href="https://www.ncaa.com/scoreboard/baseball/d1" class="btn-score">Scores</a></td>
+                            <td><a href="https://www.ncaa.com/stats/baseball/d1" class="action-link">Stats</a></td>
+                            <td><a href="https://www.ncaa.com/standings/baseball/d1" class="action-link">Standings</a></td>
+                            <td><a href="https://www.ncaa.com/rankings/baseball/d1" class="action-link">Ranks</a></td>
+                        </tr>
 
-                    <tr id="soccer"><td colspan="6" class="section-title">European Big Five Soccer</td></tr>
-                    <tr>
-                        <td><span class="status-tag active">Active</span></td>
-                        <td><a href="https://www.premierleague.com" class="league-label">EPL</a></td>
-                        <td><a href="https://www.premierleague.com/results" class="btn-score">Results</a></td>
-                        <td><a href="https://www.premierleague.com/stats" class="action-link">Stats</a></td>
-                        <td><a href="https://www.premierleague.com/tables" class="action-link">Table</a></td>
-                        <td><a href="https://www.premierleague.com/clubs" class="action-link">Clubs/Squads</a></td>
-                    </tr>
-                    <tr>
-                        <td><span class="status-tag active">Active</span></td>
-                        <td><a href="https://www.laliga.com" class="league-label">La Liga</a></td>
-                        <td><a href="https://www.laliga.com/en-GB/stats/laliga-easports/results" class="btn-score">Results</a></td>
-                        <td><a href="https://www.laliga.com/en-GB/stats" class="action-link">Stats</a></td>
-                        <td><a href="https://www.laliga.com/en-GB/standings" class="action-link">Table</a></td>
-                        <td><a href="https://www.laliga.com/en-GB/clubs" class="action-link">Clubs/Squads</a></td>
-                    </tr>
-                    <tr>
-                        <td><span class="status-tag active">Active</span></td>
-                        <td><a href="https://www.bundesliga.com" class="league-label">Bundesliga</a></td>
-                        <td><a href="https://www.bundesliga.com/en/bundesliga/matchday" class="btn-score">Results</a></td>
-                        <td><a href="https://www.bundesliga.com/en/stats" class="action-link">Stats</a></td>
-                        <td><a href="https://www.bundesliga.com/en/bundesliga/table" class="action-link">Table</a></td>
-                        <td><a href="https://www.bundesliga.com/en/bundesliga/clubs" class="action-link">Clubs/Squads</a></td>
-                    </tr>
-                    <tr>
-                        <td><span class="status-tag active">Active</span></td>
-                        <td><a href="https://en.legaseriea.it" class="league-label">Serie A</a></td>
-                        <td><a href="https://en.legaseriea.it/serie-a" class="btn-score">Results</a></td>
-                        <td><a href="https://en.legaseriea.it/stats" class="action-link">Stats</a></td>
-                        <td><a href="https://en.legaseriea.it/serie-a" class="action-link">Table</a></td>
-                        <td><a href="https://en.legaseriea.it/serie-a" class="action-link">Clubs/Squads</a></td>
-                    </tr>
-                    <tr>
-                        <td><span class="status-tag active">Active</span></td>
-                        <td><a href="https://www.ligue1.com" class="league-label">Ligue 1</a></td>
-                        <td><a href="https://www.ligue1.com/fixtures-results" class="btn-score">Results</a></td>
-                        <td><a href="https://www.ligue1.com/stats" class="action-link">Stats</a></td>
-                        <td><a href="https://www.ligue1.com/standings" class="action-link">Table</a></td>
-                        <td><a href="https://www.ligue1.com/clubs" class="action-link">Clubs/Squads</a></td>
-                    </tr>
+                        <tr id="soccer"><td colspan="6" class="section-title">European Big Five Soccer</td></tr>
+                        <tr>
+                            <td><span class="status-tag active">Active</span></td>
+                            <td><a href="https://www.premierleague.com" class="league-label">Premier League</a></td>
+                            <td><a href="https://www.premierleague.com/results" class="btn-score">Results</a></td>
+                            <td><a href="https://www.premierleague.com/stats" class="action-link">Stats</a></td>
+                            <td><a href="https://www.premierleague.com/tables" class="action-link">Table</a></td>
+                            <td><a href="https://www.premierleague.com/clubs" class="action-link">Clubs</a></td>
+                        </tr>
 
-                    <tr id="racing"><td colspan="6" class="section-title">Racing & Combat</td></tr>
-                    <tr>
-                        <td><span class="status-tag active">Active</span></td>
-                        <td><a href="https://www.ufc.com" class="league-label">UFC</a></td>
-                        <td><a href="https://www.ufc.com/events" class="btn-score">Events</a></td>
-                        <td><a href="http://www.ufcstats.com/statistics/fighters" class="action-link">Stats</a></td>
-                        <td><a href="https://www.ufc.com/rankings" class="action-link">Rankings</a></td>
-                        <td><a href="https://www.ufc.com/athletes/all" class="action-link">Athletes</a></td>
-                    </tr>
-                    <tr>
-                        <td><span class="status-tag pre">Testing</span></td>
-                        <td><a href="https://www.formula1.com" class="league-label">F1</a></td>
-                        <td><a href="https://www.formula1.com/en/results.html" class="btn-score">Results</a></td>
-                        <td><a href="https://www.formula1.com/en/results.html/2026/drivers.html" class="action-link">Stats</a></td>
-                        <td><a href="https://www.formula1.com/en/results.html/2026/team.html" class="action-link">Standings</a></td>
-                        <td><a href="https://www.formula1.com/en/drivers.html" class="action-link">Drivers</a></td>
-                    </tr>
-                    <tr>
-                        <td><span class="status-tag active">Active</span></td>
-                        <td><a href="https://www.nascar.com" class="league-label">NASCAR</a></td>
-                        <td><a href="https://www.nascar.com/results" class="btn-score">Results</a></td>
-                        <td><a href="https://www.nascar.com/stats" class="action-link">Stats</a></td>
-                        <td><a href="https://www.nascar.com/standings" class="action-link">Standings</a></td>
-                        <td><a href="https://www.nascar.com/drivers" class="action-link">Drivers</a></td>
-                    </tr>
-
-                    <tr id="golf"><td colspan="6" class="section-title">Golf</td></tr>
-                    <tr>
-                        <td><span class="status-tag active">Active</span></td>
-                        <td><a href="https://www.pgatour.com" class="league-label">PGA Tour</a></td>
-                        <td><a href="https://www.pgatour.com/leaderboard" class="btn-score">Live</a></td>
-                        <td><a href="https://www.pgatour.com/stats" class="action-link">Stats</a></td>
-                        <td><a href="https://www.pgatour.com/fedexcup/official-standings" class="action-link">FedEx</a></td>
-                        <td><a href="https://www.pgatour.com/players" class="action-link">Player List</a></td>
-                    </tr>
-                    <tr>
-                        <td><span class="status-tag active">Active</span></td>
-                        <td><a href="https://www.livgolf.com" class="league-label">LIV Golf</a></td>
-                        <td><a href="https://www.livgolf.com/standings" class="btn-score">Live</a></td>
-                        <td><a href="https://www.livgolf.com/player-stats" class="action-link">Stats</a></td>
-                        <td><a href="https://www.livgolf.com/standings" class="action-link">Standings</a></td>
-                        <td><a href="https://www.livgolf.com/players" class="action-link">Player List</a></td>
-                    </tr>
-                </tbody>
-            </table>
+                        <tr id="racing"><td colspan="6" class="section-title">Racing & Combat</td></tr>
+                        <tr>
+                            <td><span class="status-tag active">Active</span></td>
+                            <td><a href="https://www.ufc.com" class="league-label">UFC</a></td>
+                            <td><a href="https://www.ufc.com/events" class="btn-score">Events</a></td>
+                            <td><a href="http://www.ufcstats.com/statistics/fighters" class="action-link">Stats</a></td>
+                            <td><a href="https://www.ufc.com/rankings" class="action-link">Rankings</a></td>
+                            <td><a href="https://www.ufc.com/athletes/all" class="action-link">Athletes</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         
-        <p style="text-align: center; color: #bbb; font-size: 0.7rem; margin-top: 20px;">
-            Updated: February 28, 2026
+        <p style="text-align: center; color: var(--ebay-text-sub); font-size: 0.75rem; margin-top: 30px;">
+            Updated: February 28, 2026 | Powered by Kato Sports Cards
         </p>
     </main>
 
