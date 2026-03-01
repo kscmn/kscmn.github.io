@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZD9DR8ZX5"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -12,9 +9,11 @@
       gtag('config', 'G-LZD9DR8ZX5');
     </script>
 
-    <title>Sports Card Comps | Kato Sports Cards</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" href="style.css">
+    <title>About Us | Kato Sports Cards Mankato MN</title>
+    <meta name="description" content="Learn more about Kato Sports Cards. Established in 2023 in Mankato, Minnesota, specializing in sports card collectibles and online marketplaces.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,8 +39,8 @@
         body {
             background-color: var(--ebay-light-grey);
             color: var(--ebay-text-main);
-            font-family: 'Inter', sans-serif;
-            line-height: 1.5;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -65,6 +64,7 @@
             font-size: 2.5rem;
             font-weight: 700;
             letter-spacing: -1px;
+            text-decoration: none;
             color: var(--ebay-text-main);
         }
 
@@ -72,24 +72,23 @@
             color: var(--ebay-blue);
         }
 
+        /* --- Main Content Card --- */
         .feature-box {
             background-color: #ffffff;
-            padding: 2.5rem 1.5rem;
+            padding: 2.5rem 2rem;
             border-radius: var(--radius-standard);
             width: 100%;
             max-width: 600px;
             border: 1px solid var(--ebay-border);
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            text-align: center;
         }
 
         /* Breadcrumbs Styling */
         .breadcrumbs {
             font-size: 0.85rem;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             color: var(--ebay-text-sub);
             text-align: left;
-            width: 100%;
         }
 
         .breadcrumbs a {
@@ -101,27 +100,24 @@
             text-decoration: underline;
         }
 
-        /* Search Input Styling */
-        .search-input {
-            width: 100%;
-            height: 48px;
-            padding: 0 16px;
-            font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin-bottom: 16px;
-            font-family: inherit;
+        /* About Text Styling */
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--ebay-text-main);
+            text-align: center;
         }
 
-        .search-input:focus {
-            outline: none;
-            border-color: var(--ebay-blue);
-            box-shadow: 0 0 0 1px var(--ebay-blue);
+        .about-text p {
+            margin-bottom: 1.25rem;
+            color: #333;
+            font-size: 1.05rem;
         }
 
-        .cta-button {
+        /* Contact Button (Pill Style) */
+        .contact-btn {
             background-color: var(--ebay-blue);
-            color: #ffffff !important; /* Force white for visibility */
+            color: #ffffff !important;
             text-decoration: none;
             font-weight: 600;
             font-size: 0.95rem;
@@ -130,28 +126,16 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 0 20px;
             border-radius: 24px;
-            border: none;
-            cursor: pointer;
+            margin-top: 1rem;
             transition: background-color 0.2s ease;
         }
 
-        .cta-button:hover {
+        .contact-btn:hover {
             background-color: var(--ebay-blue-hover);
         }
 
-        .tip-box {
-            margin-top: 25px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            color: var(--ebay-text-sub);
-            text-align: left;
-            border-left: 3px solid var(--ebay-border);
-        }
-
+        /* Footer */
         footer {
             padding: 3rem 1rem;
             text-align: center;
@@ -165,7 +149,6 @@
         .footer-copyright {
             color: var(--ebay-text-main);
             font-weight: 600;
-            margin-bottom: 0.4rem;
         }
     </style>
 </head>
@@ -180,38 +163,25 @@
 
     <div class="feature-box">
         <nav class="breadcrumbs">
-            <a href="https://kscmn.com">Home</a> &nbsp;/&nbsp; Comps
+            <a href="https://kscmn.com">Home</a> &nbsp;/&nbsp; About Us
         </nav>
 
-        <h2 style="margin-bottom: 10px; font-size: 1.8rem;">Card Comps</h2>
-        <p style="color: var(--ebay-text-sub); margin-bottom: 25px;">
-            Search the eBay market for recent <strong>Sold</strong> prices.
-        </p>
-        
-        <form id="directCompsForm">
-            <input type="text" id="cardSearch" class="search-input" placeholder="e.g. 2024 Bowman Elly De La Cruz PSA 10" required>
-            <button type="submit" class="cta-button">Search eBay Sold Listings</button>
-        </form>
-
-        <div class="tip-box">
-            <strong>Tip:</strong> This search is automatically filtered for <strong>Sold & Completed</strong> listings, sorted by <strong>Ended Recently</strong>.
-        </div>
+        <section class="about-box">
+            <h2>About Us</h2>
+            <div class="about-text">
+                <p>Kato Sports Cards was established in 2023. We're located in Mankato, Minnesota and sell on various marketplaces online. Thank you for visiting. Please let us know how we can help.</p>
+                <p style="text-align: center;"><strong>SKOL and Ole!</strong></p>
+            </div>
+            
+            <a href="mailto:katosportscards@outlook.com" class="contact-btn">Contact Us</a>
+        </section>
     </div>
 </main>
 
 <footer>
-    <div class="footer-copyright">© 2026 Kato Sports Cards. All Rights Reserved.</div>
-    <div class="location-text">Mankato, Minnesota</div>
+    <div class="footer-copyright">&copy; 2026 Kato Sports Cards. All Rights Reserved.</div>
+    <div style="margin-top: 5px;">Mankato, Minnesota</div>
 </footer>
-
-<script>
-document.getElementById('directCompsForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const query = document.getElementById('cardSearch').value;
-    const ebayUrl = `https://www.ebay.com/sch/i.html?_nkw=${encodeURIComponent(query)}&LH_Sold=1&LH_Complete=1&_sop=13`;
-    window.open(ebayUrl, '_blank');
-});
-</script>
 
 </body>
 </html>
