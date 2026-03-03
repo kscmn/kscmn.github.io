@@ -728,6 +728,62 @@
     .hero-stats { gap: 32px; }
     footer { flex-direction: column; gap: 20px; text-align: center; }
   }
+
+  .api-banner {
+    position: fixed;
+    top: 72px; left: 0; right: 0;
+    z-index: 90;
+    background: rgba(200,100,60,0.12);
+    border-bottom: 1px solid rgba(200,100,60,0.3);
+    padding: 12px 48px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: #e8a878;
+    letter-spacing: 1px;
+  }
+  .api-key-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+  }
+  .api-key-input {
+    flex: 1;
+    max-width: 400px;
+    padding: 8px 14px;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(200,100,60,0.4);
+    color: #e8dcc8;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    outline: none;
+  }
+  .api-key-input:focus { border-color: var(--gold); }
+  .api-key-btn {
+    padding: 8px 16px;
+    background: rgba(200,168,75,0.15);
+    border: 1px solid var(--border-gold);
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+  .api-key-btn:hover { background: rgba(200,168,75,0.25); }
+  .api-key-saved {
+    color: var(--green);
+    font-size: 10px;
+    letter-spacing: 2px;
+    display: none;
+  }
+  
+  body.has-api-key .hero { padding-top: 120px; }
+
 </style>
 </head>
 <body>
@@ -747,6 +803,10 @@
     Scan A Card
   </button>
 </nav>
+
+
+  <span style="opacity:0.6;font-size:10px">Get yours at console.anthropic.com</span>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -966,15 +1026,16 @@
 
   async function analyzeCard() {
     if (!imageBase64) return;
+
     const btn = document.getElementById('analyzeBtn');
     btn.disabled = true;
     btn.textContent = 'Analyzing...';
     setLoading();
 
     try {
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
+      const response = await fetch('/test/proxy.php', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'anthropic-dangerous-direct-browser-access': 'true' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           model: 'claude-sonnet-4-20250514',
           max_tokens: 1000,
@@ -1088,6 +1149,19 @@
       if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
     });
   });
+
+  // Check on load
+  window.addEventListener('DOMContentLoaded', () => {
+    if (getApiKey()) {
+      document.body.classList.add('has-api-key');
+    }
+    // Allow Enter key in input
+    document.getElementById('apiKeyInput').addEventListener('keydown', e => {
+      if (e.key === 'Enter') saveApiKey();
+    });
+  });
+  // Check API key before analyzing
+
 </script>
 </body>
 </html>
