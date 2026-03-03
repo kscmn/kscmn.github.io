@@ -1,333 +1,1 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZD9DR8ZX5"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-LZD9DR8ZX5');
-    </script>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Sports Hub | Kato Sports Cards</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --ebay-blue: #0053a0;         
-            --ebay-blue-hover: #004080;
-            --ebay-light-grey: #f7f7f7;   
-            --ebay-border: #e5e5e5;       
-            --ebay-text-main: #191919;    
-            --ebay-text-sub: #707070;     
-            --sidebar-width: 240px;
-            --header-height: 70px;
-            --active-green: #2c7a7b;
-            --active-bg: #e6fffa;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: var(--ebay-light-grey);
-            color: var(--ebay-text-main);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        /* --- Header --- */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            height: var(--header-height);
-            background: #fff;
-            border-bottom: 1px solid var(--ebay-border);
-            display: flex;
-            align-items: center;
-            padding: 0 20px;
-            z-index: 1001;
-        }
-
-        header h1 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        header h1 span {
-            color: var(--ebay-blue);
-        }
-
-        /* --- Sidebar --- */
-        aside {
-            width: var(--sidebar-width);
-            background: #fff;
-            height: 100vh;
-            border-right: 1px solid var(--ebay-border);
-            position: fixed;
-            top: var(--header-height);
-            left: 0;
-            padding-top: 20px;
-            z-index: 1000;
-            overflow-y: auto;
-        }
-
-        aside nav ul {
-            list-style: none;
-        }
-
-        aside nav li a {
-            display: block;
-            padding: 12px 24px;
-            color: var(--ebay-text-sub);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-
-        aside nav li a:hover {
-            background-color: var(--ebay-light-grey);
-            color: var(--ebay-blue);
-            padding-left: 28px;
-        }
-
-        /* --- Main Content --- */
-        main {
-            margin-left: var(--sidebar-width);
-            margin-top: var(--header-height);
-            padding: 30px;
-            width: calc(100% - var(--sidebar-width));
-        }
-
-        .table-card {
-            background: #fff;
-            border: 1px solid var(--ebay-border);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
-        }
-
-        .table-container {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 850px; 
-        }
-
-        th {
-            text-align: left;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            color: var(--ebay-text-sub);
-            letter-spacing: 0.5px;
-            padding: 15px;
-            background: var(--ebay-light-grey);
-            border-bottom: 1px solid var(--ebay-border);
-        }
-
-        td {
-            padding: 15px;
-            border-bottom: 1px solid var(--ebay-border);
-            font-size: 0.9rem;
-        }
-
-        /* --- Dashboard Elements --- */
-        .status-tag {
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            padding: 4px 8px;
-            border-radius: 4px;
-            display: inline-block;
-        }
-        .active { background: var(--active-bg); color: var(--active-green); border: 1px solid #b2f5ea; }
-        .pre { background: #fffaf0; color: #9c4221; border: 1px solid #feebc8; }
-        .off { background: #f7fafc; color: #4a5568; border: 1px solid #e2e8f0; }
-
-        .league-label { 
-            font-weight: 700; 
-            color: var(--ebay-text-main); 
-            text-decoration: none; 
-        }
-        
-        .league-label:hover {
-            color: var(--ebay-blue);
-            text-decoration: underline;
-        }
-
-        .action-link { 
-            color: var(--ebay-blue); 
-            text-decoration: none; 
-            font-weight: 500; 
-            font-size: 0.85rem; 
-        }
-
-        .action-link:hover { text-decoration: underline; }
-        
-        .btn-score {
-            background: var(--ebay-blue);
-            color: #fff;
-            padding: 6px 12px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 14px;
-            display: inline-block;
-            transition: background 0.2s;
-        }
-
-        .btn-score:hover { background: var(--ebay-blue-hover); }
-
-        .section-title {
-            background: #fdfdfd;
-            font-weight: 800;
-            font-size: 0.8rem;
-            color: var(--ebay-text-main);
-            padding: 12px 15px;
-            border-bottom: 2px solid var(--ebay-border);
-        }
-
-        @media (max-width: 992px) {
-            aside {
-                width: 100%; height: auto; position: relative; top: var(--header-height);
-                border-right: none; border-bottom: 1px solid var(--ebay-border);
-            }
-            aside nav ul { display: flex; overflow-x: auto; white-space: nowrap; }
-            main { margin-left: 0; margin-top: var(--header-height); width: 100%; padding: 15px; }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <a href="https://kscmn.com" style="text-decoration: none; color: inherit;">
-            <h1>Kato<span> Sports Hub</span></h1>
-        </a>
-    </header>
-
-    <aside>
-        <nav>
-            <ul>
-                <li><a href="#pro">Pro Leagues</a></li>
-                <li><a href="#college">NCAA</a></li>
-                <li><a href="#soccer">Big Five Soccer</a></li>
-                <li><a href="#racing">Racing & Combat</a></li>
-                <li><a href="#golf">Golf</a></li>
-            </ul>
-        </nav>
-    </aside>
-
-    <main>
-        <div class="table-card">
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Status</th>
-                            <th>League</th>
-                            <th>Live / Scores</th>
-                            <th>Stats</th>
-                            <th>Standings</th>
-                            <th>Rosters</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr id="pro"><td colspan="6" class="section-title">North American Professional</td></tr>
-                        <tr>
-                            <td><span class="status-tag active">Active</span></td>
-                            <td><a href="https://www.nba.com" class="league-label">NBA</a></td>
-                            <td><a href="https://www.nba.com/scores" class="btn-score">Scores</a></td>
-                            <td><a href="https://www.nba.com/stats" class="action-link">Stats</a></td>
-                            <td><a href="https://www.nba.com/standings" class="action-link">Standings</a></td>
-                            <td><a href="https://www.nba.com/teams" class="action-link">Teams</a></td>
-                        </tr>
-                        <tr>
-                            <td><span class="status-tag active">Active</span></td>
-                            <td><a href="https://www.nhl.com" class="league-label">NHL</a></td>
-                            <td><a href="https://www.nhl.com/scores" class="btn-score">Scores</a></td>
-                            <td><a href="https://www.nhl.com/stats" class="action-link">Stats</a></td>
-                            <td><a href="https://www.nhl.com/standings" class="action-link">Standings</a></td>
-                            <td><a href="https://www.nhl.com/info/teams" class="action-link">Teams</a></td>
-                        </tr>
-                        <tr>
-                            <td><span class="status-tag pre">Pre-Season</span></td>
-                            <td><a href="https://www.mlb.com" class="league-label">MLB</a></td>
-                            <td><a href="https://www.mlb.com/scores" class="btn-score">Scores</a></td>
-                            <td><a href="https://www.mlb.com/stats" class="action-link">Stats</a></td>
-                            <td><a href="https://www.mlb.com/standings" class="action-link">Standings</a></td>
-                            <td><a href="https://www.mlb.com/teams" class="action-link">Teams</a></td>
-                        </tr>
-                        <tr>
-                            <td><span class="status-tag off">Off-Season</span></td>
-                            <td><a href="https://www.nfl.com" class="league-label">NFL</a></td>
-                            <td><a href="https://www.nfl.com/scores" class="btn-score">Scores</a></td>
-                            <td><a href="https://www.nfl.com/stats" class="action-link">Stats</a></td>
-                            <td><a href="https://www.nfl.com/standings" class="action-link">Standings</a></td>
-                            <td><a href="https://www.nfl.com/teams" class="action-link">Teams</a></td>
-                        </tr>
-
-                        <tr id="college"><td colspan="6" class="section-title">NCAA Collegiate</td></tr>
-                        <tr>
-                            <td><span class="status-tag active">Active</span></td>
-                            <td><a href="https://www.ncaa.com/sports/basketball-men/d1" class="league-label">College Basketball</a></td>
-                            <td><a href="https://www.ncaa.com/scoreboard/basketball-men/d1" class="btn-score">Scores</a></td>
-                            <td><a href="https://www.ncaa.com/stats/basketball-men/d1" class="action-link">Stats</a></td>
-                            <td><a href="https://www.ncaa.com/standings/basketball-men/d1" class="action-link">Standings</a></td>
-                            <td><a href="https://www.ncaa.com/rankings/basketball-men/d1" class="action-link">Ranks</a></td>
-                        </tr>
-                        <tr>
-                            <td><span class="status-tag active">Active</span></td>
-                            <td><a href="https://www.ncaa.com/sports/baseball/d1" class="league-label">College Baseball</a></td>
-                            <td><a href="https://www.ncaa.com/scoreboard/baseball/d1" class="btn-score">Scores</a></td>
-                            <td><a href="https://www.ncaa.com/stats/baseball/d1" class="action-link">Stats</a></td>
-                            <td><a href="https://www.ncaa.com/standings/baseball/d1" class="action-link">Standings</a></td>
-                            <td><a href="https://www.ncaa.com/rankings/baseball/d1" class="action-link">Ranks</a></td>
-                        </tr>
-
-                        <tr id="soccer"><td colspan="6" class="section-title">European Big Five Soccer</td></tr>
-                        <tr>
-                            <td><span class="status-tag active">Active</span></td>
-                            <td><a href="https://www.premierleague.com" class="league-label">Premier League</a></td>
-                            <td><a href="https://www.premierleague.com/results" class="btn-score">Results</a></td>
-                            <td><a href="https://www.premierleague.com/stats" class="action-link">Stats</a></td>
-                            <td><a href="https://www.premierleague.com/tables" class="action-link">Table</a></td>
-                            <td><a href="https://www.premierleague.com/clubs" class="action-link">Clubs</a></td>
-                        </tr>
-
-                        <tr id="racing"><td colspan="6" class="section-title">Racing & Combat</td></tr>
-                        <tr>
-                            <td><span class="status-tag active">Active</span></td>
-                            <td><a href="https://www.ufc.com" class="league-label">UFC</a></td>
-                            <td><a href="https://www.ufc.com/events" class="btn-score">Events</a></td>
-                            <td><a href="http://www.ufcstats.com/statistics/fighters" class="action-link">Stats</a></td>
-                            <td><a href="https://www.ufc.com/rankings" class="action-link">Rankings</a></td>
-                            <td><a href="https://www.ufc.com/athletes/all" class="action-link">Athletes</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        
-        <p style="text-align: center; color: var(--ebay-text-sub); font-size: 0.75rem; margin-top: 30px;">
-            Updated: February 28, 2026 | Powered by Kato Sports Cards
-        </p>
-    </main>
-
-</body>
-</html>
+<!DOCTYPE html><html lang="en" ><head><title>Kato Sports Cards Network</title><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/css/style.css"><style>a{color:blue;outline:0;text-decoration:none;}body{line-height:1.2;margin:0;}div{}footer{}footer p{color:gray;font-size:12px;padding:11px;}header{background:black;}header p{color:white;padding:11px;}p{margin:0;}.box{border:1px solid gray;margin:0 0 5px 0;padding:5px;}.box a{margin:0 5px 0 0;}.box p:first-child{font-weight:bold;}.btn{background:lightblue;color:black;display:block;margin:10px;padding:10px;text-align:center;text-decoration:none;}.content{border:none;display:flex;padding:11px;}.left{border:none;padding:0;width:33%;}.middle{border:none;padding:0;width:33%;}.right{border:none;padding:0;width:33%;}@media (max-width:360px){.content{flex-direction:column;}.left{margin:0 0 10px 0;order:2;width:99%;}.middle{margin:0 0 10px 0;order:1;width:99%;}.right{margin:0 0 10px 0;order:3;width:99%;}}</style></head><body><header>	<p>KATO SPORTS CARDS NETWORK</p></header><div class="content"><div class="left"><!--BASKETBALL--><div class="box"><p>Basketball</p><a href="https://www.nba.com/">NBA</a><a href="https://www.nba.com/scores/">Scores</a><a href="https://www.nba.com/standings/">Standings</a><a href="https://www.nba.com/stats">Stats</a><br><a href="https://gleague.nba.com/">G League</a><a href="https://www.wnba.com/">WNBA</a><a href="https://thetournament.com/">TBT</a><a href="https://overtimeelite.com/">Overtime Elite</a><a href="https://www.fiba.basketball/">FIBA</a><a href="https://big3.com/">Big3</a><a href="https://www.unrivaled.basketball/">Unrivaled</a><a href="https://www.ncaa.com/sports/basketball-men/d1">NCAA</a><br><a href="https://www.sports-reference.com/cbb/">NCAA Reference</a><a href="https://www.basketball-reference.com/">NBA Reference</a></div><!-- --><!--FOOTBALL--><div class="box"><p>Football</p><a href="https://www.nfl.com/">NFL</a><a href="https://www.nfl.com/scores/">Scores</a><a href="https://www.nfl.com/standings/">Standings</a><a href="https://www.nfl.com/stats/player-stats/">Stats</a><a href="https://www.theufl.com/">UFL</a><a href="https://www.theafl.com/">AFL</a><a href="https://www.ncaa.com/sports/football/fbs">NCAA</a><a href="https://www.sports-reference.com/cfb/">Reference</a><a href="https://www.pro-football-reference.com/">Reference</a></div><!-- --><!--HOCKEY--><div class="box"><p>Hockey</p><a href="https://www.nhl.com/">NHL</a><a href="https://www.nhl.com/scores/">Scores</a><a href="https://www.nhl.com/standings/">Standings</a><a href="https://www.nhl.com/stats/">Stats</a><a href="https://en.khl.ru/">KHL</a><a href="https://www.thepwhl.com/en/">PWHL</a><a href="https://theahl.com/">AHL</a><a href="https://echl.com/">ECHL</a><a href="https://nahl.com/">NAHL</a><a href="https://chl.ca/ohl/">OHL</a><a href="https://chl.ca/lhjmq/en/">QMJHL</a><a href="https://chl.ca/whl/">WHL</a><a href="https://www.ncaa.com/sports/icehockey-men/d1">NCAA</a><a href="https://www.iihf.com/en/events/2024/wm20/schedule">World Juniors</a><a href="https://www.iihf.com/en/events/2023/wm">World Championship</a><a href="https://www.hockey-reference.com/">Reference</a></div><!-- --></div><div class="middle"><!--NEWS--><div class="box"><p>News</p><a href="https://plaintextsports.com/">Plain Text Sports</a><br><a href="https://espn.com">ESPN</a><a href="https://cbssports.com">CBS</a><a href="https://nbcsports.com">NBC</a><a href="https://www.foxsports.com/">FOX</a><a href="https://www.si.com/">SI</a><a href="https://sports.yahoo.com/">Yahoo</a><a href="https://www.tsn.ca/">TSN</a><a href="https://www.bbc.com/sport">BBC</a><a href="https://www.skysports.com/">Sky</a><a href="https://deadspin.com/">Deadspin</a><a href="https://www.sbnation.com/">SBN</a><a href="https://bleacherreport.com/">BR</a><a href="https://www.goal.com/en-us">Goal</a><a href="https://www.planetf1.com/">Planet F1</a><a href="https://www.motorsport.com/">Motorsport</a><a href="https://www.keyc.com/sports/">KEYC</a><a href="https://www.mankatofreepress.com/sports/local_sports/">The Free Press</a></div><!-- --><!-- OTHER --><div class="box"><a href="https://www.icethetics.com/">Icethetics</a><a href="https://www.sportslogos.net/">Sports Logos</a><a href="https://www.spotrac.com/">Spotrac</a></div><!-- --><!--MINNESOTA--><div class="box"><p>Minnesota</p><a href="https://www.startribune.com/sports">Star Tribune</a><a href="https://www.twincities.com/sports/">Pioneer Press</a><a href="https://www.nhl.com/wild/">Wild</a><a href="https://www.nba.com/timberwolves/">Wolves</a><a href="https://lynx.wnba.com/">Lynx</a><a href="https://www.mlb.com/twins">Twins</a><a href="https://www.mnufc.com/">United</a><a href="https://www.vikings.com/">Vikings</a><a href="https://www.iowawild.com/">IA-Wild</a><a href="https://iowa.gleague.nba.com/">IA-Wolves</a><a href="https://www.milb.com/st-paul">Saints</a><a href="https://blcvikings.com/">Bethany</a><a href="https://umdbulldogs.com/">Bulldogs</a><a href="https://gophersports.com/">Gophers</a><a href="https://scsuhuskies.com/">Huskies</a><a href="https://msumavericks.com/">Mavericks</a></div><!-- --></div><div class="right"><!--BASEBALL--><div class="box"><p>Baseball</p><a href="https://www.mlb.com/">MLB</a><a href="https://www.mlb.com/scores/">Scores</a><a href="https://www.mlb.com/standings/">Standings</a><a href="https://www.mlb.com/stats">Stats</a><a href="https://www.mlb.com/milb/prospects">Top 100</a><a href="https://www.milb.com/">MiLB</a><a href="https://northwoodsleague.com/">Northwoods</a><a href="https://www.mlb.com/world-baseball-classic">WBC</a><a href="https://www.ncaa.com/sports/baseball/d1">NCAA</a><a href="https://www.baseball-reference.com/">Reference</a></div><!-- --><!--BOXING--><div class="box"><p>Boxing</p><a href="https://www.espn.com/boxing/">ESPN</a></div><!-- --><!--GOLF--><div class="box"><p>Golf</p><a href="https://www.pgatour.com/">PGA Tour</a><a href="https://www.livgolf.com/">LIV</a></div><!-- --><!--MMA--><div class="box"><p>MMA</p><a href="https://www.ufc.com/">UFC</a><a href="https://pflmma.com/">PFL</a></div><!-- -->	<!--OLYMPICS--><div class="box"><p>Olympics</p><a href="https://olympics.com/en/">Official Page</a></div><!-- -->	<!--RACING--><div class="box"><p>Racing</p><a href="https://www.indycar.com/">Indycar</a><a href="https://www.nascar.com/">NASCAR</a><a href="https://www.formula1.com/">F1</a><a href="https://www.fiaformula2.com/">F2</a><a href="https://www.fiaformula3.com/">F3</a></div><!-- -->	<!--SOCCER--><div class="box"><p>Soccer</p><a href="https://www.mlssoccer.com/">MLS</a><a href="https://www.mlssoccer.com/schedule/scores#competition=mls-regular-season&club=all&date=2025-03-23">Scores</a><a href="https://www.mlssoccer.com/standings/#season=2025&live=true">Standings</a><a href="https://www.mlssoccer.com/stats/">Stats</a><a href="https://www.premierleague.com/">Premier League</a><a href="https://www.bundesliga.com/en/bundesliga">Bundesliga</a><a href="https://www.laliga.com/en-GB">La Liga</a><a href="https://www.ligue1.com/">Ligue 1</a><a href="https://www.legaseriea.it/en">Serie A</a><a href="https://www.fifa.com/fifaplus/en/tournaments/mens/worldcup/canadamexicousa2026">World Cup</a><a href="https://fbref.com/en/">Reference</a></div><!-- -->	<!--TENNIS--><div class="box"><p>Tennis</p><a href="https://www.atptour.com/en">ATP</a></div><!-- -->	<!--WRESTLING--><div class="box"><p>Wrestling</p><a href="https://www.wwe.com/">WWE</a><a href="https://www.wwe.com/shows/wwenxt">NXT</a><a href="https://www.allelitewrestling.com/">AEW</a></div><!-- --></div></div><footer><p>KSCN | Kato Sports Cards Network</p></footer></body></html>
