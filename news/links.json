@@ -1,6 +1,4 @@
 {
-  "title": "test",
-  "url": "google.com",
-  "description": "test",
-  "date": "2026-06-06"
+  "category": "Test",
+  "links": "google.com"
 }
