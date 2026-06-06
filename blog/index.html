@@ -1,1 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSC | Blog</title>
+    <style>
+        body {
+            font-family: Inter, sans-serif;
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 0 16px;
+            color: #1e293b;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .post {
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .post a {
+            text-decoration: none;
+            color: #0f172a;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .date {
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Blog</h1>
+<div id="posts"></div>
+
+<script>
+async function loadPosts() {
+    const postsContainer = document.getElementById("posts");
+
+    // Fetch directory listing from GitHub Pages
+    const res = await fetch(".");
+    const text = await res.text();
+
+    // Extract .md filenames from directory listing
+    const files = [...text.matchAll(/href="([^"]+\.md)"/g)].map(m => m[1]);
+
+    const posts = [];
+
+    for (const file of files) {
+        const md = await fetch(file).then(r => r.text());
+
+        // Extract front matter
+        const fm = md.match(/---([\s\S]*?)---/);
+        if (!fm) continue;
+
+        const front = fm[1];
+        const title = front.match(/title:\s*(.*)/)?.[1] ?? "Untitled";
+        const date = front.match(/date:\s*(.*)/)?.[1] ?? "";
+
+        posts.push({ title, date, file });
+    }
+
+    // Sort newest first
+    posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    // Render
+    posts.forEach(p => {
+        postsContainer.innerHTML += `
+            <div class="post">
+                <a href="${p.file.replace('.md', '.html')}">${p.title}</a>
+                <div class="date">${p.date}</div>
+            </div>
+        `;
+    });
+}
+
+loadPosts();
+</script>
+
+</body>
+</html>
 
