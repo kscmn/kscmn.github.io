@@ -3,23 +3,25 @@ media:
   output: /media
 
 content:
-  - name: links
-    label: News Links
+  - name: news_links
+    label: News Categories
     type: file
     path: news/links.json
     fields:
-      - name: title
-        label: Title
+      - name: category
+        label: Category Name
         type: string
 
-      - name: url
-        label: URL
-        type: string
-
-      - name: description
-        label: Description
-        type: text
-
-      - name: date
-        label: Date
-        type: date
+      - name: links
+        label: Links
+        type: list
+        fields:
+          - name: title
+            label: Title
+            type: string
+          - name: url
+            label: URL
+            type: string
+          - name: desc
+            label: Description
+            type: text
