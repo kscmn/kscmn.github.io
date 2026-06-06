@@ -1,0 +1,25 @@
+media:
+  input: media
+  output: /media
+
+content:
+  - name: links
+    label: News Links
+    type: file
+    path: news/links.json
+    fields:
+      - name: title
+        label: Title
+        type: string
+
+      - name: url
+        label: URL
+        type: string
+
+      - name: description
+        label: Description
+        type: text
+
+      - name: date
+        label: Date
+        type: date
