@@ -1,0 +1,16 @@
+media:
+  input: media
+  output: /media
+
+content:
+  - name: posts
+    label: Posts
+    type: collection
+    path: posts
+    fields:
+      - name: title
+        type: string
+      - name: date
+        type: date
+      - name: body
+        type: rich-text
