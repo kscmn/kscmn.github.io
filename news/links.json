@@ -1,0 +1,8 @@
+[
+  {
+    "category": "Category Name",
+    "links": [
+      { "title": "...", "url": "...", "desc": "..." }
+    ]
+  }
+]
