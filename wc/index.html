@@ -10,16 +10,15 @@
 <h1>FIFA World Cup 2026 Dashboard</h1>
 
 <p>
-  <a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/matches">Official Scores / Matches</a><br>
-  <a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/standings">Official Standings</a><br>
-  <a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams">Official Teams</a>
+  <a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/matches">Official Scores / Matches</a><br>
+  <a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/standings">Official Standings</a><br>
+  <a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams">Official Teams</a>
 </p>
 
 <h2>Live Scores (ESPN)</h2>
 <pre id="scores">Loading scores...</pre>
 
 <script>
-// ESPN global soccer scoreboard (always active)
 const API_URL = "https://site.api.espn.com/apis/v2/sports/soccer/scoreboard";
 
 async function loadScores() {
@@ -57,63 +56,63 @@ async function loadScores() {
 }
 
 loadScores();
-setInterval(loadScores, 60000); // refresh every 60 seconds
+setInterval(loadScores, 60000);
 </script>
 
 <h2>World Cup 2026 Teams & Rosters</h2>
 <pre>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/argentina">Argentina</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/australia">Australia</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/austria">Austria</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/belgium">Belgium</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/brazil">Brazil</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/canada">Canada</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/chile">Chile</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/china-pr">China PR</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/colombia">Colombia</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/costa-rica">Costa Rica</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/croatia">Croatia</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/czechia">Czechia</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/denmark">Denmark</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/ecuador">Ecuador</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/egypt">Egypt</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/england">England</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/france">France</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/germany">Germany</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/ghana">Ghana</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/haiti">Haiti</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/hungary">Hungary</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/iran">Iran</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/italy">Italy</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/japan">Japan</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/korea-republic">Korea Republic</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/mexico">Mexico</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/morocco">Morocco</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/netherlands">Netherlands</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/nigeria">Nigeria</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/norway">Norway</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/panama">Panama</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/paraguay">Paraguay</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/peru">Peru</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/poland">Poland</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/portugal">Portugal</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/qatar">Qatar</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/romania">Romania</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/saudi-arabia">Saudi Arabia</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/scotland">Scotland</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/senegal">Senegal</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/serbia">Serbia</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/slovakia">Slovakia</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/slovenia">Slovenia</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/south-africa">South Africa</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/spain">Spain</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/sweden">Sweden</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/switzerland">Switzerland</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/tunisia">Tunisia</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/turkiye">Türkiye</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/ukraine">Ukraine</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/united-states">United States</a>
-<a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams/uruguay">Uruguay</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/argentina/squad">Argentina</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/australia/squad">Australia</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/austria/squad">Austria</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/belgium/squad">Belgium</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/brazil/squad">Brazil</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/canada/squad">Canada</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/chile/squad">Chile</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/china-pr/squad">China PR</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/colombia/squad">Colombia</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/costa-rica/squad">Costa Rica</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/croatia/squad">Croatia</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/czechia/squad">Czechia</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/denmark/squad">Denmark</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/ecuador/squad">Ecuador</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/egypt/squad">Egypt</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/england/squad">England</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/france/squad">France</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/germany/squad">Germany</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/ghana/squad">Ghana</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/haiti/squad">Haiti</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/hungary/squad">Hungary</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/iran/squad">Iran</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/italy/squad">Italy</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/japan/squad">Japan</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/korea-republic/squad">Korea Republic</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/mexico/squad">Mexico</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/morocco/squad">Morocco</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/netherlands/squad">Netherlands</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/nigeria/squad">Nigeria</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/norway/squad">Norway</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/panama/squad">Panama</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/paraguay/squad">Paraguay</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/peru/squad">Peru</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/poland/squad">Poland</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/portugal/squad">Portugal</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/qatar/squad">Qatar</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/romania/squad">Romania</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/saudi-arabia/squad">Saudi Arabia</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/scotland/squad">Scotland</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/senegal/squad">Senegal</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/serbia/squad">Serbia</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/slovakia/squad">Slovakia</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/slovenia/squad">Slovenia</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/south-africa/squad">South Africa</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/spain/squad">Spain</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/sweden/squad">Sweden</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/switzerland/squad">Switzerland</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/tunisia/squad">Tunisia</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/turkiye/squad">Türkiye</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/ukraine/squad">Ukraine</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/united-states/squad">United States</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/uruguay/squad">Uruguay</a>
 </pre>
 
 </body>
