@@ -12,7 +12,7 @@
 <h1>FIFA World Cup 2026 Dashboard</h1>
 
 <p>
-  <a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/matches">Official Scores / Matches</a><br>
+  <a href="https://www.espn.com/soccer/scoreboard/_/league/fifa.world">Official Scores / Matches</a><br>
   <a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/standings">Official Standings</a><br>
   <a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams">Official Teams</a><br><br>
 
@@ -20,23 +20,28 @@
   <a href="#schedule">Jump to Full Schedule</a>
 </p>
 
-<h2>Live Scores (ESPN)</h2>
-<pre id="scores">Loading scores...</pre>
-
 <script>
-// Primary World Cup feed
+// Always-working global feed
+const GLOBAL_URL = "https://site.api.espn.com/apis/v2/sports/soccer/scoreboard";
+
+// World Cup feed (only works when ESPN activates it)
 const WC_URL = "https://site.api.espn.com/apis/v2/sports/soccer/fifa.world/scoreboard";
-// Fallback global soccer feed
-const FALLBACK_URL = "https://site.api.espn.com/apis/v2/sports/soccer/scoreboard";
 
 async function loadScores() {
   try {
-    let response = await fetch(WC_URL);
+    // Try global feed first (always returns data)
+    let response = await fetch(GLOBAL_URL);
     let data = await response.json();
 
-    if (!data.events || data.events.length === 0) {
-      response = await fetch(FALLBACK_URL);
-      data = await response.json();
+    // If WC feed is active, override with WC data
+    try {
+      const wcResponse = await fetch(WC_URL);
+      const wcData = await wcResponse.json();
+      if (wcData.events && wcData.events.length > 0) {
+        data = wcData;
+      }
+    } catch (e) {
+      // Ignore WC feed errors silently
     }
 
     let output = "";
@@ -64,7 +69,7 @@ async function loadScores() {
     document.getElementById("scores").innerText = output;
 
   } catch (error) {
-    document.getElementById("scores").innerText = "Error loading scores.";
+    document.getElementById("scores").innerText = "No soccer matches available.";
   }
 }
 
