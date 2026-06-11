@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>FIFA World Cup 2026 - Live Scores Dashboard</title>
+</head>
+<body>
+
+<h1>FIFA World Cup 2026 Dashboard</h1>
+
+<p>
+  <a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/matches">Official Scores / Matches</a><br>
+  <a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/standings">Official Standings</a><br>
+  <a href="https://www.fifa.com/fifaworldcup/usa-can-mex2026/teams">Official Teams</a>
+</p>
+
+<h2>Live Scores (ESPN)</h2>
+<pre id="scores">Loading scores...</pre>
+
+<script>
+// ESPN World Cup 2026 scoreboard endpoint
+const API_URL = "https://site.api.espn.com/apis/v2/sports/soccer/fifa.world/scoreboard";
+
+async function loadScores() {
+  try {
+    const response = await fetch(API_URL);
+    const data = await response.json();
+
+    let output = "";
+
+    if (!data.events || data.events.length === 0) {
+      output = "No matches today.";
+    } else {
+      data.events.forEach(event => {
+        const comp = event.competitions[0];
+        const home = comp.competitors[0];
+        const away = comp.competitors[1];
+
+        const homeTeam = home.team.displayName;
+        const awayTeam = away.team.displayName;
+
+        const homeScore = home.score;
+        const awayScore = away.score;
+
+        const status = event.status.type.shortDetail;
+
+        output += `${homeTeam} ${homeScore} - ${awayScore} ${awayTeam} (${status})\n\n`;
+      });
+    }
+
+    document.getElementById("scores").innerText = output;
+
+  } catch (error) {
+    document.getElementById("scores").innerText = "Error loading scores.";
+  }
+}
+
+loadScores();
+setInterval(loadScores, 60000); // refresh every 60 seconds
+</script>
+
+</body>
+</html>
