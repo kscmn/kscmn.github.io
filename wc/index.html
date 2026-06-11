@@ -34,7 +34,6 @@ async function loadScores() {
     let response = await fetch(WC_URL);
     let data = await response.json();
 
-    // If WC feed is empty, fallback
     if (!data.events || data.events.length === 0) {
       response = await fetch(FALLBACK_URL);
       data = await response.json();
@@ -89,11 +88,6 @@ setInterval(loadScores, 60000);
 <a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/china-pr/squad">China PR</a>
 <a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/colombia/squad">Colombia</a>
 <a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/costa-rica/squad">Costa Rica</a>
-</pre>
-  </div>
-
-  <div>
-<pre>
 <a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/croatia/squad">Croatia</a>
 <a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/czechia/squad">Czechia</a>
 <a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/denmark/squad">Denmark</a>
@@ -106,50 +100,57 @@ setInterval(loadScores, 60000);
 <a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/haiti/squad">Haiti</a>
 </pre>
   </div>
+
+  <div>
+<pre>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/hungary/squad">Hungary</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/iran/squad">Iran</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/italy/squad">Italy</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/japan/squad">Japan</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/korea-republic/squad">Korea Republic</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/mexico/squad">Mexico</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/morocco/squad">Morocco</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/netherlands/squad">Netherlands</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/nigeria/squad">Nigeria</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/norway/squad">Norway</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/panama/squad">Panama</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/paraguay/squad">Paraguay</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/peru/squad">Peru</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/poland/squad">Poland</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/portugal/squad">Portugal</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/qatar/squad">Qatar</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/romania/squad">Romania</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/saudi-arabia/squad">Saudi Arabia</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/scotland/squad">Scotland</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/senegal/squad">Senegal</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/serbia/squad">Serbia</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/slovakia/squad">Slovakia</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/slovenia/squad">Slovenia</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/south-africa/squad">South Africa</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/spain/squad">Spain</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/sweden/squad">Sweden</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/switzerland/squad">Switzerland</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/tunisia/squad">Tunisia</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/turkiye/squad">Türkiye</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/ukraine/squad">Ukraine</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/united-states/squad">United States</a>
+<a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/teams/uruguay/squad">Uruguay</a>
+</pre>
+  </div>
 </div>
 
 <p><a href="#top">Back to Top</a></p>
 
-<h2 id="schedule">Full Match Schedule</h2>
+<h2 id="schedule">Full Match Schedule (Known Teams Only)</h2>
 
 <pre>
-Loading schedule...
+06/11 Canada – TBD 2:00 PM CST
+06/11 Mexico – TBD 5:00 PM CST
+06/12 USA – TBD 7:00 PM CST
 </pre>
 
-<script>
-// ESPN schedule feed (same as scoreboard but includes future events)
-async function loadSchedule() {
-  try {
-    const response = await fetch(WC_URL);
-    const data = await response.json();
-
-    let out = "";
-
-    if (!data.events || data.events.length === 0) {
-      out = "Schedule unavailable.";
-    } else {
-      data.events.forEach(event => {
-        const comp = event.competitions[0];
-        const home = comp.competitors[0].team.displayName;
-        const away = comp.competitors[1].team.displayName;
-        const date = event.date;
-
-        out += `${home} vs ${away} — ${date}\n\n`;
-      });
-    }
-
-    document.querySelector("#schedule + pre").innerText = out;
-
-  } catch (e) {
-    document.querySelector("#schedule + pre").innerText = "Error loading schedule.";
-  }
-}
-
-loadSchedule();
-</script>
-
 <footer style="text-align:center; color:gray; font-size:12px; margin-top:40px;">
-  Version 0.3.0
+  Version 0.4.0
 </footer>
 
 </body>
