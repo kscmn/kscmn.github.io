@@ -1,1 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSC | F1</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            font-size: 13px; /* Slightly scaled down for 7-column layout on mobile */
+        }
+        th, td {
+            border: 1px solid #000000;
+            padding: 6px 4px;
+            text-align: left;
+            vertical-align: top;
+        }
+        /* Team table: 3 columns */
+        .teams-table th, .teams-table td {
+            width: 33.33%;
+        }
+        /* Schedule table: 7 columns optimized for data density */
+        .schedule-table th:nth-child(1), .schedule-table td:nth-child(1) { width: 12%; } /* Date */
+        .schedule-table th:nth-child(2), .schedule-table td:nth-child(2) { width: 18%; } /* GP Name */
+        .schedule-table th:nth-child(3), .schedule-table td:nth-child(3) { width: 16%; } /* Location */
+        .schedule-table th:nth-child(4), .schedule-table td:nth-child(4) { width: 18%; } /* Distance */
+        .schedule-table th:nth-child(5), .schedule-table td:nth-child(5) { width: 11%; } /* Elevation */
+        .schedule-table th:nth-child(6), .schedule-table td:nth-child(6) { width: 8%; }  /* Laps */
+        .schedule-table th:nth-child(7), .schedule-table td:nth-child(7) { width: 17%; } /* Prev Winner */
 
+        thead tr {
+            background-color: #eeeeee;
+        }
+        td b {
+            display: block;
+        }
+        h2 {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<a href="https://kscmn.com/">Home</a>
+
+  <hr>
+
+    <h2>Teams & Drivers</h2>
+    <table class="teams-table">
+        <thead>
+            <tr>
+                <th>F1 Team</th>
+                <th>Drivers</th>
+                <th>Reserve Drivers</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><b>McLaren Mastercard F1 Team</b></td>
+                <td>Lando Norris<br>Oscar Piastri</td>
+                <td>Pato O'Ward<br>Ryo Hirakawa</td>
+            </tr>
+            <tr>
+                <td><b>Oracle Red Bull Racing</b></td>
+                <td>Max Verstappen<br>Isack Hadjar</td>
+                <td>Ayumu Iwasa</td>
+            </tr>
+            <tr>
+                <td><b>Mercedes-AMG Petronas F1 Team</b></td>
+                <td>George Russell<br>Kimi Antonelli</td>
+                <td>Mick Schumacher<br>Fred Vesti</td>
+            </tr>
+            <tr>
+                <td><b>Scuderia Ferrari HP</b></td>
+                <td>Charles Leclerc<br>Lewis Hamilton</td>
+                <td>Antonio Giovinazzi<br>Robert Shwartzman</td>
+            </tr>
+            <tr>
+                <td><b>Aston Martin Aramco F1 Team</b></td>
+                <td>Fernando Alonso<br>Lance Stroll</td>
+                <td>Jak Crawford<br>Felipe Drugovich</td>
+            </tr>
+            <tr>
+                <td><b>BWT Alpine F1 Team</b></td>
+                <td>Pierre Gasly<br>Franco Colapinto</td>
+                <td>Victor Martins</td>
+            </tr>
+            <tr>
+                <td><b>Visa Cash App Racing Bulls F1 Team</b></td>
+                <td>Liam Lawson<br>Arvid Lindblad</td>
+                <td>Ayumu Iwasa</td>
+            </tr>
+            <tr>
+                <td><b>TGR Haas F1 Team</b></td>
+                <td>Esteban Ocon<br>Oliver Bearman</td>
+                <td>Chloe Chambers</td>
+            </tr>
+            <tr>
+                <td><b>Atlassian Williams F1 Team</b></td>
+                <td>Alexander Albon<br>Carlos Sainz Jr.</td>
+                <td>Luke Browning</td>
+            </tr>
+            <tr>
+                <td><b>Audi Revolut F1 Team</b></td>
+                <td>Nico Hülkenberg<br>Gabriel Bortoleto</td>
+                <td>Zane Maloney</td>
+            </tr>
+            <tr>
+                <td><b>Cadillac Formula 1 Team</b></td>
+                <td>Sergio Pérez<br>Valtteri Bottas</td>
+                <td>Enzo Fittipaldi</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Race Schedule</h2>
+    <table class="schedule-table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Grand Prix Name</th>
+                <th>Location</th>
+                <th>Distance</th>
+                <th>Elevation (Highest)</th>
+                <th>Laps</th>
+                <th>Previous Winner</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>March 13–15</td>
+                <td>Australian Grand Prix</td>
+                <td>Melbourne, Australia</td>
+                <td>306.12 km / 190.21 mi</td>
+                <td>10 m / 33 ft</td>
+                <td>58</td>
+                <td>Charles Leclerc</td>
+            </tr>
+            <tr>
+                <td>March 20–22</td>
+                <td>Chinese Grand Prix</td>
+                <td>Shanghai, China</td>
+                <td>305.07 km / 189.56 mi</td>
+                <td>17 m / 56 ft</td>
+                <td>56</td>
+                <td>Max Verstappen</td>
+            </tr>
+            <tr>
+                <td>April 3–5</td>
+                <td>Japanese Grand Prix</td>
+                <td>Suzuka, Japan</td>
+                <td>307.47 km / 191.05 mi</td>
+                <td>41 m / 135 ft</td>
+                <td>53</td>
+                <td>Max Verstappen</td>
+            </tr>
+            <tr>
+                <td>April 10–12</td>
+                <td>Bahrain Grand Prix</td>
+                <td>Sakhir, Bahrain</td>
+                <td>308.24 km / 191.53 mi</td>
+                <td>32 m / 105 ft</td>
+                <td>57</td>
+                <td>Max Verstappen</td>
+            </tr>
+            <tr>
+                <td>April 17–19</td>
+                <td>Saudi Arabian Grand Prix</td>
+                <td>Jeddah, Saudi Arabia</td>
+                <td>308.45 km / 191.66 mi</td>
+                <td>12 m / 39 ft</td>
+                <td>50</td>
+                <td>Max Verstappen</td>
+            </tr>
+            <tr>
+                <td>May 1–3</td>
+                <td>Miami Grand Prix</td>
+                <td>Miami, United States</td>
+                <td>308.33 km / 191.59 mi</td>
+                <td>5 m / 16 ft</td>
+                <td>57</td>
+                <td>Lando Norris</td>
+            </tr>
+            <tr>
+                <td>May 15–17</td>
+                <td>Emilia Romagna Grand Prix</td>
+                <td>Imola, Italy</td>
+                <td>309.05 km / 192.03 mi</td>
+                <td>47 m / 154 ft</td>
+                <td>63</td>
+                <td>Max Verstappen</td>
+            </tr>
+            <tr>
+                <td>May 22–24</td>
+                <td>Monaco Grand Prix</td>
+                <td>Monte Carlo, Monaco</td>
+                <td>260.29 km / 161.74 mi</td>
+                <td>97 m / 318 ft</td>
+                <td>78</td>
+                <td>Charles Leclerc</td>
+            </tr>
+            <tr>
+                <td>May 29–31</td>
+                <td>Spanish Grand Prix</td>
+                <td>Barcelona, Spain</td>
+                <td>307.24 km / 190.91 mi</td>
+                <td>159 m / 522 ft</td>
+                <td>66</td>
+                <td>Max Verstappen</td>
+            </tr>
+            <tr>
+                <td>June 12–14</td>
+                <td>Canadian Grand Prix</td>
+                <td>Montreal, Canada</td>
+                <td>305.27 km / 189.69 mi</td>
+                <td>14 m / 46 ft</td>
+                <td>70</td>
+                <td>Max Verstappen</td>
+            </tr>
+            <tr>
+                <td>June 26–28</td>
+                <td>Austrian Grand Prix</td>
+                <td>Spielberg, Austria</td>
+                <td>306.45 km / 190.42 mi</td>
+                <td>678 m / 2,224 ft</td>
+                <td>71</td>
+                <td>George Russell</td>
+            </tr>
+            <tr>
+                <td>July 3–5</td>
+                <td>British Grand Prix</td>
+                <td>Silverstone, United Kingdom</td>
+                <td>306.19 km / 190.26 mi</td>
+                <td>114 m / 374 ft</td>
+                <td>52</td>
+                <td>Lewis Hamilton</td>
+            </tr>
+            <tr>
+                <td>July 24–26</td>
+                <td>Belgian Grand Prix</td>
+                <td>Spa-Francorchamps, Belgium</td>
+                <td>308.05 km / 191.41 mi</td>
+                <td>411 m / 1,348 ft</td>
+                <td>44</td>
+                <td>Lewis Hamilton</td>
+            </tr>
+            <tr>
+                <td>July 31 – Aug 2</td>
+                <td>Hungarian Grand Prix</td>
+                <td>Budapest, Hungary</td>
+                <td>306.63 km / 190.53 mi</td>
+                <td>239 m / 784 ft</td>
+                <td>70</td>
+                <td>Oscar Piastri</td>
+            </tr>
+            <tr>
+                <td>August 28–30</td>
+                <td>Dutch Grand Prix</td>
+                <td>Zandvoort, Netherlands</td>
+                <td>305.94 km / 190.10 mi</td>
+                <td>14 m / 46 ft</td>
+                <td>72</td>
+                <td>Lando Norris</td>
+            </tr>
+            <tr>
+                <td>September 4–6</td>
+                <td>Italian Grand Prix</td>
+                <td>Monza, Italy</td>
+                <td>306.72 km / 190.59 mi</td>
+                <td>183 m / 600 ft</td>
+                <td>53</td>
+                <td>Charles Leclerc</td>
+            </tr>
+            <tr>
+                <td>September 18–20</td>
+                <td>Azerbaijan Grand Prix</td>
+                <td>Baku, Azerbaijan</td>
+                <td>306.05 km / 190.17 mi</td>
+                <td>-24 m / -79 ft</td>
+                <td>51</td>
+                <td>Oscar Piastri</td>
+            </tr>
+            <tr>
+                <td>October 2–4</td>
+                <td>Singapore Grand Prix</td>
+                <td>Marina Bay, Singapore</td>
+                <td>306.14 km / 190.23 mi</td>
+                <td>15 m / 49 ft</td>
+                <td>62</td>
+                <td>Lando Norris</td>
+            </tr>
+            <tr>
+                <td>October 16–18</td>
+                <td>United States Grand Prix</td>
+                <td>Austin, United States</td>
+                <td>308.41 km / 191.64 mi</td>
+                <td>157 m / 515 ft</td>
+                <td>56</td>
+                <td>Charles Leclerc</td>
+            </tr>
+            <tr>
+                <td>October 23–25</td>
+                <td>Mexico City Grand Prix</td>
+                <td>Mexico City, Mexico</td>
+                <td>305.35 km / 189.74 mi</td>
+                <td>2,229 m / 7,313 ft</td>
+                <td>71</td>
+                <td>Carlos Sainz Jr.</td>
+            </tr>
+            <tr>
+                <td>November 6–8</td>
+                <td>São Paulo Grand Prix</td>
+                <td>São Paulo, Brazil</td>
+                <td>305.88 km / 190.07 mi</td>
+                <td>781 m / 2,562 ft</td>
+                <td>71</td>
+                <td>Max Verstappen</td>
+            </tr>
+            <tr>
+                <td>November 20–22</td>
+                <td>Las Vegas Grand Prix</td>
+                <td>Las Vegas, United States</td>
+                <td>309.96 km / 192.60 mi</td>
+                <td>610 m / 2,001 ft</td>
+                <td>50</td>
+                <td>George Russell</td>
+            </tr>
+            <tr>
+                <td>November 27–29</td>
+                <td>Qatar Grand Prix</td>
+                <td>Lusail, Qatar</td>
+                <td>306.66 km / 190.55 mi</td>
+                <td>13 m / 43 ft</td>
+                <td>57</td>
+                <td>Max Verstappen</td>
+            </tr>
+            <tr>
+                <td>December 4–6</td>
+                <td>Abu Dhabi Grand Prix</td>
+                <td>Yas Marina, Abu Dhabi</td>
+                <td>306.18 km / 190.25 mi</td>
+                <td>12 m / 39 ft</td>
+                <td>58</td>
+                <td>Max Verstappen</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
