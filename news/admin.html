@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News CMS - Admin Panel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 900px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .auth-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            display: none;
+        }
+
+        .auth-section.show {
+            display: block;
+        }
+
+        .auth-section h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .auth-section p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #999;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #eee;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #eee;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #ddd;
+        }
+
+        .btn-danger {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #ee5a52;
+        }
+
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .category-group {
+            margin-bottom: 30px;
+        }
+
+        .category-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .news-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .news-item h3 {
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .news-item p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .news-item-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .news-item-actions button {
+            flex: 0;
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+
+        .message {
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #999;
+        }
+
+        .category-selector {
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .tab-btn {
+                width: 100%;
+                text-align: left;
+            }
+
+            .news-item-actions {
+                flex-direction: column;
+            }
+
+            .news-item-actions button {
+                width: 100%;
+            }
+
+            button {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📰 News CMS</h1>
+
+        <div class="message" id="message"></div>
+
+        <div class="auth-section" id="authSection">
+            <h3>🔐 Setup Required</h3>
+            <p><strong>GitHub Personal Access Token not found.</strong></p>
+            <p>Follow these steps to get started:</p>
+            <ol style="margin-left: 20px; color: #666; font-size: 14px;">
+                <li>Go to <a href="https://github.com/settings/tokens" target="_blank">github.com/settings/tokens</a></li>
+                <li>Click "Generate new token" → "Generate new token (classic)"</li>
+                <li>Give it a name (e.g., "News CMS")</li>
+                <li>Check the <strong>repo</strong> scope</li>
+                <li>Generate and copy the token</li>
+                <li>Paste it below:</li>
+            </ol>
+            <div class="form-group" style="margin-top: 15px;">
+                <input type="password" id="tokenInput" placeholder="Paste your GitHub token here">
+            </div>
+            <button class="btn-primary" onclick="saveToken()" style="width: 100%;">Save Token</button>
+        </div>
+
+        <div class="tabs" id="tabsSection" style="display: none;">
+            <button class="tab-btn active" data-tab="add">Add News</button>
+            <button class="tab-btn" data-tab="list">View All</button>
+        </div>
+
+        <!-- Add News Tab -->
+        <div class="tab-content active" id="add-tab" style="display: none;">
+            <form id="newsForm">
+                <div class="form-group category-selector">
+                    <label for="category">Category *</label>
+                    <select id="category" name="category" required>
+                        <option value="">Select a category...</option>
+                    </select>
+                    <p style="font-size: 12px; color: #999; margin-top: 5px;">or add new category</p>
+                    <input type="text" id="newCategory" placeholder="Enter new category name (optional)" style="margin-top: 5px;">
+                </div>
+
+                <div class="form-group">
+                    <label for="title">Title *</label>
+                    <input type="text" id="title" name="title" required placeholder="Enter news title">
+                </div>
+
+                <div class="form-group">
+                    <label for="url">URL *</label>
+                    <input type="url" id="url" name="url" required placeholder="https://example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="desc">Description *</label>
+                    <input type="text" id="desc" name="desc" required placeholder="e.g., source or brief description">
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn-primary">Add News Link</button>
+                    <button type="reset" class="btn-secondary">Clear</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- View All Tab -->
+        <div class="tab-content" id="list-tab">
+            <div id="newsList" class="loading">Loading news...</div>
+        </div>
+    </div>
+
+    <script>
+        const REPO_OWNER = 'kscmn';
+        const REPO_NAME = 'kscmn.github.io';
+        const DATA_FILE = 'news/links.json';
+        const TOKEN_KEY = 'news_cms_token';
+
+        // Initialize
+        window.addEventListener('load', () => {
+            const token = localStorage.getItem(TOKEN_KEY);
+            if (!token) {
+                document.getElementById('authSection').classList.add('show');
+            } else {
+                initializeApp();
+            }
+        });
+
+        function saveToken() {
+            const token = document.getElementById('tokenInput').value.trim();
+            if (!token) {
+                showMessage('Please paste a token', 'error');
+                return;
+            }
+            localStorage.setItem(TOKEN_KEY, token);
+            document.getElementById('authSection').classList.remove('show');
+            document.getElementById('tabsSection').style.display = 'flex';
+            initializeApp();
+            showMessage('✅ Token saved! Ready to go.', 'success');
+        }
+
+        function initializeApp() {
+            document.getElementById('tabsSection').style.display = 'flex';
+            document.getElementById('add-tab').style.display = 'block';
+            
+            loadCategories();
+            setupTabSwitching();
+        }
+
+        async function loadCategories() {
+            try {
+                const data = await fetchNewsData();
+                const select = document.getElementById('category');
+                const categories = data.news.map(cat => cat.category);
+                
+                categories.forEach(cat => {
+                    const option = document.createElement('option');
+                    option.value = cat;
+                    option.textContent = cat;
+                    select.appendChild(option);
+                });
+            } catch (error) {
+                console.error('Error loading categories:', error);
+            }
+        }
+
+        function setupTabSwitching() {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const tabName = btn.dataset.tab;
+                    
+                    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+                    
+                    btn.classList.add('active');
+                    document.getElementById(tabName + '-tab').classList.add('active');
+
+                    if (tabName === 'list') {
+                        loadNewsList();
+                    }
+                });
+            });
+        }
+
+        // Form submission
+        document.getElementById('newsForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const token = localStorage.getItem(TOKEN_KEY);
+            if (!token) {
+                showMessage('Please authenticate first', 'error');
+                return;
+            }
+
+            const categorySelect = document.getElementById('category').value;
+            const newCategory = document.getElementById('newCategory').value.trim();
+            const category = newCategory || categorySelect;
+
+            if (!category) {
+                showMessage('Please select or enter a category', 'error');
+                return;
+            }
+
+            const newLink = {
+                title: document.getElementById('title').value,
+                url: document.getElementById('url').value,
+                desc: document.getElementById('desc').value
+            };
+
+            try {
+                const { data, sha } = await fetchNewsData();
+                
+                let categoryObj = data.news.find(cat => cat.category === category);
+                if (!categoryObj) {
+                    categoryObj = { category, links: [] };
+                    data.news.push(categoryObj);
+                }
+                
+                categoryObj.links.unshift(newLink);
+                await saveNewsData(data, sha);
+                
+                showMessage('✅ News link added successfully!', 'success');
+                document.getElementById('newsForm').reset();
+                loadCategories();
+            } catch (error) {
+                showMessage(`❌ Error: ${error.message}`, 'error');
+            }
+        });
+
+        async function fetchNewsData() {
+            const token = localStorage.getItem(TOKEN_KEY);
+            const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${DATA_FILE}`, {
+                headers: {
+                    'Authorization': `token ${token}`,
+                    'Accept': 'application/vnd.github.v3+json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch news data');
+            }
+
+            const fileData = await response.json();
+            const content = atob(fileData.content);
+            return {
+                data: JSON.parse(content),
+                sha: fileData.sha
+            };
+        }
+
+        async function saveNewsData(newsData, sha) {
+            const token = localStorage.getItem(TOKEN_KEY);
+            
+            const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${DATA_FILE}`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `token ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: 'Update news via CMS',
+                    content: btoa(JSON.stringify(newsData, null, 2)),
+                    sha: sha
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to save news data');
+            }
+        }
+
+        async function loadNewsList() {
+            try {
+                const { data } = await fetchNewsData();
+                const newsList = document.getElementById('newsList');
+                
+                if (data.news.length === 0) {
+                    newsList.innerHTML = '<p style="text-align: center; color: #999;">No news items yet</p>';
+                    return;
+                }
+
+                let html = '';
+                data.news.forEach(category => {
+                    html += `
+                        <div class="category-group">
+                            <div class="category-title">${escapeHtml(category.category)}</div>
+                            <div class="news-list">
+                                ${category.links.map((link, idx) => `
+                                    <div class="news-item">
+                                        <h3>${escapeHtml(link.title)}</h3>
+                                        <p><strong>URL:</strong> <a href="${escapeHtml(link.url)}" target="_blank">${escapeHtml(link.url)}</a></p>
+                                        <p><strong>Source:</strong> ${escapeHtml(link.desc)}</p>
+                                        <div class="news-item-actions">
+                                            <button class="btn-danger" onclick="deleteLink('${escapeHtml(category.category)}', ${idx})">Delete</button>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                });
+
+                newsList.innerHTML = html;
+            } catch (error) {
+                document.getElementById('newsList').innerHTML = `<p style="color: red;">Error loading news: ${error.message}</p>`;
+            }
+        }
+
+        async function deleteLink(category, index) {
+            if (!confirm('Are you sure you want to delete this link?')) return;
+
+            try {
+                const { data, sha } = await fetchNewsData();
+                const categoryObj = data.news.find(cat => cat.category === category);
+                
+                if (categoryObj) {
+                    categoryObj.links.splice(index, 1);
+                    
+                    // Remove category if empty
+                    if (categoryObj.links.length === 0) {
+                        data.news = data.news.filter(cat => cat.category !== category);
+                    }
+                    
+                    await saveNewsData(data, sha);
+                    showMessage('✅ Link deleted successfully!', 'success');
+                    loadNewsList();
+                }
+            } catch (error) {
+                showMessage(`❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        function showMessage(text, type) {
+            const msg = document.getElementById('message');
+            msg.textContent = text;
+            msg.className = `message ${type}`;
+            setTimeout(() => {
+                msg.className = 'message';
+            }, 5000);
+        }
+
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+    </script>
+</body>
+</html>
