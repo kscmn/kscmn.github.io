@@ -381,10 +381,14 @@
 
         async function loadCategories() {
             try {
-                const data = await fetchNewsData();
+                const { data } = await fetchNewsData();
                 const select = document.getElementById('category');
                 
                 // data is an array directly
+                if (!Array.isArray(data)) {
+                    throw new Error('Data is not an array');
+                }
+                
                 const categories = data.map(cat => cat.category);
                 
                 categories.forEach(cat => {
@@ -486,8 +490,10 @@
 
             const fileData = await response.json();
             const content = atob(fileData.content);
+            const parsedData = JSON.parse(content);
+            
             return {
-                data: JSON.parse(content),
+                data: parsedData,
                 sha: fileData.sha
             };
         }
@@ -519,7 +525,7 @@
                 const { data } = await fetchNewsData();
                 const newsList = document.getElementById('newsList');
                 
-                if (!data || data.length === 0) {
+                if (!data || !Array.isArray(data) || data.length === 0) {
                     newsList.innerHTML = '<p style="text-align: center; color: #999;">No news items yet</p>';
                     return;
                 }
