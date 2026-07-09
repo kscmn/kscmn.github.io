@@ -353,6 +353,9 @@
             } else {
                 initializeApp();
             }
+            
+            // Always attach form listener after page loads
+            attachFormListener();
         });
 
         function saveToken() {
@@ -390,6 +393,7 @@
                 });
             } catch (error) {
                 console.error('Error loading categories:', error);
+                showMessage(`❌ Error loading categories: ${error.message}`, 'error');
             }
         }
 
@@ -411,8 +415,15 @@
             });
         }
 
-        // Form submission
-        document.getElementById('newsForm').addEventListener('submit', async (e) => {
+        function attachFormListener() {
+            const form = document.getElementById('newsForm');
+            if (form) {
+                form.removeEventListener('submit', handleFormSubmit);
+                form.addEventListener('submit', handleFormSubmit);
+            }
+        }
+
+        async function handleFormSubmit(e) {
             e.preventDefault();
 
             const token = localStorage.getItem(TOKEN_KEY);
@@ -452,9 +463,10 @@
                 document.getElementById('newsForm').reset();
                 loadCategories();
             } catch (error) {
+                console.error('Form submission error:', error);
                 showMessage(`❌ Error: ${error.message}`, 'error');
             }
-        });
+        }
 
         async function fetchNewsData() {
             const token = localStorage.getItem(TOKEN_KEY);
@@ -466,7 +478,8 @@
             });
 
             if (!response.ok) {
-                throw new Error('Failed to fetch news data');
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Failed to fetch news data');
             }
 
             const fileData = await response.json();
@@ -494,7 +507,8 @@
             });
 
             if (!response.ok) {
-                throw new Error('Failed to save news data');
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Failed to save news data');
             }
         }
 
@@ -531,6 +545,7 @@
 
                 newsList.innerHTML = html;
             } catch (error) {
+                console.error('Error loading news list:', error);
                 document.getElementById('newsList').innerHTML = `<p style="color: red;">Error loading news: ${error.message}</p>`;
             }
         }
@@ -555,6 +570,7 @@
                     loadNewsList();
                 }
             } catch (error) {
+                console.error('Delete error:', error);
                 showMessage(`❌ Error: ${error.message}`, 'error');
             }
         }
