@@ -383,7 +383,9 @@
             try {
                 const data = await fetchNewsData();
                 const select = document.getElementById('category');
-                const categories = data.news.map(cat => cat.category);
+                
+                // data is an array directly
+                const categories = data.map(cat => cat.category);
                 
                 categories.forEach(cat => {
                     const option = document.createElement('option');
@@ -450,10 +452,10 @@
             try {
                 const { data, sha } = await fetchNewsData();
                 
-                let categoryObj = data.news.find(cat => cat.category === category);
+                let categoryObj = data.find(cat => cat.category === category);
                 if (!categoryObj) {
                     categoryObj = { category, links: [] };
-                    data.news.push(categoryObj);
+                    data.push(categoryObj);
                 }
                 
                 categoryObj.links.unshift(newLink);
@@ -517,13 +519,13 @@
                 const { data } = await fetchNewsData();
                 const newsList = document.getElementById('newsList');
                 
-                if (data.news.length === 0) {
+                if (!data || data.length === 0) {
                     newsList.innerHTML = '<p style="text-align: center; color: #999;">No news items yet</p>';
                     return;
                 }
 
                 let html = '';
-                data.news.forEach(category => {
+                data.forEach(category => {
                     html += `
                         <div class="category-group">
                             <div class="category-title">${escapeHtml(category.category)}</div>
@@ -555,14 +557,15 @@
 
             try {
                 const { data, sha } = await fetchNewsData();
-                const categoryObj = data.news.find(cat => cat.category === category);
+                const categoryObj = data.find(cat => cat.category === category);
                 
                 if (categoryObj) {
                     categoryObj.links.splice(index, 1);
                     
                     // Remove category if empty
                     if (categoryObj.links.length === 0) {
-                        data.news = data.news.filter(cat => cat.category !== category);
+                        const idx = data.findIndex(cat => cat.category === category);
+                        data.splice(idx, 1);
                     }
                     
                     await saveNewsData(data, sha);
