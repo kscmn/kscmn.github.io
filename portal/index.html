@@ -36,7 +36,7 @@
 
 <div id="userInfo" style="display:none; margin-top:20px;">
     <p id="status"></p>
-    <p id="welcomeMessage" style="margin-top:12px; font-weight:600;">Welcome to the portal.</p>
+    <p id="welcomeMessage" style="margin-top:12px; font-weight:600; display:none;">Welcome to the portal.</p>
     <button id="signOutButton" class="btn">Sign Out</button>
 </div>
 
@@ -58,7 +58,7 @@ const userInfo = document.getElementById('userInfo');
 const statusText = document.getElementById('status');
 
 const CLIENT_ID = '577417709124-kec5rrio32urm627n6lptqkb7dl9att3.apps.googleusercontent.com';
-const REDIRECT_URI = 'https://kscmn.com/portal/index.html';
+const REDIRECT_URI = window.location.origin + window.location.pathname;
 const SCOPE = 'openid profile email';
 
 function buildAuthUrl() {
@@ -66,7 +66,7 @@ function buildAuthUrl() {
     const params = new URLSearchParams({
         client_id: CLIENT_ID,
         redirect_uri: REDIRECT_URI,
-        response_type: 'token id_token',
+        response_type: 'id_token',
         scope: SCOPE,
         include_granted_scopes: 'true',
         state: 'portal',
@@ -84,12 +84,14 @@ function showUser(user) {
     loginButton.style.display = 'none';
     userInfo.style.display = 'block';
     statusText.textContent = `Signed in as ${user.name} (${user.email})`;
+    document.getElementById('welcomeMessage').style.display = 'block';
 }
 
 function showSignedOut() {
     loginButton.style.display = 'inline-block';
     userInfo.style.display = 'none';
     statusText.textContent = '';
+    document.getElementById('welcomeMessage').style.display = 'none';
 }
 
 function handleAuthResponse() {
