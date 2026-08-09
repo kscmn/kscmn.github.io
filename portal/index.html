@@ -21,6 +21,7 @@
     </script>
 
     <link rel="stylesheet" href="/style.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
 <header>
@@ -32,7 +33,7 @@
 <div class="content">
 <p>Welcome to the KSC Portal. Sign in to access portal tools and your account.</p>
 
-<button id="loginButton" class="btn">Sign in with Google</button>
+<div id="g_id_signin" style="margin-top:20px;"></div>
 
 <div id="userInfo" style="display:none; margin-top:20px;">
     <p id="status"></p>
@@ -52,76 +53,50 @@
 </footer>
 
 <script>
-const loginButton = document.getElementById('loginButton');
 const signOutButton = document.getElementById('signOutButton');
 const userInfo = document.getElementById('userInfo');
 const statusText = document.getElementById('status');
 
 const CLIENT_ID = '577417709124-kec5rrio32urm627n6lptqkb7dl9att3.apps.googleusercontent.com';
-const REDIRECT_URI = window.location.origin + window.location.pathname;
-const SCOPE = 'openid profile email';
 
-function buildAuthUrl() {
-    const authEndpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
-    const params = new URLSearchParams({
-        client_id: CLIENT_ID,
-        redirect_uri: REDIRECT_URI,
-        response_type: 'id_token',
-        scope: SCOPE,
-        include_granted_scopes: 'true',
-        state: 'portal',
-        nonce: 'ksc-' + Math.random().toString(36).slice(2)
-    });
-    return `${authEndpoint}?${params.toString()}`;
-}
-
-function parseHashParams() {
-    const hash = window.location.hash.substring(1);
-    return Object.fromEntries(new URLSearchParams(hash));
+function handleCredentialResponse(response) {
+    try {
+        const payload = JSON.parse(atob(response.credential.split('.')[1].replace(/-/g, '+').replace(/_/g, '/')));
+        showUser({ name: payload.name || 'Portal User', email: payload.email || 'Unknown' });
+    } catch (err) {
+        console.error('Failed to parse credential response', err);
+    }
 }
 
 function showUser(user) {
-    loginButton.style.display = 'none';
+    document.getElementById('g_id_signin').style.display = 'none';
     userInfo.style.display = 'block';
     statusText.textContent = `Signed in as ${user.name} (${user.email})`;
     document.getElementById('welcomeMessage').style.display = 'block';
 }
 
 function showSignedOut() {
-    loginButton.style.display = 'inline-block';
+    document.getElementById('g_id_signin').style.display = 'block';
     userInfo.style.display = 'none';
     statusText.textContent = '';
     document.getElementById('welcomeMessage').style.display = 'none';
 }
 
-function handleAuthResponse() {
-    const params = parseHashParams();
-    if (params.id_token) {
-        const tokenParts = params.id_token.split('.');
-        if (tokenParts.length === 3) {
-            try {
-                const payload = JSON.parse(atob(tokenParts[1].replace(/-/g, '+').replace(/_/g, '/')));
-                showUser({ name: payload.name || 'Portal User', email: payload.email || 'Unknown' });
-                window.history.replaceState({}, document.title, window.location.pathname);
-                return;
-            } catch (err) {
-                console.error('Invalid token payload', err);
-            }
-        }
-    }
-    showSignedOut();
-}
-
-loginButton.addEventListener('click', () => {
-    window.location.href = buildAuthUrl();
-});
-
 signOutButton.addEventListener('click', () => {
     showSignedOut();
-    window.location.hash = '';
 });
 
-window.addEventListener('load', handleAuthResponse);
+window.onload = function() {
+    google.accounts.id.initialize({
+        client_id: CLIENT_ID,
+        callback: handleCredentialResponse
+    });
+    google.accounts.id.renderButton(
+        document.getElementById('g_id_signin'),
+        { theme: 'outline', size: 'large', text: 'signin_with' }
+    );
+    google.accounts.id.prompt();
+};
 </script>
 </body>
 </html>
