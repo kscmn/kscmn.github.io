@@ -4,13 +4,13 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZD9DR8ZX5"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag(){dataLayer.push(arguments);} 
       gtag('js', new Date());
       gtag('config', 'G-LZD9DR8ZX5');
     </script>
 	 <meta charset="UTF-8">
 <title>KSC | Home</title>
-    <meta name="description" content="Kato Sports Cards is a premier online sports card shop based in Mankato, Minnesota. Explore our Rookie Card Registry, check upcoming Release Dates, and find card comps.">
+    <meta name="description" content="Kato Sports Cards is a premier online sports card shop based in Mankato, Minnesota. Explore our Rookie Card Registry, check upcoming Release Dates, and find c[...]">
     <meta name="keywords" content="Kato Sports Cards, Sports Card Comps, Mankato MN, Rookie Card Registry, Sports Card Release Dates, Buy Sports Cards Online">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:type" content="website">
@@ -46,6 +46,16 @@
 
 </div>
 
+<!-- Upcoming releases section inserted by feature/releases-homepage -->
+<section id="releases-section" class="content">
+  <h2>Upcoming Release Dates (next 90 days)</h2>
+  <p class="muted">Source: Blowout Forums thread: <a href="https://www.blowoutforums.com/showthread.php?t=803" target="_blank" rel="noopener">https://www.blowoutforums.com/showthread.php?t=803</a></p>
+  <div id="releases-list">
+    <p>Loading upcoming releases...</p>
+  </div>
+  <p class="muted" style="font-size:0.9em; margin-top:0.5em;">Only sports releases are shown. To update the list, edit <code>/data/releases.json</code> in the repository or enable an automated updater.</p>
+</section>
+
 <footer>
 <p>&copy; 2026 Kato Sports Cards (KSC). All Rights Reserved. Mankato, Minnesota</p>
 <a href="/about">About Us</a> |
@@ -55,6 +65,80 @@
 <a href="/shop">Shop</a>
 </footer>
 
+<script>
+(function(){
+  const MAX_DAYS = 90;
+  function formatDisplayDate(isoDate){
+    const d = new Date(isoDate + 'T00:00:00');
+    if (isNaN(d)) return isoDate;
+    return (d.getMonth()+1) + '/' + d.getDate() + '/' + d.getFullYear();
+  }
+
+  function inNextNDays(isoDate, n){
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    const d = new Date(isoDate + 'T00:00:00');
+    const cutoff = new Date(today);
+    cutoff.setDate(cutoff.getDate() + n);
+    return d >= today && d <= cutoff;
+  }
+
+  function renderReleases(list){
+    const container = document.getElementById('releases-list');
+    container.innerHTML = '';
+    if (!list || list.length === 0){
+      container.innerHTML = '<p>No upcoming releases found for the next ' + MAX_DAYS + ' days.</p>';
+      return;
+    }
+    const ul = document.createElement('ul');
+    ul.style.listStyle = 'none';
+    ul.style.padding = '0';
+    list.forEach(item => {
+      const li = document.createElement('li');
+      li.style.padding = '6px 0';
+      const dateText = item.displayDate || formatDisplayDate(item.date);
+      const text = document.createElement('span');
+      text.textContent = dateText + ' ' + item.setName;
+      li.appendChild(text);
+      if (item.sourceUrl){
+        const a = document.createElement('a');
+        a.href = item.sourceUrl;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.textContent = ' ⤴';
+        a.style.marginLeft = '8px';
+        a.style.fontSize = '0.9em';
+        li.appendChild(a);
+      }
+      ul.appendChild(li);
+    });
+    container.appendChild(ul);
+  }
+
+  fetch('/data/releases.json')
+    .then(r => {
+      if (!r.ok) throw new Error('Releases file not found');
+      return r.json();
+    })
+    .then(data => {
+      // filter to next MAX_DAYS and to sports only (the data should already be sports-only)
+      const filtered = (data || []).filter(item => {
+        if (!item.date || !item.setName) return false;
+        // Only include sports - if brand or setName contains Pokemon/MTG/etc, exclude
+        const nameLower = (item.setName + ' ' + (item.brand||'')).toLowerCase();
+        const nonSports = ['pokemon','mtg','magic','yugioh','digimon','tcg'];
+        for (const ns of nonSports) if (nameLower.includes(ns)) return false;
+        return inNextNDays(item.date, MAX_DAYS);
+      }).sort((a,b) => new Date(a.date) - new Date(b.date))
+        .map(it => ({...it, displayDate: formatDisplayDate(it.date)}));
+      renderReleases(filtered);
+    })
+    .catch(err => {
+      const container = document.getElementById('releases-list');
+      container.innerHTML = '<p>Unable to load releases: ' + err.message + '</p>';
+    });
+})();
+</script>
 
 </body>
 </html>
