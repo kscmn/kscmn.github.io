@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Football | KSC</title>
+  <meta name="description" content="KSC sports card catalog. Online only, based in Mankato, Minnesota.">
+  <link rel="stylesheet" href="style.css">
+  <script src="products.js" defer></script>
+  <script src="shop.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#collection">Skip to products</a>
+  <header>
+    <div class="topbar"><div class="wrap top-inner"><span>Online only · Mankato, MN</span><div><button data-info="account">Log in</button><span> or </span><button data-info="account">Create account</button><button class="cart" data-info="cart">Bag (0)</button></div></div></div>
+    <div class="wrap brand-row"><a class="brand" href="index.html" aria-label="KSC home">KSC<span>SPORTS CARDS & COLLECTIBLES</span></a><form role="search" id="search-form"><label class="sr-only" for="search">Search products</label><input id="search" type="search" placeholder="Search products"><button type="submit" aria-label="Search">⌕</button></form></div>
+    <nav class="wrap nav" aria-label="Main navigation">
+      <a href="index.html">Home</a><a href="?category=All">Catalog</a><a href="?category=Football" data-category="Football">Football</a><a href="?category=Baseball" data-category="Baseball">Baseball</a><a href="?category=Basketball" data-category="Basketball">Basketball</a>
+      <details><summary>More</summary><div class="dropdown"><a href="?category=Non-Sports">Non-Sports</a><a href="?category=Supplies">Supplies</a><a href="?category=Single%20Cards">Single Cards</a><a href="?category=Soccer">Soccer</a></div></details><a href="#contact">Contact</a>
+    </nav>
+  </header>
+  <main class="wrap" id="collection">
+    <div class="breadcrumbs"><a href="index.html">Home</a><span aria-hidden="true">›</span><span id="breadcrumb">Football</span></div>
+    <div class="collection-heading"><div><h1 id="collection-title">Football</h1><span id="product-count" role="status"></span></div><label class="sort">Sort by <select id="sort"><option value="featured">Featured</option><option value="az">Alphabetically, A–Z</option><option value="za">Alphabetically, Z–A</option><option value="low">Price, low to high</option><option value="high">Price, high to low</option></select></label></div>
+    <div class="products" id="products"></div>
+    <p id="empty" hidden>No products found. Try another search or browse the <a href="?category=All">full catalog</a>.</p>
+    <noscript>Please enable JavaScript to display the products.</noscript>
+  </main>
+  <footer>
+    <div class="wrap footer-grid">
+      <section><h2>Links</h2><ul><li><a href="#search">Search</a></li><li><a href="?category=Football">Football</a></li><li><a href="?category=Baseball">Baseball</a></li><li><a href="?category=Basketball">Basketball</a></li><li><a href="#contact">Contact Us</a></li><li><button data-info="policies">Privacy Policy</button></li><li><button data-info="policies">Refund Policy</button></li><li><button data-info="policies">Terms of Service</button></li></ul></section>
+      <section><h2>Online Only</h2><p>Based in Mankato, Minnesota.<br>Browse our catalog online.<br>No physical storefront.</p></section>
+      <section id="contact"><h2>KSC</h2><p>Sports cards &amp; collectibles<br>Mankato, MN<br><a href="index.html">kscmn.com</a></p></section>
+      <section><h2>We Buy, Sell and Trade.</h2><p>Football, baseball & basketball cards<br>Autographed cards<br>Vintage cards & complete sets<br>Unopened boxes & packs<br>Sports memorabilia<br>Card sleeves & supplies</p></section>
+    </div>
+    <div class="wrap bottom"><span>© 2026 KSC.</span><span>kscmn.com · Online only · Mankato, MN</span></div>
+  </footer>
+  <dialog id="info"><form method="dialog"><button class="close" aria-label="Close">×</button></form><h2 id="info-title"></h2><p id="info-text"></p></dialog>
+</body>
+</html>
+
