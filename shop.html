@@ -1,41 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Football | KSC</title>
-  <meta name="description" content="KSC sports card catalog. Online only, based in Mankato, Minnesota.">
-  <link rel="stylesheet" href="style.css">
-  <script src="products.js" defer></script>
-  <script src="shop.js" defer></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LZD9DR8ZX5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LZD9DR8ZX5');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop | KSC</title>
+<meta name="description" content="KSC sports card catalog. Online only, based in Mankato, Minnesota.">
+<style>
+/*gravel*/
+a{color:black;outline:0;text-decoration:none;}
+a:hover{text-decoration:underline;}
+body{background:#f7f7f7;font-family:arial;font-size:16px;}
+footer{color:gray;font-size:13px;margin:50px 0;text-align:center;}
+header{}
+header p{margin:5px;}
+.box{background:white;border:1px solid lightgray; margin:5px;padding:5px;}
+.box a{display:block;margin-left:5px;}
+.box p{font-weight:bold;margin:0px 5px 5px 5px;}
+.content{display:flex;flex-direction:column;}
+.col{margin:10px 0;width:99%;}
+.row{background:white;border:1px solid lightgray;text-align:center;width:100%;}
+
+@media (min-width:700px){
+body{margin:11px 200px;}
+.content{flex-direction:row;}
+}
+
+/*not gravel */
+body{line-height:1.5;}
+.alert{border:1px solid red;padding:5p;text-align:center;}
+.alert a{color:red;}
+
+/* shop-specific */
+#collection{display:flex;flex-direction:column;}
+.breadcrumbs{color:gray;font-size:13px;margin:10px 5px;}
+.breadcrumbs a{color:black;}
+.breadcrumbs span{margin:0 5px;}
+.collection-heading{background:white;border:1px solid lightgray;margin:5px;padding:5px;}
+.collection-heading>div{display:flex;justify-content:space-between;align-items:center;}
+.collection-heading h1{margin:5px 0;}
+#product-count{color:gray;font-size:13px;}
+.sort{display:inline-block;margin:10px 0;}
+.sort select{font-family:arial;font-size:16px;}
+#products{display:flex;flex-wrap:wrap;margin:5px 0;}
+.product{background:white;border:1px solid lightgray;margin:5px;padding:5px;flex:1;min-width:200px;max-width:250px;}
+.product-image{background:#f0f0f0;width:100%;height:200px;display:flex;align-items:center;justify-content:center;margin-bottom:5px;overflow:hidden;}
+.product-image img{width:100%;height:100%;object-fit:cover;}
+.product-image.blank{color:gray;font-size:13px;}
+.crop{width:100%;height:100%;overflow:hidden;}
+.product h2{font-size:16px;margin:5px 0;font-weight:bold;}
+.product .price{font-weight:bold;margin:5px 0;}
+#empty{background:white;border:1px solid lightgray;margin:5px;padding:5px;color:gray;}
+#empty a{text-decoration:underline;}
+noscript{background:white;border:1px solid lightgray;margin:5px;padding:5px;display:block;color:red;}
+dialog{font-family:arial;font-size:16px;}
+dialog::backdrop{background:rgba(0,0,0,0.5);}
+dialog button.close{background:none;border:none;font-size:24px;cursor:pointer;float:right;}
+dialog h2{margin-top:0;}
+</style>
+<script src="products.js" defer></script>
+<script src="shop.js" defer></script>
 </head>
 <body>
-  <a class="skip" href="#collection">Skip to products</a>
-  <header>
-    <div class="topbar"><div class="wrap top-inner"><span>Online only · Mankato, MN</span><div><button data-info="account">Log in</button><span> or </span><button data-info="account">Create account</button><button class="cart" data-info="cart">Bag (0)</button></div></div></div>
-    <div class="wrap brand-row"><a class="brand" href="index.html" aria-label="KSC home">KSC<span>SPORTS CARDS & COLLECTIBLES</span></a><form role="search" id="search-form"><label class="sr-only" for="search">Search products</label><input id="search" type="search" placeholder="Search products"><button type="submit" aria-label="Search">⌕</button></form></div>
-    <nav class="wrap nav" aria-label="Main navigation">
-      <a href="index.html">Home</a><a href="?category=All">Catalog</a><a href="?category=Football" data-category="Football">Football</a><a href="?category=Baseball" data-category="Baseball">Baseball</a><a href="?category=Basketball" data-category="Basketball">Basketball</a>
-      <details><summary>More</summary><div class="dropdown"><a href="?category=Non-Sports">Non-Sports</a><a href="?category=Supplies">Supplies</a><a href="?category=Single%20Cards">Single Cards</a><a href="?category=Soccer">Soccer</a></div></details><a href="#contact">Contact</a>
-    </nav>
-  </header>
-  <main class="wrap" id="collection">
-    <div class="breadcrumbs"><a href="index.html">Home</a><span aria-hidden="true">›</span><span id="breadcrumb">Football</span></div>
-    <div class="collection-heading"><div><h1 id="collection-title">Football</h1><span id="product-count" role="status"></span></div><label class="sort">Sort by <select id="sort"><option value="featured">Featured</option><option value="az">Alphabetically, A–Z</option><option value="za">Alphabetically, Z–A</option><option value="low">Price, low to high</option><option value="high">Price, high to low</option></select></label></div>
-    <div class="products" id="products"></div>
-    <p id="empty" hidden>No products found. Try another search or browse the <a href="?category=All">full catalog</a>.</p>
-    <noscript>Please enable JavaScript to display the products.</noscript>
-  </main>
-  <footer>
-    <div class="wrap footer-grid">
-      <section><h2>Links</h2><ul><li><a href="#search">Search</a></li><li><a href="?category=Football">Football</a></li><li><a href="?category=Baseball">Baseball</a></li><li><a href="?category=Basketball">Basketball</a></li><li><a href="#contact">Contact Us</a></li><li><button data-info="policies">Privacy Policy</button></li><li><button data-info="policies">Refund Policy</button></li><li><button data-info="policies">Terms of Service</button></li></ul></section>
-      <section><h2>Online Only</h2><p>Based in Mankato, Minnesota.<br>Browse our catalog online.<br>No physical storefront.</p></section>
-      <section id="contact"><h2>KSC</h2><p>Sports cards &amp; collectibles<br>Mankato, MN<br><a href="index.html">kscmn.com</a></p></section>
-      <section><h2>We Buy, Sell and Trade.</h2><p>Football, baseball & basketball cards<br>Autographed cards<br>Vintage cards & complete sets<br>Unopened boxes & packs<br>Sports memorabilia<br>Card sleeves & supplies</p></section>
-    </div>
-    <div class="wrap bottom"><span>© 2026 KSC.</span><span>kscmn.com · Online only · Mankato, MN</span></div>
-  </footer>
-  <dialog id="info"><form method="dialog"><button class="close" aria-label="Close">×</button></form><h2 id="info-title"></h2><p id="info-text"></p></dialog>
+<h1>KSC</h1>
+
+<div class="box">
+<p>Shop</p>
+<a href="/">Home</a>
+<a href="?category=All">Catalog</a>
+<a href="?category=Football">Football</a>
+<a href="?category=Baseball">Baseball</a>
+</div>
+
+<div id="collection">
+<div class="breadcrumbs"><a href="/">Home</a><span>›</span><span id="breadcrumb">Football</span></div>
+<div class="collection-heading">
+<div><h1 id="collection-title">Football</h1><span id="product-count" role="status"></span></div>
+<label class="sort">Sort by <select id="sort"><option value="featured">Featured</option><option value="az">A–Z</option><option value="za">Z–A</option><option value="low">Price: Low to High</option><option value="high">Price: High to Low</option></select></label>
+</div>
+<input type="text" id="search" placeholder="Search products..." style="background:white;border:1px solid lightgray;margin:5px;padding:5px;font-family:arial;font-size:16px;width:calc(100% - 22px);">
+<div id="products"></div>
+<p id="empty" hidden>No products found. Try another search or browse the <a href="?category=All">full catalog</a>.</p>
+<noscript>Please enable JavaScript to display the products.</noscript>
+</div>
+
+<footer>
+&copy; 2026 Kato Sports Cards (KSC). All Rights Reserved. Mankato, Minnesota
+</footer>
+
+<dialog id="info"><form method="dialog"><button class="close" aria-label="Close">×</button></form><h2 id="info-title"></h2><p id="info-text"></p></dialog>
 </body>
 </html>
-
